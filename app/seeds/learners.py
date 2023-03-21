@@ -116,7 +116,7 @@ def seed_learners():
     db.session.commit()
 
 
-def undo_classes():
+def undo_learners():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.learners RESTART IDENTITY CASCADE;")
     else:

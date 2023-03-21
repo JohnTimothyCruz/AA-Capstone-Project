@@ -105,7 +105,7 @@ def seed_decks():
     db.session.commit()
 
 
-def undo_classes():
+def undo_decks():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.decks RESTART IDENTITY CASCADE;")
     else:

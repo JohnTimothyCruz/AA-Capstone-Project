@@ -234,7 +234,7 @@ def seed_flashcards():
     db.session.commit()
 
 
-def undo_classes():
+def undo_flashcards():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.flashcards RESTART IDENTITY CASCADE;")
     else:
