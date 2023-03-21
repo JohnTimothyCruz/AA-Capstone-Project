@@ -8,6 +8,7 @@ import SignupFormModal from "../SignupFormModal";
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const [findingFlashcards, setFindingFlasshcards] = useState(false)
   const ulRef = useRef();
 
   const openMenu = () => {
@@ -19,7 +20,7 @@ function ProfileButton({ user }) {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
+      if (!ulRef.current?.contains(e.target)) {
         setShowMenu(false);
       }
     };
@@ -34,39 +35,64 @@ function ProfileButton({ user }) {
     dispatch(logout());
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const openFind = () => {
+    setFindingFlasshcards(!findingFlashcards)
+  }
+
+  const dropdownClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
-      <ul className={ulClassName} ref={ulRef}>
-        {user ? (
-          <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
-          </>
-        ) : (
-          <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
+      <div id="navbar-options-container">
+        <div className="navbar-option">
+          <div>
+            My Classes
+          </div>
+        </div>
+        <div className={`navbar-option ${findingFlashcards ? "selected" : ""}`} onClick={openFind}>
+          <i className="fa-solid fa-magnifying-glass fa-xs" />
+          <div id="find-flashcards-option-text">
+            Find Flashcards
+          </div>
+          <i className={`fa-solid ${findingFlashcards ? "fa-caret-up" : "fa-caret-down"}`} />
+        </div>
+        <div className="navbar-option">Make Flashcards</div>
+        <div className="navbar-option">About</div>
+      </div>
+      {user ? (
+        <>
+          <div id="profile-button-container">
+            <i id="profile-button" onClick={openMenu} className="fa-regular fa-circle-user fa-2xl" />
+          </div>
+          <div id="user-menu" className={dropdownClassName}>
+            <div id="user-menu-section-top" className="user-menu-section">
+              <i id="user-menu-profile-icon" className="fa-regular fa-circle-user fa-2xl" />
+              <div id="user-username">
+                {user.username}
+              </div>
+            </div>
+            <div className="user-menu-section">View Profile</div>
+            <div className="user-menu-section">My Account</div>
+            <div className="user-menu-section" onClick={handleLogout}>Log Out</div>
+          </div>
+          <div id="orange-box"></div>
+        </>
+      ) : (
+        <div id="enter-session-buttons-container">
+          <OpenModalButton
+            buttonText="Log In"
+            onItemClick={closeMenu}
+            modalComponent={<LoginFormModal />}
+          />
 
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </>
-        )}
-      </ul>
+          <OpenModalButton
+            buttonText="Get Started"
+            onItemClick={closeMenu}
+            modalComponent={<SignupFormModal />}
+          />
+        </div>
+      )}
     </>
   );
 }

@@ -3,6 +3,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 
+def createUsername():
+    return
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -10,9 +13,20 @@ class User(db.Model, UserMixin):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
+    first_name = db.Column(db.String(30), nullable=False)
+    last_name = db.Column(db.String(30), nullable=False)
+    username = db.Column(db.String(40), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    classes = db.relationship(
+        "Class",
+        back_populates="user"
+    )
+    learning = db.relationship(
+        "Learner",
+        back_populates="user"
+    )
 
     @property
     def password(self):
@@ -29,5 +43,18 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'email': self.email,
+            'classes': [a_class.to_dict_no_rel() for a_class in self.classes],
+            'learning': [learn.to_dict_no_rel() for learn in self.learning]
+        }
+
+    def to_dict_no_rel(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
             'email': self.email
         }
