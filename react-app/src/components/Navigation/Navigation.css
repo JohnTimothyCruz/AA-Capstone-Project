@@ -1,7 +1,171 @@
+* {
+  font-family: 'Noto Sans Lao', arial, sans-serif;
+}
+
+/* Navbar */
+#navbar-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  margin: 0px;
+  padding: 0px 0px 0px 57px;
+  height: 72px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+#takes-up-space {
+  height: 72px;
+  margin: 0px;
+  padding: 0px;
+}
+
+/* Navbar Left */
+#logo {
+  display: flex;
+  align-items: center;
+  color: rgb(70, 64, 64);
+  text-decoration: underline white;
+  gap: 5px;
+}
+
+#logo-icon {
+  text-decoration: underline rgb(0, 162, 255);
+}
+
+#logo-text {
+  font-weight: 800;
+}
+
+/* Navbar Right */
+#navbar-right button {
+  background: none;
+  border: none;
+}
+
+#enter-session-buttons-container button {
+  height: 72px;
+  width: 165px;
+  font-family: 'Noto Sans Lao', arial, sans-serif;
+  font-weight: 600;
+}
+
+#enter-session-buttons-container button:first-child {
+  background-color: rgb(248, 248, 248);
+}
+
+#enter-session-buttons-container button:first-child:hover {
+  background-color: rgb(240, 240, 240);
+  font-size: 14px;
+}
+
+#enter-session-buttons-container button:last-child {
+  background-color: rgb(255, 125, 65);
+  color: white;
+}
+
+#enter-session-buttons-container button:last-child:hover {
+  font-size: 14px;
+}
+
+#navbar-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 18px;
+}
+
+#navbar-options-container {
+  display: flex;
+  gap: 40px;
+}
+
+.navbar-option {
+  height: 67px;
+  font-size: 13px;
+  padding: 0px 15px;
+  border-top: 5px solid transparent;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: border-top 1s;
+}
+
+.navbar-option.selected,
+.navbar-option:hover {
+  border-top: 5px solid grey;
+  padding: 0px 15px;
+}
+
+#find-flashcards-option-text {
+  padding: 0px 5px;
+}
+
+#profile-button-container {
+  padding: 9px;
+  border-radius: 100%;
+}
+
+#profile-button {
+  color: black;
+}
+
+#orange-box {
+  height: 72px;
+  width: 165px;
+  background-color: rgb(255, 125, 65);
+}
+
 .profile-dropdown {
   position: absolute;
 }
 
 .hidden {
   display: none;
+}
+
+/* User Menu */
+#user-menu {
+  position: absolute;
+  top: 72px;
+  right: 165px;
+  width: 222px;
+  border-top: 1px solid rgb(240, 240, 240);;
+}
+
+#user-menu-section-top {
+  background-color: white;
+  height: 64px;
+  display: flex;
+  gap: 12px;
+}
+
+#profile-button {
+  cursor: pointer;
+}
+
+#user-username {
+  width: 108px;
+  overflow-wrap: break-word;
+}
+
+.user-menu-section {
+  display: flex;
+  align-items: center;
+  padding: 12px 18px;
+  background-color: rgba(230, 230, 230, 0.87);
+}
+
+.user-menu-section:not(#user-menu-section-top) {
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.user-menu-section:not(#user-menu-section-top):hover {
+  border-left: 5px solid grey;
+  padding-left: 13px;
 }
