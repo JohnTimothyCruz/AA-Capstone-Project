@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import OpenModalButton from "../OpenModalButton";
+import SignupFormModal from "../SignupFormModal";
 import "./LoginForm.css";
 
 function LoginFormModal() {
@@ -17,21 +19,22 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-        closeModal()
+      closeModal()
     }
   };
 
+  const loginAsDemo = () => {
+    dispatch(login("demo@aa.io", "password"))
+      .then(closeModal)
+  }
+
   return (
-    <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Email
+    <div id="login-form-modal-container">
+      <i id="close-login-modal-button" className="fa-solid fa-xmark fa-2xl" onClick={closeModal} />
+      <h1 id="login-modal-prompt">Log In</h1>
+      <form id="login-form" onSubmit={handleSubmit}>
+        <label id="login-email-input">
+          <div id="login-email-prompt" className={email !== "" ? "stay" : ""}>E-mail</div>
           <input
             type="text"
             value={email}
@@ -39,8 +42,8 @@ function LoginFormModal() {
             required
           />
         </label>
-        <label>
-          Password
+        <label id="login-password-input">
+          <div id="login-password-prompt" className={password !== "" ? "stay" : ""}>Password</div>
           <input
             type="password"
             value={password}
@@ -48,9 +51,26 @@ function LoginFormModal() {
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button
+          tabIndex="0"
+          id="login-button"
+          type="submit"
+          disabled={password === "" || email === ""}
+        >Log In</button>
+        <ul id="login-errors">
+          {errors.map((error, idx) => (
+            <li className="login-error" key={idx}>{error}</li>
+          ))}
+        </ul>
+        <div id="other-session-options">
+          <OpenModalButton
+            buttonText="Create an account?"
+            modalComponent={<SignupFormModal />}
+          />
+          <div onClick={loginAsDemo}>Login as demo user?</div>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 

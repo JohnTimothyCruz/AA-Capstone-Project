@@ -45,6 +45,7 @@
 #navbar-right button {
   background: none;
   border: none;
+  cursor: pointer;
 }
 
 #enter-session-buttons-container button {
