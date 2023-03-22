@@ -1,0 +1,210 @@
+/* Sign Up Modal */
+#sign-up-form-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 450px;
+    height: fit-content;
+    padding: 20px;
+    background-color: white;
+    border-radius: 25px;
+}
+
+#close-sign-up-modal-button {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    color: grey;
+    cursor: pointer;
+}
+
+#sign-up-modal-prompt {
+    color: rgb(41, 71, 110);
+}
+
+/* Sign Up Form */
+#sign-up-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sign-up-form label {
+    margin: 10px 0px;
+}
+
+#first-and-last-name-input-container {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
+#sign-up-first-name-input,
+#sign-up-last-name-input {
+    width: 48%;
+    color: rgb(175, 175, 175);
+}
+
+#sign-up-email-input,
+#sign-up-password-input,
+#sign-up-confirm-password-input {
+    width: 90%;
+    color: rgb(175, 175, 175);
+}
+
+#sign-up-first-name-prompt,
+#sign-up-last-name-prompt,
+#sign-up-email-prompt,
+#sign-up-password-prompt,
+#sign-up-confirm-password-prompt {
+    position: absolute;
+    font-family: 'Noto Sans Lao', arial, sans-serif;;
+    font-weight: 600;
+    cursor: pointer;
+    padding-left: 0px;
+    transition: top 0.2s, font-size 0.2s, font-weight 0.2s;
+}
+
+#sign-up-first-name-input input,
+#sign-up-last-name-input input,
+#sign-up-email-input input,
+#sign-up-password-input input,
+#sign-up-confirm-password-input input {
+    border: none;
+    border-bottom: 3px solid rgb(240, 240, 240);
+    outline: none;
+    width: 100%;
+    padding: 5px 0px 5px 3px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    color: rgb(41, 97, 170);
+}
+
+#sign-up-first-name-input input:focus,
+#sign-up-last-name-input input:focus,
+#sign-up-email-input input:focus,
+#sign-up-password-input input:focus,
+#sign-up-confirm-password-input input:focus {
+    caret-color: rgb(0, 162, 255);
+    border-bottom: 3px solid rgb(0, 162, 255);
+}
+
+#sign-up-first-name-prompt,
+#sign-up-last-name-prompt {
+    top: 135px;
+}
+
+#sign-up-email-prompt {
+    top: 193px;
+}
+
+#sign-up-password-prompt {
+    top: 251px;
+}
+
+#sign-up-confirm-password-prompt {
+    top: 310px;
+}
+
+/* Stuff to make the "placeholders" move */
+#sign-up-first-name-input:focus-within #sign-up-first-name-prompt,
+#sign-up-first-name-prompt.stay,
+#sign-up-last-name-input:focus-within #sign-up-last-name-prompt,
+#sign-up-last-name-prompt.stay {
+    top: 112px;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+#sign-up-email-input:focus-within #sign-up-email-prompt,
+#sign-up-email-prompt.stay {
+    top: 169px;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+#sign-up-password-input:focus-within #sign-up-password-prompt,
+#sign-up-password-prompt.stay {
+    top: 227px;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+#sign-up-confirm-password-input:focus-within #sign-up-confirm-password-prompt,
+#sign-up-confirm-password-prompt.stay {
+    top: 286px;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+/* Password Icons */
+#show-password-button {
+    position: absolute;
+    top: 255px;
+    right: 70px;
+    cursor: pointer;
+}
+
+#show-password-button:hover {
+    color: rgb(31, 158, 180);
+}
+
+#password-strength-icon {
+    position: absolute;
+    top: 255px;
+    right: 40px;
+    cursor: help;
+}
+
+/* Sign Up Button */
+#sign-up-button {
+    text-align: center;
+    border: none;
+    background: none;
+    width: 65%;
+    margin-top: 30px;
+    padding: 10px 4px;
+    border-radius: 100px;
+    background-color: rgb(255, 125, 65);
+    border: 4px solid rgb(255, 255, 255);
+    color: white;
+    transition: border 0.1s;
+    cursor: pointer;
+}
+
+#sign-up-button:disabled {
+    background-color: rgb(187, 187, 187);
+    cursor: not-allowed;
+}
+
+#sign-up-button:focus {
+    border: 4px solid rgb(105, 175, 255);
+}
+
+/* Error Handling */
+#sign-up-errors {
+    list-style-type: none;
+    padding: 0px;
+    font-size: 12px;
+    font-style: italic;
+    color: rgb(214, 0, 0);
+}
+
+/* Other Session Options */
+#other-session-options {
+    width: 79%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#other-session-options * {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: underline;
+    color: rgb(102, 102, 102)
+}
