@@ -9,7 +9,7 @@ class Deck(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    class_id = db.Column(db.Integer, db.ForeignKey(Class.id))
+    class_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('classes.id')))
     name = db.Column(db.String(250))
     objective = db.Column(db.String(500))
 
