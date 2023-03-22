@@ -173,7 +173,7 @@ function SignupFormModal() {
 				<button type="submit"
 					id="sign-up-button"
 					// Use effect for validations?
-					disabled={!dataPassesValidations || !passwordPassesValidations}
+					disabled={!firstName || !lastName || !email || !password || ! confirmPassword || password !== confirmPassword}
 				>Register</button>
 				<ul id="sign-up-errors">
 					{errors.map((error, idx) => (
