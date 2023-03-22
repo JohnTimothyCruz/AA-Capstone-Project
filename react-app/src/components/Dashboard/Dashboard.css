@@ -1,0 +1,65 @@
+#dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+#root {
+    width: 100%;
+}
+
+#dashboard-container {
+    width: 100%;
+}
+
+#dashboard-side-bar {
+    background-color: rgb(48, 79, 121);
+    height: 100%;
+    width: 5%;
+}
+
+#dashboard-class-container {
+    width: 95%;
+}
+
+#dashboard-class-info {
+    padding: 36px;
+    background-color: white;
+    height: 80px;
+}
+
+#dashboard-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 47px;
+    background-color: rgb(240, 240, 240);
+}
+
+#dashboard-about,
+#dashboard-decks,
+#dashboard-learners {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 41px;
+    width: 34%;
+    padding-top: 3px;
+    border-bottom: 3px solid rgb(240, 240, 240);
+}
+
+#dashboard-about:hover:not(.selected),
+#dashboard-decks:hover:not(.selected),
+#dashboard-learners:hover:not(.selected) {
+    color: rgb(0, 162, 255);
+    border-bottom: 3px solid rgb(180, 180, 180);
+}
+
+#dashboard-about.selected,
+#dashboard-decks.selected,
+#dashboard-learners.selected {
+    border-bottom: 3px solid rgb(48, 79, 121);
+}
+
+.dashboard-menu-section-text {
+
+}

@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,10 +15,13 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path="/dashboard/users/:id" >
+            <Dashboard />
+          </Route>
           <Route path="/" >
+            <Navigation isLoaded={isLoaded} />
             <HomePage />
           </Route>
         </Switch>
