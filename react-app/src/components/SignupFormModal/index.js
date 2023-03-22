@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import LoginFormModal from "../LoginFormModal";
@@ -18,6 +19,8 @@ function SignupFormModal() {
 	const [passwordPassesValidations, setPasswordPassesValidations] = useState(false)
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
+
+	const history = useHistory()
 
 	const validateData = () => {
 		let newErrors = [errors]
@@ -49,7 +52,7 @@ function SignupFormModal() {
 			default:
 				setDataPassesValidations(true)
 		}
-		setErrors(newErrors)
+		// setErrors(newErrors)
 	}
 
 	const validatePassword = () => {
@@ -105,10 +108,12 @@ function SignupFormModal() {
 		if (dataPassesValidations) {
 			const username = `${firstName} ${lastName}`
 			const data = await dispatch(signUp(username, firstName, lastName, email, password));
-			if (data) {
+			if (!data.id) {
 				setErrors(data);
 			} else {
-				closeModal();
+				console.log(data.id)
+				history.push(`/dashboard/${data.id}`)
+				closeModal()
 			}
 		} else {
 			setErrors([

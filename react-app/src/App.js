@@ -17,7 +17,7 @@ function App() {
     <>
       {isLoaded && (
         <Switch>
-          <Route path="/dashboard/users/:id" >
+          <Route path="/dashboard/:id" >
             <Dashboard />
           </Route>
           <Route path="/" >
