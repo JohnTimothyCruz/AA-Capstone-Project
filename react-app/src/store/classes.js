@@ -60,11 +60,11 @@ export const getClass = (id) => async dispatch => {
     };
 };
 
-export const postClass = (classInfo, user) => async dispatch => {
+export const postClass = (classInfo, userId) => async dispatch => {
     const res = await fetch(`api/classes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({classInfo, user})
+        body: JSON.stringify({classInfo, userId})
     });
 
     if (res.ok) {
@@ -73,11 +73,11 @@ export const postClass = (classInfo, user) => async dispatch => {
     };
 };
 
-export const putClass = (classInfo, user) => async dispatch => {
-    const res = await fetch(`api/classes`, {
+export const putClass = (classInfo, userId) => async dispatch => {
+    const res = await fetch(`api/classes/${userId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({classInfo, user})
+        body: JSON.stringify({classInfo, userId})
     });
 
     if (res.ok) {

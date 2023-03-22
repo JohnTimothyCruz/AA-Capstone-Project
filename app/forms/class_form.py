@@ -6,4 +6,5 @@ from wtforms.validators import DataRequired
 class ClassForm(FlaskForm):
     user_id = IntegerField("User id", validators=[DataRequired()])
     name = StringField("Name", validators=[DataRequired()])
-    
+    headline = StringField("Headline")
+    description = StringField("Description")
