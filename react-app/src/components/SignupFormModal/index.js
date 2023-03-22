@@ -103,7 +103,8 @@ function SignupFormModal() {
 		e.preventDefault();
 		validateData()
 		if (dataPassesValidations) {
-			const data = await dispatch(signUp(firstName, email, password));
+			const username = `${firstName} ${lastName}`
+			const data = await dispatch(signUp(username, firstName, lastName, email, password));
 			if (data) {
 				setErrors(data);
 			} else {
