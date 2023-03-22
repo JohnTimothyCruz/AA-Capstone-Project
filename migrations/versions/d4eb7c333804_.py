@@ -75,7 +75,11 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE <table_name> SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE classes SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE decks SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE learners SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE flashcards SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
