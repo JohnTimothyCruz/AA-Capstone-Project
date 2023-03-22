@@ -1,5 +1,4 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .user import User
 
 
 class Class(db.Model):
@@ -41,7 +40,7 @@ class Class(db.Model):
             'headline': self.headline,
             'description': self.description,
             'user': self.user.to_dict_no_rel(),
-            'learners': self.learners.to_dict_no_rel(),
+            'learners': [learner.to_dict_no_rel() for learner in self.learners],
             'decks': [deck.to_dict_no_rel() for deck in self.decks]
         }
 

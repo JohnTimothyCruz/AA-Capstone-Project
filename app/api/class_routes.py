@@ -1,13 +1,12 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from sqlalchemy.sql import text
-from app.models import db, Class, User
+from app.models import db, Class
 from app.forms import ClassForm
 
 class_routes = Blueprint('classes', __name__)
 
 # Get all classes
-@class_routes.route('/', methods=['GET'])
+@class_routes.route('', methods=['GET'])
 def get_classes():
     classes = Class.query.all()
     return [a_class.to_dict() for a_class in classes]
@@ -16,22 +15,19 @@ def get_classes():
 @class_routes.route('/<int:id>', methods=['GET'])
 def get_class(id):
     a_class = Class.query.get(id)
-    return a_class
+    return a_class.to_dict()
 
 # Post a class
-@class_routes.route('/', methods=['POST'])
+@class_routes.route('', methods=['POST'])
 @login_required
 def post_class():
     form = ClassForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        user_id = form.user_id.data
-        name = form.name.data
-
         new_class = Class(
-            user_id,
-            name
+            user_id = form.user_id.data,
+            name = form.name.data,
         )
         db.session.add(new_class)
         db.session.commit()
@@ -57,11 +53,17 @@ def put_class(id):
     if form.validate_on_submit():
         user_id = form.user_id.data
         name = form.name.data
+        mix_type = form.mix_type.data
+        visibility = form.visibility.data
+        image = form.image.data
         headline = form.headline.data
         description = form.description.data
 
         a_class.user_id = user_id
         a_class.name = name
+        a_class.mix_type = mix_type
+        a_class.visibility = visibility
+        a_class.image = image
         a_class.headline = headline
         a_class.description = description
 
@@ -83,4 +85,4 @@ def delete_class(id):
 
     db.session.delete(a_class)
     db.session.commit()
-    return "Delete successful!"
+    return {"Message": "Delete successful!"}

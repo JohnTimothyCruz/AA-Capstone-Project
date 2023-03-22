@@ -1,9 +1,10 @@
-import "./HomePage.css"
+import "./HomePage.css";
 
 const HomePage = () => {
-
     return (
-        <div id="temp">Hi</div>
+        <>
+            <div>hi</div>
+        </>
     )
 }
 

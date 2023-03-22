@@ -52,7 +52,7 @@ export const getClasses = () => async dispatch => {
 };
 
 export const getClass = (id) => async dispatch => {
-    const res = await fetch(`api/classes/${id}`);
+    const res = await fetch(`/api/classes/${id}`);
 
     if (res.ok) {
         const aClass = await res.json();
@@ -60,11 +60,11 @@ export const getClass = (id) => async dispatch => {
     };
 };
 
-export const postClass = (classInfo, userId) => async dispatch => {
-    const res = await fetch(`api/classes`, {
+export const postClass = (name, user_id) => async dispatch => {
+    const res = await fetch(`/api/classes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({classInfo, userId})
+        body: JSON.stringify({user_id, name})
     });
 
     if (res.ok) {
@@ -73,11 +73,11 @@ export const postClass = (classInfo, userId) => async dispatch => {
     };
 };
 
-export const putClass = (classInfo, userId) => async dispatch => {
-    const res = await fetch(`api/classes/${userId}`, {
+export const putClass = (name, description, headline, image, mix_type, visibility, id, user_id) => async dispatch => {
+    const res = await fetch(`/api/classes/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({classInfo, userId})
+        body: JSON.stringify({name, description, headline, image, mix_type, visibility, user_id})
     });
 
     if (res.ok) {
@@ -86,24 +86,21 @@ export const putClass = (classInfo, userId) => async dispatch => {
     };
 };
 
-export const deleteClass = (id, user) => async dispatch => {
-    const res = await fetch(`api/classes/${id}`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({classInfo, user})
+export const deleteClass = (id) => async dispatch => {
+    const res = await fetch(`/api/classes/${id}`, {
+        method: "DELETE"
     });
 
     if (res.ok) {
-        const newClass = await res.json();
-        dispatch(removeClass(newClass));
-    };
+        dispatch(removeClass(id));
+    }
 };
 
 // -Reducer--------------------
-const initialState = { allClasses: {} }
+const initialState = { allClasses: {}, singleClass: {} }
 
 const ClassReducer = (state = initialState, action) => {
-    newState = { ...state }
+    const newState = { ...state }
     switch (action.type) {
         case GET_CLASSES:
             action.classes.forEach(aClass => {
@@ -111,7 +108,7 @@ const ClassReducer = (state = initialState, action) => {
             })
             return newState;
         case GET_CLASS:
-            newState.allClasses[action.aClass.id] = action.aClass
+            newState.singleClass[action.aClass.id] = action.aClass
             return newState;
         case POST_CLASS:
             newState.allClasses[action.aClass.id] = action.aClass
@@ -120,7 +117,7 @@ const ClassReducer = (state = initialState, action) => {
             newState.allClasses[action.aClass.id] = action.aClass
             return newState
         case DELETE_CLASS:
-            delete newState[action.id]
+            delete newState.allClasses[action.id]
             return newState
         default:
             return state
