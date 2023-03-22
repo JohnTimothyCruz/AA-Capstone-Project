@@ -35,8 +35,8 @@ def get_engine():
 
 # add your model's MetaData object here
 # for 'autogenerate' support
-# from myapp import mymodel
-# target_metadata = mymodel.Base.metadata
+from myapp import mymodel
+target_metadata = mymodel.Base.metadata
 config.set_main_option(
     'sqlalchemy.url', str(get_engine().url).replace('%', '%%'))
 target_db = current_app.extensions['migrate'].db
