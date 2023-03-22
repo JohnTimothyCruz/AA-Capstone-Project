@@ -4,7 +4,6 @@ from .classes import seed_classes, undo_classes
 from .decks import seed_decks, undo_decks
 from .flashcards import seed_flashcards, undo_flashcards
 from .learners import seed_learners, undo_learners
-
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -16,6 +15,10 @@ seed_commands = AppGroup('seed')
 @seed_commands.command('all')
 def seed():
     if environment == 'production':
+        # Before seeding, truncate all tables prefixed with schema name
+        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        # Add a truncate command here for every table that will be seeded.
+        db.session.commit()
         # Before seeding in production, you want to run the seed undo
         # command, which will  truncate all tables prefixed with
         # the schema name (see comment in users.py undo_users function).

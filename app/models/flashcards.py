@@ -9,7 +9,7 @@ class Flashcard(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    deck_id = db.Column(db.Integer, db.ForeignKey(Deck.id))
+    deck_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('decks.id')))
     question = db.Column(db.String(250), nullable=False)
     answer = db.Column(db.String(250), nullable=False)
     question_image = db.Column(db.String)

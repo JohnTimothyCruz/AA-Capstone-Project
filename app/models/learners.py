@@ -5,9 +5,14 @@ from datetime import datetime
 
 
 class Learner(db.Model):
+    __tablename__ = 'learners'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(User.id))
-    class_id = db.Column(db.Integer, db.ForeignKey(Class.id))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    class_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('classes.id')))
     mastery = db.Column(db.Integer, default=0)
     days_studied = db.Column(db.Integer, default=0)
     time_studied = db.Column(db.Integer, default=0)
