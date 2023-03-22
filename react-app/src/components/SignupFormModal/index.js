@@ -8,59 +8,101 @@ import "./SignupForm.css";
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
-	const [email, setEmail] = useState("");
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
+	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 	const [confirmPassword, setConfirmPassword] = useState("");
-	const [passesValidations, setPassesValidations] = useState(false)
+	const [dataPassesValidations, setDataPassesValidations] = useState(false)
+	const [passwordPassesValidations, setPasswordPassesValidations] = useState(false)
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
 	const validateData = () => {
+		let newErrors = [errors]
 		switch (false) {
-			case firstName:
-				setPassesValidations(false)
+			case firstName !== "":
+				setDataPassesValidations(false)
+				newErrors.push("Please enter a first name.")
 				break
-			case lastName:
-				setPassesValidations(false)
+			case lastName !== "":
+				setDataPassesValidations(false)
+				newErrors.push("Please enter a last name.")
 				break
-			case password && password.length >= 8:
-				setPassesValidations(false)
+			case email !== "":
+				setDataPassesValidations(false)
+				newErrors.push("Please enter an email.")
 				break
-			case password.toUpperCase() !== password:
-				setPassesValidations(false)
+			case email.length > 5:
+				setDataPassesValidations(false)
+				newErrors.push("A valid email is required.")
 				break
-			case password.toLowerCase() !== password:
-				setPassesValidations(false)
+			case email.split("@").length === 2:
+				setDataPassesValidations(false)
+				newErrors.push("A valid email is required.")
 				break
-			case confirmPassword:
-				setPassesValidations(false)
-				break
-			case password !== confirmPassword:
-				setPassesValidations(false)
+			case email.split(".").length === 2:
+				setDataPassesValidations(false)
+				newErrors.push("A valid email is required.")
 				break
 			default:
-				setPassesValidations(true)
+				setDataPassesValidations(true)
 		}
-		for (const char in password) {
-			if ('1234567890'.includes(char)) {
-				setPassesValidations(false)
-			}
+		setErrors(newErrors)
+	}
+
+	const validatePassword = () => {
+		const newErrors = [errors]
+		switch (false) {
+			case password:
+				setPasswordPassesValidations(false)
+				newErrors.push("Please enter a password and a matching confirmation.")
+				break
+			case password.length >= 8:
+				setPasswordPassesValidations(false)
+				newErrors.push("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
+				break
+			case password.toUpperCase() !== password:
+				setPasswordPassesValidations(false)
+				newErrors.push("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
+				break
+			case password.toLowerCase() !== password:
+				setPasswordPassesValidations(false)
+				newErrors.push("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
+				break
+			case /\d/.test(password):
+				setPasswordPassesValidations(false)
+				newErrors.push("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
+				break
+			case confirmPassword:
+				setPasswordPassesValidations(false)
+				newErrors.push("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
+				break
+			case password !== confirmPassword:
+				setPasswordPassesValidations(false)
+				newErrors.push("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
+				break
+			default:
+				setPasswordPassesValidations(true)
 		}
-		// Change this function to make errors pop up
-		// if password fails its validations.
+		setErrors(newErrors)
 	}
 
 	useEffect(() => {
+		if (!firstName && !lastName && !email && !password && !confirmPassword) return
 		validateData()
-	}, [firstName, lastName, email, password, confirmPassword])
+	}, [firstName, lastName, email])
+
+	useEffect(() => {
+		if (!firstName && !lastName && !email && !password && !confirmPassword) return
+		validatePassword()
+	}, [password, confirmPassword])
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		validateData()
-		if (passesValidations) {
+		if (dataPassesValidations) {
 			const data = await dispatch(signUp(firstName, email, password));
 			if (data) {
 				setErrors(data);
@@ -131,7 +173,7 @@ function SignupFormModal() {
 				<button type="submit"
 					id="sign-up-button"
 					// Use effect for validations?
-					disabled={!passesValidations}
+					disabled={!dataPassesValidations || !passwordPassesValidations}
 				>Register</button>
 				<ul id="sign-up-errors">
 					{errors.map((error, idx) => (
