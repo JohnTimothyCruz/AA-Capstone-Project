@@ -39,12 +39,12 @@ class Class(db.Model):
             'image': self.image,
             'headline': self.headline,
             'description': self.description,
-            'user': self.user.to_dict_no_rel(),
-            'learners': [learner.to_dict_no_rel() for learner in self.learners],
-            'decks': [deck.to_dict_no_rel() for deck in self.decks]
+            'user': self.user.to_dict_no_loop(),
+            'learners': [learner.to_dict_no_loop() for learner in self.learners],
+            'decks': [deck.to_dict_no_loop() for deck in self.decks]
         }
 
-    def to_dict_no_rel(self):
+    def to_dict_no_loop(self):
         return {
             'id': self.id,
             'user_id': self.user_id,

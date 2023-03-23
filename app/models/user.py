@@ -46,11 +46,11 @@ class User(db.Model, UserMixin):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'email': self.email,
-            'classes': [a_class.to_dict_no_rel() for a_class in self.classes],
-            'learning': [learn.to_dict_no_rel() for learn in self.learning]
+            'classes': [a_class.to_dict_no_loop() for a_class in self.classes],
+            'learning': [learn.to_dict_no_loop() for learn in self.learning]
         }
 
-    def to_dict_no_rel(self):
+    def to_dict_no_loop(self):
         return {
             'id': self.id,
             'username': self.username,
