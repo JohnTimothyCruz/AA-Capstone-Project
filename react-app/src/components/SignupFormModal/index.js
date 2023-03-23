@@ -15,8 +15,7 @@ function SignupFormModal() {
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 	const [confirmPassword, setConfirmPassword] = useState("");
-	const [dataPassesValidations, setDataPassesValidations] = useState(false)
-	const [passwordPassesValidations, setPasswordPassesValidations] = useState(false)
+	const [passesValidations, setPassesValidations] = useState(false)
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
@@ -26,86 +25,71 @@ function SignupFormModal() {
 		let newErrors = [errors]
 		switch (false) {
 			case firstName !== "":
-				setDataPassesValidations(false)
-				newErrors.push("Please enter a first name.")
+				setPassesValidations(false)
+				setErrors("Please enter a first name.")
 				break
 			case lastName !== "":
-				setDataPassesValidations(false)
-				newErrors.push("Please enter a last name.")
+				setPassesValidations(false)
+				setErrors("Please enter a last name.")
 				break
 			case email !== "":
-				setDataPassesValidations(false)
-				newErrors.push("Please enter an email.")
+				setPassesValidations(false)
+				setErrors("Please enter an email.")
 				break
 			case email.length > 5:
-				setDataPassesValidations(false)
-				newErrors.push("A valid email is required.")
+				setPassesValidations(false)
+				setErrors("A valid email is required.")
 				break
 			case email.split("@").length === 2:
-				setDataPassesValidations(false)
-				newErrors.push("A valid email is required.")
+				setPassesValidations(false)
+				setErrors("A valid email is required.")
 				break
 			case email.split(".").length === 2:
-				setDataPassesValidations(false)
-				newErrors.push("A valid email is required.")
+				setPassesValidations(false)
+				setErrors("A valid email is required.")
 				break
-			default:
-				setDataPassesValidations(true)
-		}
-		// setErrors(newErrors)
-	}
-
-	const validatePassword = () => {
-		const newErrors = [errors]
-		switch (false) {
 			case password:
-				setPasswordPassesValidations(false)
-				newErrors.push("Please enter a password and a matching confirmation.")
+				setPassesValidations(false)
+				setErrors("Please enter a password and a matching confirmation.")
 				break
 			case password.length >= 8:
-				setPasswordPassesValidations(false)
-				newErrors.push("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
+				setPassesValidations(false)
+				setErrors("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
 				break
 			case password.toUpperCase() !== password:
-				setPasswordPassesValidations(false)
-				newErrors.push("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
+				setPassesValidations(false)
+				setErrors("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
 				break
 			case password.toLowerCase() !== password:
-				setPasswordPassesValidations(false)
-				newErrors.push("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
+				setPassesValidations(false)
+				setErrors("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
 				break
 			case /\d/.test(password):
-				setPasswordPassesValidations(false)
-				newErrors.push("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
+				setPassesValidations(false)
+				setErrors("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
 				break
 			case confirmPassword:
-				setPasswordPassesValidations(false)
-				newErrors.push("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
+				setPassesValidations(false)
+				setErrors("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
 				break
 			case password !== confirmPassword:
-				setPasswordPassesValidations(false)
-				newErrors.push("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
+				setPassesValidations(false)
+				setErrors("Please enter a password and a matching confirmation.")
 				break
 			default:
-				setPasswordPassesValidations(true)
+				setPassesValidations(true)
 		}
-		setErrors(newErrors)
 	}
 
 	useEffect(() => {
 		if (!firstName && !lastName && !email && !password && !confirmPassword) return
 		validateData()
-	}, [firstName, lastName, email])
-
-	useEffect(() => {
-		if (!firstName && !lastName && !email && !password && !confirmPassword) return
-		validatePassword()
-	}, [password, confirmPassword])
+	}, [firstName, lastName, email, password, confirmPassword])
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		validateData()
-		if (dataPassesValidations) {
+		if (passesValidations) {
 			const username = `${firstName} ${lastName}`
 			const data = await dispatch(signUp(username, firstName, lastName, email, password));
 			if (!data.id) {
@@ -179,7 +163,7 @@ function SignupFormModal() {
 				<button type="submit"
 					id="sign-up-button"
 					// Use effect for validations?
-					disabled={!firstName || !lastName || !email || !password || ! confirmPassword || password !== confirmPassword}
+					disabled={!firstName || !lastName || !email || !password || !confirmPassword || password !== confirmPassword}
 				>Register</button>
 				<ul id="sign-up-errors">
 					{errors.map((error, idx) => (
