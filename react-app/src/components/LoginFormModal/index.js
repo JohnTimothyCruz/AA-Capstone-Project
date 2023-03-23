@@ -22,7 +22,7 @@ function LoginFormModal() {
     if (!data.id) {
       setErrors(data);
     } else {
-      history.push(`/dashboard/${data.id}`)
+      history.push("/dashboard")
       closeModal()
     }
   };
@@ -32,7 +32,7 @@ function LoginFormModal() {
     if (!data.id) {
       setErrors(data);
     } else {
-      history.push(`/dashboard/${data.id}`)
+      history.push("/dashboard")
       closeModal()
     }
   }

@@ -104,7 +104,7 @@ const ClassReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_CLASSES:
             action.classes.forEach(aClass => {
-                newState.allClasses[aClass.id] = { ...aClass }
+                newState.allClasses[aClass.id] = aClass
             })
             return newState;
         case GET_CLASS:

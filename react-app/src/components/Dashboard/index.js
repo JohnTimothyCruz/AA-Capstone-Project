@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
-import { getClass, getClasses } from "../../store/classes";
+import { useHistory } from "react-router-dom";
+import { getClasses } from "../../store/classes";
 import './Dashboard.css'
 
 const Dashboard = () => {
@@ -13,8 +13,8 @@ const Dashboard = () => {
     const classes = useSelector(state => state.classes)
 
     const getUserMadeClasses = () => {
-        const res = []
         const userClasses = session?.user?.classes
+        const res = []
         for (const c of userClasses) {
             res.push(classes.allClasses[c.id])
         }
@@ -26,7 +26,7 @@ const Dashboard = () => {
         const joinedClasses = session?.user?.learning
         for (const c of joinedClasses) {
             if (c.user.id !== session.user.id) {
-                res.push(classes.allClasses[c.id])
+                res.push(classes[c.id])
             }
         }
         return res
@@ -34,11 +34,17 @@ const Dashboard = () => {
 
     const userMadeClasses = getUserMadeClasses()
     const userJoinedClasses = getUserJoinedClasses()
-    const [chosenClass, setChosenClass] = useState(session?.user?.classes[0])
+    const [chosenClass, setChosenClass] = useState(userMadeClasses[0])
 
     useEffect(() => {
         dispatch(getClasses())
-    }, [dispatch])
+    }, [])
+
+    useEffect(() => {
+        setChosenClass(userMadeClasses[0])
+    }, [classes])
+
+    if (!chosenClass) return null;
 
     return (
         <div id="dashboard-container">
@@ -67,7 +73,7 @@ const Dashboard = () => {
                                 <i className="fa-solid fa-pencil" />
                             </div>
                             <p className="class-info-details">Creator: {session?.user?.username}</p>
-                            <p className="class-info-details">0 of</p>
+                            <p className="class-info-details">0 of 2</p>
                         </div>
                     </div>
                 </div>

@@ -95,7 +95,7 @@ function SignupFormModal() {
 				setErrors(data);
 			} else {
 				console.log(data.id)
-				history.push(`/dashboard/${data.id}`)
+				history.push("/dashboard")
 				closeModal()
 			}
 		} else {
