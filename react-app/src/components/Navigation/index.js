@@ -13,7 +13,7 @@ function Navigation({ isLoaded }) {
 				<div id="navbar-left">
 					<NavLink exact to="/">
 						<div id="logo">
-							<i id="logo-icon" className="fa-solid fa-robot fa-2xl" />
+							<i className="logo-icon fa-solid fa-robot fa-2xl" />
 							<p id="logo-text">BrainBash</p>
 						</div>
 					</NavLink>

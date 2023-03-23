@@ -22,59 +22,58 @@ function SignupFormModal() {
 	const history = useHistory()
 
 	const validateData = () => {
-		let newErrors = [errors]
 		switch (false) {
 			case firstName !== "":
 				setPassesValidations(false)
-				setErrors("Please enter a first name.")
+				setErrors(["Please enter a first name."])
 				break
 			case lastName !== "":
 				setPassesValidations(false)
-				setErrors("Please enter a last name.")
+				setErrors(["Please enter a last name."])
 				break
 			case email !== "":
 				setPassesValidations(false)
-				setErrors("Please enter an email.")
+				setErrors(["Please enter an email."])
 				break
-			case email.length > 5:
+			case email.length !== "":
 				setPassesValidations(false)
-				setErrors("A valid email is required.")
+				setErrors(["A valid email is required."])
 				break
 			case email.split("@").length === 2:
 				setPassesValidations(false)
-				setErrors("A valid email is required.")
+				setErrors(["A valid email is required."])
 				break
 			case email.split(".").length === 2:
 				setPassesValidations(false)
-				setErrors("A valid email is required.")
+				setErrors(["A valid email is required."])
 				break
 			case password:
 				setPassesValidations(false)
-				setErrors("Please enter a password and a matching confirmation.")
+				setErrors(["Please enter a password and a matching confirmation."])
 				break
 			case password.length >= 8:
 				setPassesValidations(false)
-				setErrors("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
+				setErrors(["Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'"])
 				break
 			case password.toUpperCase() !== password:
 				setPassesValidations(false)
-				setErrors("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
+				setErrors(["Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'"])
 				break
 			case password.toLowerCase() !== password:
 				setPassesValidations(false)
-				setErrors("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
+				setErrors(["Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'"])
 				break
 			case /\d/.test(password):
 				setPassesValidations(false)
-				setErrors("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
+				setErrors(["Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'"])
 				break
 			case confirmPassword:
 				setPassesValidations(false)
-				setErrors("Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'")
+				setErrors(["Password requires a minimum of 8 characters: at least one lowercase, one uppercase, and one number. The only other characters allowed are: '!#%+:=? @'"])
 				break
 			case password !== confirmPassword:
 				setPassesValidations(false)
-				setErrors("Please enter a password and a matching confirmation.")
+				setErrors(["Please enter a password and a matching confirmation."])
 				break
 			default:
 				setPassesValidations(true)

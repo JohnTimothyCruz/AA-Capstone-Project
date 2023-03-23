@@ -5,6 +5,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import Dashboard from "./components/Dashboard";
+import StudyPage from "./components/StudyPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,6 +18,9 @@ function App() {
     <>
       {isLoaded && (
         <Switch>
+          <Route path="/study/decks/:id">
+            <StudyPage />
+          </Route>
           <Route path="/dashboard" >
             <Dashboard />
           </Route>
