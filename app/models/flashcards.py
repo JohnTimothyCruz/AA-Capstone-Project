@@ -31,7 +31,7 @@ class Flashcard(db.Model):
             'deck': self.deck
         }
 
-    def to_dict_no_rel(self):
+    def to_dict_no_loop(self):
         return {
             'id': self.id,
             'deck_id': self.deck_id,

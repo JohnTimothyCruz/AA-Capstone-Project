@@ -29,14 +29,14 @@ class Deck(db.Model):
             'name': self.name,
             'objective': self.objective,
             'class_info': self.class_info,
-            'flashcards': [flashcard.to_dict_no_rel() for flashcard in self.flashcards]
+            'flashcards': [flashcard.to_dict_no_loop() for flashcard in self.flashcards]
         }
 
-    def to_dict_no_rel(self):
+    def to_dict_no_loop(self):
         return {
             'id': self.id,
             'class_id': self.class_id,
             'name': self.name,
             'objective': self.objective,
-            'flashcards': [flashcard.to_dict_no_rel() for flashcard in self.flashcards]
+            'flashcards': [flashcard.to_dict_no_loop() for flashcard in self.flashcards]
         }

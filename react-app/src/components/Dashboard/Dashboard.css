@@ -1,0 +1,122 @@
+#dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+#root {
+    width: 100%;
+}
+
+#dashboard-container {
+    width: 100%;
+}
+
+#dashboard-side-bar {
+    background-color: rgb(48, 79, 121);
+    height: 100%;
+    width: 5%;
+}
+
+#dashboard-class-container {
+    width: 95%;
+}
+
+#dashboard-class-info-container {
+    padding: 36px;
+    background-color: white;
+    height: 176px;
+}
+
+/* Dashboard menu options */
+#dashboard-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    background-color: rgb(219, 231, 235);
+    border-bottom: 1px solid rgb(166, 175, 179);
+}
+
+#dashboard-about,
+#dashboard-decks,
+#dashboard-learners {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgb(59, 59, 59);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 44px;
+    width: 34%;
+    padding-top: 4px;
+    border-bottom: 3px solid rgba(240, 240, 240, 0);
+}
+
+#dashboard-about:hover:not(.selected),
+#dashboard-decks:hover:not(.selected),
+#dashboard-learners:hover:not(.selected) {
+    color: rgb(0, 162, 255);
+    border-bottom: 4px solid rgb(180, 180, 180);
+}
+
+#dashboard-about.selected,
+#dashboard-decks.selected,
+#dashboard-learners.selected {
+    border-bottom: 4px solid rgb(48, 79, 121);
+}
+
+/* Dashboard menu display */
+.dashboard-menu-option-display {
+    height: fit-content;
+    background-color: aquamarine;
+}
+
+/* Dashboard class list */
+#user-made-classes-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.dashboard-class {
+    width: 42px;
+    height: 42px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Dashboard class info */
+#dashboard-class-info {
+    height: fit-content;
+}
+
+#dashboard-class-info-left-container {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    gap: 10px;
+}
+
+#dashboard-class-image {
+    height: 126px;
+    width: 126px;
+    border-radius: 5px;
+}
+
+#dashboard-class-title-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+p.class-info-details {
+    margin: 0px;
+}
+
+.hidden {
+    display: none;
+    padding: none;
+    margin: none;
+}

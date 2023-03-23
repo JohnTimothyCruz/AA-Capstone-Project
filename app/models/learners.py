@@ -44,7 +44,7 @@ class Learner(db.Model):
             "class_info": self.class_info
         }
 
-    def to_dict_no_rel(self):
+    def to_dict_no_loop(self):
         return {
             "id": self.id,
             "user_id": self.user_id,
@@ -54,5 +54,6 @@ class Learner(db.Model):
             "time_studied": self.time_studied,
             "cards_studied": self.cards_studied,
             "permission": self.permission,
-            "createdAt": self.createdAt
+            "createdAt": self.createdAt,
+            "user": self.user.to_dict_no_loop(),
         }
