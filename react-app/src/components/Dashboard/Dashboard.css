@@ -8,6 +8,7 @@
     width: 100%;
 }
 
+/* Dashboard sidebar */
 #dashboard-side-bar {
     display: flex;
     flex-direction: column;
@@ -16,10 +17,19 @@
     height: 100%;
     width: 102px;
     gap: 40px;
+    justify-content: space-between;
+}
+
+#dashboard-side-bar-top {
+    margin-top: 40px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
 #user-icon-container {
-    margin-top: 40px;
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -50,6 +60,30 @@
     padding: 36px;
     background-color: white;
     height: 176px;
+}
+
+#dashboard-side-bar-bottom {
+    margin-bottom: 40px;
+}
+
+#dashboard-side-bar-bottom button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: aliceblue;
+    height: 20px;
+    width: 20px;
+    padding: 5px;
+    border-radius: 20px;
+    border: 10px solid rgba(255, 0, 0, 0);
+}
+
+#dashboard-side-bar-bottom button:hover {
+    color: rgb(255, 125, 65);
+    border: 10px solid rgba(255, 125, 65, 0.144);
 }
 
 /* Dashboard menu options */
@@ -101,14 +135,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    width: 100%;
+}
+
+.class-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    padding: 10px 0px;
+    width: 97px;
+    border-left: 5px solid red;
+    cursor: pointer;
 }
 
 .dashboard-class {
     width: 42px;
     height: 42px;
     border-radius: 3px;
-    cursor: pointer;
 }
 
 /* Dashboard class info */
@@ -233,7 +277,7 @@ p.class-info-details {
 }
 
 #dashboard-find-flashcards-button,
-#dashboard-create-flashcards-button {
+#dashboard-find-create-button-container button {
     padding: 10px 30px;
     border-radius: 50px;
     cursor: pointer;
@@ -246,6 +290,7 @@ p.class-info-details {
     background-color: rgb(0, 162, 255);
 }
 
-#dashboard-create-flashcards-button {
+#dashboard-find-create-button-container button {
+    border: none;
     background-color: rgb(255, 125, 65);
 }

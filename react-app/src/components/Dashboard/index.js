@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import OpenModalButton from "../OpenModalButton";
 import { useHistory } from "react-router-dom";
 import { getClasses } from "../../store/classes";
 import './Dashboard.css'
+import CreateClassModal from "../CreateClassModal";
 
 const Dashboard = () => {
     const dispatch = useDispatch()
@@ -47,18 +49,30 @@ const Dashboard = () => {
     return (
         <div id="dashboard-container">
             <div id="dashboard-side-bar">
-                <div id="user-icon-container">
-                    <i onClick={() => history.push("/")} className="dashboard-logo-icon fa-solid fa-robot fa-2xl" />
-                    <i className="fa-regular fa-circle-user fa-2xl" />
-                    <i className="fa-solid fa-gear fa-2xl" />
+                <div id="dashboard-side-bar-top">
+                    <div id="user-icon-container">
+                        <i onClick={() => history.push("/")} className="dashboard-logo-icon fa-solid fa-robot fa-2xl" />
+                        <i className="fa-regular fa-circle-user fa-2xl" />
+                        <i className="fa-solid fa-gear fa-2xl" />
+                    </div>
+                    <div id="user-made-classes-list">
+                        {userMadeClasses && userMadeClasses.map((c, idx) => (
+                            <div className="class-image-container" key={idx}>
+                                <img className="dashboard-class" src={c?.image} onClick={() => setChosenClass(c)} alt="class"></img>
+                            </div>
+                        ))}
+                        {userJoinedClasses && userJoinedClasses.map((c, idx) => (
+                            <div className="class-image-container" key={idx}>
+                                <img className="dashboard-class" src={c?.image} onClick={() => setChosenClass(c)} alt="class"></img>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-                <div id="user-made-classes-list">
-                    {userMadeClasses && userMadeClasses.map((c, idx) => (
-                        <img className="dashboard-class" src={c?.image} onClick={() => setChosenClass(c)} alt="class" key={idx}></img>
-                    ))}
-                    {userJoinedClasses && userJoinedClasses.map((c, idx) => (
-                        <img className="dashboard-class" src={c?.image} onClick={() => setChosenClass(c)} alt="class" key={idx}></img>
-                    ))}
+                <div id="dashboard-side-bar-bottom">
+                    <OpenModalButton
+                        modalComponent={<CreateClassModal user_id={session?.user?.id} />}
+                        buttonText={<i class="fa-solid fa-circle-plus fa-xl" />}
+                    />
                 </div>
             </div>
             <div id="dashboard-class-container">
@@ -131,8 +145,11 @@ const Dashboard = () => {
                         <h3 id="no-classes-page-explaination">Your library is empty.</h3>
                         <p>You can create your own class, or browse Brain Bash's catalog of flashcard classes covering thousands of subjects.</p>
                         <div id="dashboard-find-create-button-container">
-                                <div id="dashboard-find-flashcards-button">FIND FLASHCARDS</div>
-                                <div id="dashboard-create-flashcards-button">CREATE A NEW CLASS</div>
+                            <div id="dashboard-find-flashcards-button">FIND FLASHCARDS</div>
+                            <OpenModalButton
+                                buttonText="CREATE A NEW CLASS"
+                                modalComponent={<CreateClassModal user_id={session?.user?.id} />}
+                            />
                         </div>
                     </div>
                 }
