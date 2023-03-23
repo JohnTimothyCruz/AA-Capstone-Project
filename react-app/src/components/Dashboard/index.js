@@ -44,8 +44,6 @@ const Dashboard = () => {
         setChosenClass(userMadeClasses[0])
     }, [classes])
 
-    if (!chosenClass) return null;
-
     return (
         <div id="dashboard-container">
             <div id="dashboard-side-bar">
@@ -64,66 +62,80 @@ const Dashboard = () => {
                 </div>
             </div>
             <div id="dashboard-class-container">
-                <div id="dashboard-class-info-container">
-                    <div id="dashboard-class-info-left-container">
-                        <img id="dashboard-class-image" src={chosenClass?.image} alt="class"></img>
-                        <div id="dashboard-class-info">
-                            <div id="dashboard-class-title-section">
-                                <h2 id="class-title">{chosenClass?.name}</h2>
-                                <i className="fa-solid fa-pencil" />
-                            </div>
-                            <p className="class-info-details">Creator: {session?.user?.username}</p>
-                            <p className="class-info-details">0 of 2</p>
-                        </div>
-                    </div>
-                </div>
-                <div id="dashboard-menu">
-                    <div id="dashboard-about" className={menu === "about" ? "selected" : ""} onClick={() => setMenu("about")}>
-                        <div className="dashboard-menu-section-text">
-                            About
-                        </div>
-                    </div>
-                    <div id="dashboard-decks" className={menu === "decks" ? "selected" : ""} onClick={() => setMenu("decks")}>
-                        <div className="dashboard-menu-section-text">
-                            Decks
-                        </div>
-                    </div>
-                    <div id="dashboard-learners" className={menu === "learners" ? "selected" : ""} onClick={() => setMenu("learners")}>
-                        <div className="dashboard-menu-section-text">
-                            Learners
-                        </div>
-                    </div>
-                </div>
-                <div id="dashboard-class-about" className={`dashboard-menu-option-display ${menu === "about" ? "" : "hidden"}`}>
-                    about
-                </div>
-                <div id="dashboard-class-decks" className={`dashboard-menu-option-display ${menu === "decks" ? "" : "hidden"}`}>
-                    <div id="dashboard-decks-container">
-                        <div id="dashboard-decks-prompt">
-                            <div id="dashboard-decks-prompt-left">
-                                <i className="fa-regular fa-circle fa-xl" />
-                                <div>Decks</div>
-                            </div>
-                            <div id="dashboard-decks-prompt-right">
-                                <i className="fa-solid fa-circle-plus fa-xl" />
-                            </div>
-                        </div>
-                        {chosenClass?.decks && chosenClass?.decks.map((deck, idx) => (
-                            <div className="deck-container" onClick={() => history.push(`/study/decks/${deck?.id}`)} key={idx}>
-                                <i className="fa-regular fa-circle fa-xl" />
-                                <div className="deck-progress-percent">20%</div>
-                                <div className=" deck-info-container">
-                                    <div className="deck-name">{deck.name}</div>
-                                    <div className="deck-progress-bar"></div>
+                {(session?.user?.classes.length || session?.user?.learning.length) ?
+                    <>
+                        <div id="dashboard-class-info-container">
+                            <div id="dashboard-class-info-left-container">
+                                <img id="dashboard-class-image" src={chosenClass?.image} alt="class"></img>
+                                <div id="dashboard-class-info">
+                                    <div id="dashboard-class-title-section">
+                                        <h2 id="class-title">{chosenClass?.name}</h2>
+                                        <i className="fa-solid fa-pencil" />
+                                    </div>
+                                    <p className="class-info-details">Creator: {session?.user?.username}</p>
+                                    <p className="class-info-details">0 of 2</p>
                                 </div>
                             </div>
-                        ))
-                        }
+                        </div>
+                        <div id="dashboard-menu">
+                            <div id="dashboard-about" className={menu === "about" ? "selected" : ""} onClick={() => setMenu("about")}>
+                                <div className="dashboard-menu-section-text">
+                                    About
+                                </div>
+                            </div>
+                            <div id="dashboard-decks" className={menu === "decks" ? "selected" : ""} onClick={() => setMenu("decks")}>
+                                <div className="dashboard-menu-section-text">
+                                    Decks
+                                </div>
+                            </div>
+                            <div id="dashboard-learners" className={menu === "learners" ? "selected" : ""} onClick={() => setMenu("learners")}>
+                                <div className="dashboard-menu-section-text">
+                                    Learners
+                                </div>
+                            </div>
+                        </div>
+                        <div id="dashboard-class-about" className={`dashboard-menu-option-display ${menu === "about" ? "" : "hidden"}`}>
+                            about
+                        </div>
+                        <div id="dashboard-class-decks" className={`dashboard-menu-option-display ${menu === "decks" ? "" : "hidden"}`}>
+                            <div id="dashboard-decks-container">
+                                <div id="dashboard-decks-prompt">
+                                    <div id="dashboard-decks-prompt-left">
+                                        <i className="fa-regular fa-circle fa-xl" />
+                                        <div>Decks</div>
+                                    </div>
+                                    <div id="dashboard-decks-prompt-right">
+                                        <i className="fa-solid fa-circle-plus fa-xl" />
+                                    </div>
+                                </div>
+                                {chosenClass?.decks && chosenClass?.decks.map((deck, idx) => (
+                                    <div className="deck-container" onClick={() => history.push(`/study/decks/${deck?.id}`)} key={idx}>
+                                        <i className="fa-regular fa-circle fa-xl" />
+                                        <div className="deck-progress-percent">20%</div>
+                                        <div className=" deck-info-container">
+                                            <div className="deck-name">{deck.name}</div>
+                                            <div className="deck-progress-bar"></div>
+                                        </div>
+                                    </div>
+                                ))
+                                }
+                            </div>
+                        </div>
+                        <div id="dashboard-class-learners" className={`dashboard-menu-option-display ${menu === "learners" ? "" : "hidden"}`}>
+                            learners
+                        </div>
+                    </>
+                    :
+                    <div id="no-classes-page">
+                        <h2 id="no-classes-page-prompt">Add Classes to your Library</h2>
+                        <h3 id="no-classes-page-explaination">Your library is empty.</h3>
+                        <p>You can create your own class, or browse Brain Bash's catalog of flashcard classes covering thousands of subjects.</p>
+                        <div id="dashboard-find-create-button-container">
+                                <div id="dashboard-find-flashcards-button">FIND FLASHCARDS</div>
+                                <div id="dashboard-create-flashcards-button">CREATE A NEW CLASS</div>
+                        </div>
                     </div>
-                </div>
-                <div id="dashboard-class-learners" className={`dashboard-menu-option-display ${menu === "learners" ? "" : "hidden"}`}>
-                    learners
-                </div>
+                }
             </div>
         </div>
     )
