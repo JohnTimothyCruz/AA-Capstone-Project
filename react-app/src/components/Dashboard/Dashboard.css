@@ -1,10 +1,7 @@
 #dashboard-container {
     display: flex;
-    height: 100vh;
-}
-
-#root {
-    width: 100%;
+    height: 100%;
+    width: 100vw;
 }
 
 #dashboard-container {
@@ -12,13 +9,41 @@
 }
 
 #dashboard-side-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: rgb(48, 79, 121);
     height: 100%;
-    width: 5%;
+    width: 102px;
+    gap: 40px;
+}
+
+#user-icon-container {
+    margin-top: 40px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.dashboard-logo-icon {
+    text-decoration: underline white;
+}
+
+#user-icon-container i {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    color: white;
+}
+
+#user-icon-container i:hover {
+    cursor: pointer;
 }
 
 #dashboard-class-container {
-    width: 95%;
+    width: 100%;
 }
 
 #dashboard-class-info-container {

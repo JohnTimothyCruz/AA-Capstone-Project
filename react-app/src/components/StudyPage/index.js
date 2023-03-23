@@ -10,7 +10,7 @@ const StudyPage = () => {
                 <div id="study-page-side-bar-top">
                     <div id="back-to-dashboard-button" onClick={() => history.push("/dashboard")}>
                         <i className="fa-solid fa-chevron-left" />
-                        <i className="logo-icon fa-solid fa-robot fa-2xl" />
+                        <i className="study-page-logo-icon fa-solid fa-robot fa-2xl" />
                     </div>
                 </div>
                 <div id="study-page-side-bar-bottom">

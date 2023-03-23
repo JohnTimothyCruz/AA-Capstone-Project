@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
-import { getClasses } from "../../store/classes";
+import { getClass, getClasses } from "../../store/classes";
 import './Dashboard.css'
 
 const Dashboard = () => {
@@ -40,23 +40,21 @@ const Dashboard = () => {
         dispatch(getClasses())
     }, [dispatch])
 
-    useEffect(() => {
-
-    }, [chosenClass])
-
     return (
         <div id="dashboard-container">
             <div id="dashboard-side-bar">
-            <i id="user-icon" className="profile-button fa-regular fa-circle-user fa-2xl" />
+                <div id="user-icon-container">
+                    <i onClick={() => history.push("/")} className="dashboard-logo-icon fa-solid fa-robot fa-2xl" />
+                    <i className="fa-regular fa-circle-user fa-2xl" />
+                    <i className="fa-solid fa-gear fa-2xl" />
+                </div>
                 <div id="user-made-classes-list">
-                    <>
-                        {userMadeClasses && userMadeClasses.map((c, idx) => (
-                            <img className="dashboard-class" src={c?.image} onClick={() => setChosenClass(c)} alt="class" key={idx}></img>
-                        ))}
-                        {userJoinedClasses && userJoinedClasses.map((c, idx) => (
-                            <img className="dashboard-class" src={c?.image} onClick={() => setChosenClass(c)} alt="class"></img>
-                        ))}
-                    </>
+                    {userMadeClasses && userMadeClasses.map((c, idx) => (
+                        <img className="dashboard-class" src={c?.image} onClick={() => setChosenClass(c)} alt="class" key={idx}></img>
+                    ))}
+                    {userJoinedClasses && userJoinedClasses.map((c, idx) => (
+                        <img className="dashboard-class" src={c?.image} onClick={() => setChosenClass(c)} alt="class" key={idx}></img>
+                    ))}
                 </div>
             </div>
             <div id="dashboard-class-container">
@@ -97,11 +95,11 @@ const Dashboard = () => {
                     <div id="dashboard-decks-container">
                         <div id="dashboard-decks-prompt">
                             <div id="dashboard-decks-prompt-left">
-                            <i className="fa-regular fa-circle fa-xl" />
-                            <div>Decks</div>
+                                <i className="fa-regular fa-circle fa-xl" />
+                                <div>Decks</div>
                             </div>
                             <div id="dashboard-decks-prompt-right">
-                            <i className="fa-solid fa-circle-plus fa-xl" />
+                                <i className="fa-solid fa-circle-plus fa-xl" />
                             </div>
                         </div>
                         {chosenClass?.decks && chosenClass?.decks.map((deck, idx) => (
