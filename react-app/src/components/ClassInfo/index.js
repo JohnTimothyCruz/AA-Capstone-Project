@@ -7,9 +7,14 @@ const ClassInfo = ({ props }) => {
     const dispatch = useDispatch()
     const [session, chosenClass] = props;
     const [editing, setEditing] = useState(false)
-    const [openDeleteMenu, setOpenDeleteMenu] = useState(false)
     const [classTitle, setClassTitle] = useState(chosenClass?.name)
+    const [openDeleteMenu, setOpenDeleteMenu] = useState(false)
     const ulRef = useRef();
+
+    useEffect(() => {
+        setEditing(false)
+        setClassTitle(chosenClass?.name)
+    }, [chosenClass])
 
     useEffect(() => {
         if (!openDeleteMenu) return;
