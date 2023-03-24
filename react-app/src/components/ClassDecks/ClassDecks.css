@@ -1,0 +1,76 @@
+#dashboard-decks-prompt {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 42px 42px 20px 42px;
+    border-bottom: 1px solid grey;
+}
+
+#dashboard-decks-prompt-left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+#dashboard-decks-prompt-right button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    cursor: pointer;
+    color: rgb(124, 154, 158);
+    height: 20px;
+    width: 20px;
+    padding: 0px;
+    border-radius: 40px;
+    border: 15px solid rgba(255, 0, 0, 0);
+}
+
+#dashboard-decks-prompt-right button:hover {
+    color: rgb(255, 125, 65);
+    border: 15px solid rgba(107, 107, 107, 0.144);
+}
+
+.deck-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 24px 30px 24px 42px;
+    border-bottom: 1px solid grey;
+    height: fit-content;
+    cursor: pointer;
+}
+
+.deck-container:hover {
+    background-color: rgb(198, 225, 235);
+}
+
+.deck-progress-percent {
+    color: rgb(146, 154, 156);
+}
+
+.deck-container:hover .deck-progress-percent {
+    color: purple;
+}
+
+.deck-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.deck-name {
+    color: rgb(48, 79, 121);
+    font-weight: 800;
+}
+
+.deck-container:hover .deck-name {
+    color: rgb(0, 162, 255);
+}
+
+.deck-progress-bar {
+    background-color: rgb(226, 231, 233);
+    height: 8px;
+    width: 650px;
+    border-radius: 15px;
+}

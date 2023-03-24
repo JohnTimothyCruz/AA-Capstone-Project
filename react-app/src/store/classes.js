@@ -122,6 +122,7 @@ export const deleteClass = (chosenClass) => async dispatch => {
 
     if (res.ok) {
         dispatch(removeClass(chosenClass.id));
+        dispatch(getClasses())
         dispatch(getUser(chosenClass.user.id));
     }
 };

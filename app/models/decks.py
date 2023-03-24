@@ -28,7 +28,7 @@ class Deck(db.Model):
             'class_id': self.class_id,
             'name': self.name,
             'objective': self.objective,
-            'class_info': self.class_info,
+            'class_info': self.class_info.to_dict_no_loop(),
             'flashcards': [flashcard.to_dict_no_loop() for flashcard in self.flashcards]
         }
 

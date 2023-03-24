@@ -1,4 +1,4 @@
-#create-class-modal {
+#create-deck-modal {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,11 +6,11 @@
     background-color: white;
     padding: 30px;
     border-radius: 25px;
-    width: 630px;
+    width: 580px;
     height: fit-content;
 }
 
-#close-create-class-modal-button {
+#close-create-deck-modal-button {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -20,32 +20,33 @@
     border-radius: 30px;
 }
 
-#close-create-class-modal-button:hover {
+#close-create-deck-modal-button:hover {
     color: rgb(0, 162, 255);
     background-color: rgba(107, 107, 107, 0.144);
 }
 
-#create-class-prompt {
+#create-deck-prompt {
     color: rgb(48, 79, 121);
     font-size: 30px;
     font-weight: 800;
     margin: 10px 0px 0px;
 }
 
-#create-class-explaination {
+#create-deck-explaination {
     font-weight: 300;
     font-size: 17px;
 }
 
-#create-class-form {
+#create-deck-form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 95%;
 }
 
-#create-class-title-input {
+#create-deck-title-input {
     height: 40px;
-    width: 332px;
+    width: 95%;
     padding: 8px 18px;
     border-radius: 5px;
     border: 3px solid rgb(175, 199, 207);
@@ -55,19 +56,20 @@
     font-weight: 500;
 }
 
-#create-class-title-input::placeholder {
+#create-deck-title-input::placeholder {
     font-weight: 300;
     color: rgb(212, 212, 212);
     font-size: 15px;
 }
 
-#create-class-input-text {
+#create-deck-input-text {
     font-size: 13px;
     font-weight: 600;
     color: rgb(112, 112, 112);
+    align-self: flex-start;
 }
 
-#create-class-form-button {
+#create-deck-form-button {
     height: 42px;
     padding: 0px 29px;
     border: none;
@@ -76,12 +78,13 @@
     color: white;
     border-radius: 30px;
     font-weight: 200;
+    margin-top: 20px;
 }
 
-#create-class-form-button:not(:disabled) {
+#create-deck-form-button:not(:disabled) {
     cursor: pointer;
 }
 
-#create-class-form-button:disabled {
+#create-deck-form-button:disabled {
     background-color: rgb(207, 207, 207);
 }
