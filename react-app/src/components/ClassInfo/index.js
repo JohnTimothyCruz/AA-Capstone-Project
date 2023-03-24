@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { deleteClass, simplePutClass } from "../../store/classes";
+import { deleteClass, getClasses, simplePutClass } from "../../store/classes";
 import "./ClassInfo.css"
 
 const ClassInfo = ({ props }) => {
     const dispatch = useDispatch()
-    const [session, chosenClass] = props;
+    const [session, chosenClass, swapClass] = props;
     const [editing, setEditing] = useState(false)
     const [classTitle, setClassTitle] = useState(chosenClass?.name)
     const [openDeleteMenu, setOpenDeleteMenu] = useState(false)
@@ -20,15 +20,15 @@ const ClassInfo = ({ props }) => {
         if (!openDeleteMenu) return;
 
         const closeMenu = (e) => {
-          if (!ulRef.current?.contains(e.target)) {
-            setOpenDeleteMenu(false);
-          }
+            if (!ulRef.current?.contains(e.target)) {
+                setOpenDeleteMenu(false);
+            }
         };
 
         document.addEventListener("click", closeMenu);
 
         return () => document.removeEventListener("click", closeMenu);
-      }, [openDeleteMenu]);
+    }, [openDeleteMenu]);
 
     const handleDelete = () => {
         dispatch(deleteClass(chosenClass))
@@ -70,7 +70,7 @@ const ClassInfo = ({ props }) => {
                             </>
                         }
                     </div>
-                    <p className="class-info-details">Creator: <span id="class-creator-name">{session?.user?.username}</span></p>
+                    <p className="class-info-details">Creator: <span id="class-creator-name">{chosenClass?.user?.username}</span></p>
                     <p className="class-info-details">0 of 2</p>
                     <div id="class-extra-options-menu">
                         <div id="class-study-button">

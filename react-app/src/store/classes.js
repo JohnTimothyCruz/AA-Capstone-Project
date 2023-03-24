@@ -73,6 +73,7 @@ export const postClass = (name, user_id) => async dispatch => {
         const newClass = await res.json();
         dispatch(createClass(newClass));
         dispatch(getUser(user_id));
+        return newClass
     };
 };
 
@@ -122,7 +123,6 @@ export const deleteClass = (chosenClass) => async dispatch => {
 
     if (res.ok) {
         dispatch(removeClass(chosenClass.id));
-        dispatch(getClasses())
         dispatch(getUser(chosenClass.user.id));
     }
 };
@@ -139,6 +139,7 @@ const ClassReducer = (state = initialState, action) => {
             })
             return newState;
         case GET_CLASS:
+            delete newState.singleClass[Object.keys(newState.singleClass)[0]]
             newState.singleClass[action.aClass.id] = action.aClass
             return newState;
         case POST_CLASS:

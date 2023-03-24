@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
 import { useHistory } from "react-router-dom";
-import { getClasses } from "../../store/classes";
+import { getClass, getClasses } from "../../store/classes";
 import './Dashboard.css'
 import CreateClassModal from "../CreateClassModal";
 import ClassInfo from "../ClassInfo";
@@ -30,9 +30,9 @@ const Dashboard = () => {
     const getUserJoinedClasses = () => {
         const res = []
         const joinedClasses = session?.user?.learning
-        for (const c of joinedClasses) {
-            if (c.user.id !== session.user.id) {
-                res.push(classes[c.id])
+        for (const c of Object.values(joinedClasses)) {
+            if (classes?.allClasses[c.class_id]?.user_id !== session?.user?.id) {
+                res.push(classes?.allClasses[c.class_id])
             }
         }
         return res
@@ -40,15 +40,24 @@ const Dashboard = () => {
 
     const userMadeClasses = getUserMadeClasses()
     const userJoinedClasses = getUserJoinedClasses()
-    const [chosenClass, setChosenClass] = useState(userMadeClasses[0])
+    const [chosenClass, setChosenClass] = useState(userMadeClasses[0] ? userMadeClasses[0] : userJoinedClasses[0] ? userJoinedClasses[0] : null)
+
+    const swapClass = (c) => {
+        if (!c) {
+            if (userMadeClasses[0]) {
+                setChosenClass(userMadeClasses[0])
+            } else if (userJoinedClasses[0]) {
+                setChosenClass(userJoinedClasses[0])
+            }
+        } else {
+            dispatch(getClass(c?.id))
+            setChosenClass(c)
+        }
+    }
 
     useEffect(() => {
         dispatch(getClasses())
-    }, [])
-
-    useEffect(() => {
-        setChosenClass(userMadeClasses[0])
-    }, [classes])
+    }, [dispatch])
 
     return (
         <div id="dashboard-container">
@@ -59,22 +68,28 @@ const Dashboard = () => {
                         <i className="fa-regular fa-circle-user fa-2xl" />
                         <i className="fa-solid fa-gear fa-2xl" />
                     </div>
-                    <div id="user-made-classes-list">
+                    <div id="user-classes-list">
                         {userMadeClasses && userMadeClasses.map((c, idx) => (
-                            <div className={`class-image-container ${chosenClass?.id === c?.id && "selected"}`} onClick={() => setChosenClass(c)} key={idx}>
-                                <img className="dashboard-class" src={c?.image} onClick={() => setChosenClass(c)} alt="class"></img>
-                            </div>
+                            <>
+                                {(idx === 0 && !chosenClass) ? swapClass(c) : null}
+                                <div className={`class-image-container ${chosenClass?.id === c?.id && "selected"}`} onClick={() => swapClass(c)} key={`made ${idx}`}>
+                                    <img className="dashboard-class" src={c?.image} onClick={() => swapClass(c)} alt="class"></img>
+                                </div>
+                            </>
                         ))}
                         {userJoinedClasses && userJoinedClasses.map((c, idx) => (
-                            <div className={`class-image-container ${chosenClass?.id === c?.id && "selected"}`} onClick={() => setChosenClass(c)} key={idx}>
-                                <img className="dashboard-class" src={c?.image} alt="class"></img>
-                            </div>
+                            <>
+                                {(idx === 0 && !chosenClass) ? swapClass(c) : null}
+                                <div className={`class-image-container ${chosenClass?.id === c?.id && "selected"}`} onClick={() => swapClass(c)} key={`learning ${idx}`}>
+                                    <img className="dashboard-class" src={c?.image} alt="class"></img>
+                                </div>
+                            </>
                         ))}
                     </div>
                 </div>
                 <div id="dashboard-side-bar-bottom">
                     <OpenModalButton
-                        modalComponent={<CreateClassModal user_id={session?.user?.id} />}
+                        modalComponent={<CreateClassModal props={[session?.user?.id, swapClass]} />}
                         buttonText={<i className="fa-solid fa-circle-plus fa-xl" />}
                     />
                 </div>
@@ -82,7 +97,7 @@ const Dashboard = () => {
             <div id="dashboard-class-container">
                 {(session?.user?.classes.length || session?.user?.learning.length) ?
                     <>
-                        <ClassInfo props={[session, chosenClass]}/>
+                        <ClassInfo props={[session, chosenClass, swapClass, getUserMadeClasses, getUserJoinedClasses]} />
                         <div id="dashboard-menu">
                             <div id="dashboard-about" className={menu === "about" ? "selected" : ""} onClick={() => setMenu("about")}>
                                 <div className="dashboard-menu-section-text">
@@ -101,13 +116,13 @@ const Dashboard = () => {
                             </div>
                         </div>
                         <div id="dashboard-class-about" className={`dashboard-menu-option-display ${menu === "about" ? "" : "hidden"}`}>
-                            <ClassAbout props={[session, chosenClass]}/>
+                            <ClassAbout props={[session, chosenClass]} />
                         </div>
                         <div id="dashboard-class-decks" className={`dashboard-menu-option-display ${menu === "decks" ? "" : "hidden"}`}>
-                            <ClassDecks props={[session, chosenClass]}/>
+                            <ClassDecks props={[session, chosenClass]} />
                         </div>
                         <div id="dashboard-class-learners" className={`dashboard-menu-option-display ${menu === "learners" ? "" : "hidden"}`}>
-                            <ClassLearners props={[session, chosenClass]}/>
+                            <ClassLearners props={[session, chosenClass]} />
                         </div>
                     </>
                     :
