@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { deleteClass, getClasses, simplePutClass } from "../../store/classes";
+import { deleteClass, deleteLearner, getClasses, simplePutClass } from "../../store/classes";
 import "./ClassInfo.css"
 
 const ClassInfo = ({ props }) => {
@@ -15,6 +15,16 @@ const ClassInfo = ({ props }) => {
         setEditing(false)
         setClassTitle(chosenClass?.name)
     }, [chosenClass])
+
+    const getLearnerId = () => {
+        if (chosenClass) {
+            for (const l of Object.values(chosenClass?.learners)) {
+                if (l.user_id === session.user.id) {
+                    return l.id
+                }
+            }
+        }
+    }
 
     useEffect(() => {
         if (!openDeleteMenu) return;
@@ -32,6 +42,10 @@ const ClassInfo = ({ props }) => {
 
     const handleDelete = () => {
         dispatch(deleteClass(chosenClass))
+    }
+
+    const handleRemove = () => {
+        dispatch(deleteLearner(getLearnerId(), chosenClass.id, session.user.id))
     }
 
     const handleEditTitleSubmit = (e) => {
@@ -79,10 +93,17 @@ const ClassInfo = ({ props }) => {
                         </div>
                         <i id="class-options-button" className="fa-solid fa-ellipsis fa-2xl" onClick={() => setOpenDeleteMenu(true)}>
                             <div id="class-options-pop-up" className={openDeleteMenu ? "" : "hidden"}>
-                                <div id="delete-class-button" className="class-options-pop-up-section" onClick={() => handleDelete()}>
-                                    <i id="delete-class-button-icon" className="fa-regular fa-trash-can" />
-                                    <p id="delete-class-button-text">Delete this Class</p>
-                                </div>
+                                {session?.user?.id === chosenClass?.user?.id ?
+                                    <div className="class-button class-options-pop-up-section" onClick={() => handleDelete()}>
+                                        <i className="class-button-icon fa-regular fa-trash-can" />
+                                        <p className="class-button-text">Delete this Class</p>
+                                    </div>
+                                    :
+                                    <div className="class-button class-options-pop-up-section" onClick={() => handleRemove()}>
+                                        <i className="class-button-icon fa-solid fa-xmark" />
+                                        <p className="class-button-text">Remove from your Classes</p>
+                                    </div>
+                                }
                             </div>
                         </i>
                     </div>

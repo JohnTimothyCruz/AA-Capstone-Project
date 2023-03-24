@@ -106,16 +106,20 @@ p.class-info-details {
     background-color: rgb(46, 131, 180);
 }
 
-.class-options-pop-up-section:hover #delete-class-button-text,
-.class-options-pop-up-section:hover #delete-class-button-icon {
+.class-options-pop-up-section:hover .class-button-text,
+.class-options-pop-up-section:hover .class-button-icon {
     color: white;
 }
 
-#delete-class-button-icon {
+.class-button-icon {
     color: rgb(168, 168, 168);
 }
 
-#delete-class-button-text {
+.class-button-icon.fa-xmark {
+    margin-top: 2px;
+}
+
+.class-button-text {
     color: black;
 }
 

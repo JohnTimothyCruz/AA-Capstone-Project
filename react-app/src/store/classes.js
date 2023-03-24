@@ -6,6 +6,7 @@ const GET_CLASS = "classes/GET_CLASS"
 const POST_CLASS = "classes/POST_CLASS"
 const PUT_CLASS = "classes/PUT_CLASS"
 const DELETE_CLASS = "classes/DELETE_CLASS"
+const DELETE_LEARNER = "classes/DELETE_LEARNER"
 
 // -Actions--------------------
 export const readClasses = (classes) => {
@@ -40,6 +41,14 @@ export const removeClass = (id) => {
     return {
         type: DELETE_CLASS,
         id
+    }
+}
+
+export const removeLearner = (learner_id, class_id) => {
+    return {
+        type: DELETE_LEARNER,
+        learner_id,
+        class_id
     }
 }
 
@@ -127,6 +136,18 @@ export const deleteClass = (chosenClass) => async dispatch => {
     }
 };
 
+export const deleteLearner = (learner_id, class_id, user_id) => async dispatch => {
+    const res = await fetch(`/api/classes/${class_id}/learners/${learner_id}`, {
+        method: "DELETE"
+    });
+
+    if (res.ok) {
+        dispatch(removeLearner(learner_id, class_id));
+        dispatch(getUser(user_id));
+        dispatch(getClasses())
+    }
+};
+
 // -Reducer--------------------
 const initialState = { allClasses: {}, singleClass: {} }
 
@@ -150,6 +171,9 @@ const ClassReducer = (state = initialState, action) => {
             return newState
         case DELETE_CLASS:
             delete newState.allClasses[action.id]
+            return newState
+        case DELETE_LEARNER:
+            delete newState.allClasses[action.class_id].learners.learner_id
             return newState
         default:
             return state

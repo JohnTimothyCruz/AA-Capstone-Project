@@ -21,7 +21,7 @@ const ClassDecks = ({ props }) => {
                     />
                 </div>
             </div>
-            {chosenClass?.decks && chosenClass?.decks.map((deck, idx) => (
+            {chosenClass?.decks ? chosenClass?.decks.map((deck, idx) => (
                 <div className="deck-container" onClick={() => history.push(`/study/decks/${deck?.id}`)} key={idx}>
                     <i className="fa-regular fa-circle fa-xl" />
                     <div className="deck-progress-percent">20%</div>
@@ -31,6 +31,8 @@ const ClassDecks = ({ props }) => {
                     </div>
                 </div>
             ))
+            :
+            <div>Add decks to your class</div>
             }
         </div>
     )
