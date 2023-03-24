@@ -6,7 +6,6 @@ import "./CreateClassModal.css"
 
 
 const CreateClassModal = ({ user_id }) => {
-    console.log(user_id)
     const dispatch = useDispatch();
     const [className, setClassName] = useState("")
     const { closeModal } = useModal();
