@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
 import { useHistory } from "react-router-dom";
-import { deleteClass, getClasses, imagePutClass, putClass, simplePutClass } from "../../store/classes";
+import { deleteClass, getClass, getClasses, imagePutClass, putClass, simplePutClass } from "../../store/classes";
 import './Dashboard.css'
 import CreateClassModal from "../CreateClassModal";
 import { getUser } from "../../store/session";
@@ -57,7 +57,7 @@ const Dashboard = () => {
     }
 
     const handleDelete = () => {
-        dispatch(deleteClass(chosenClass.id))
+        dispatch(deleteClass(chosenClass))
     }
 
     return (
