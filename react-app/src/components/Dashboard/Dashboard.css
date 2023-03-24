@@ -143,10 +143,15 @@
     align-items: center;
     justify-content: center;
     height: fit-content;
-    padding: 10px 0px;
-    width: 97px;
-    border-left: 5px solid red;
+    padding: 15px 10px 15px 0px;
+    width: 87px;
     cursor: pointer;
+    border-left: 10px solid rgba(255, 0, 0, 0);
+}
+
+.class-image-container:hover,
+.class-image-container.selected {
+    border-left: 10px solid rgb(198, 225, 235);
 }
 
 .dashboard-class {
@@ -185,6 +190,14 @@
 
 p.class-info-details {
     margin: 0px;
+}
+
+#edit-class-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: grey;
+    cursor: pointer;
 }
 
 .hidden {

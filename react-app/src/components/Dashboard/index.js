@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
 import { useHistory } from "react-router-dom";
-import { getClasses } from "../../store/classes";
+import { getClasses, putClass } from "../../store/classes";
 import './Dashboard.css'
 import CreateClassModal from "../CreateClassModal";
 
@@ -10,6 +10,7 @@ const Dashboard = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [menu, setMenu] = useState("decks")
+    const [editing, setEditing] = useState(false)
 
     const session = useSelector(state => state.session)
     const classes = useSelector(state => state.classes)
@@ -37,6 +38,7 @@ const Dashboard = () => {
     const userMadeClasses = getUserMadeClasses()
     const userJoinedClasses = getUserJoinedClasses()
     const [chosenClass, setChosenClass] = useState(userMadeClasses[0])
+    const [classTitle, setClassTitle] = useState(chosenClass?.name)
 
     useEffect(() => {
         dispatch(getClasses())
@@ -45,6 +47,13 @@ const Dashboard = () => {
     useEffect(() => {
         setChosenClass(userMadeClasses[0])
     }, [classes])
+
+    const handleEditSubmit = (e) => {
+        e.preventDefault()
+
+        dispatch(putClass(classTitle, null, null, null, null, null, chosenClass?.id, session?.user?.id))
+        .then(setEditing(false))
+    }
 
     return (
         <div id="dashboard-container">
@@ -57,13 +66,13 @@ const Dashboard = () => {
                     </div>
                     <div id="user-made-classes-list">
                         {userMadeClasses && userMadeClasses.map((c, idx) => (
-                            <div className="class-image-container" key={idx}>
+                            <div className={`class-image-container ${chosenClass?.id === c?.id && "selected"}`} onClick={() => setChosenClass(c)} key={idx}>
                                 <img className="dashboard-class" src={c?.image} onClick={() => setChosenClass(c)} alt="class"></img>
                             </div>
                         ))}
                         {userJoinedClasses && userJoinedClasses.map((c, idx) => (
-                            <div className="class-image-container" key={idx}>
-                                <img className="dashboard-class" src={c?.image} onClick={() => setChosenClass(c)} alt="class"></img>
+                            <div className={`class-image-container ${chosenClass?.id === c?.id && "selected"}`} onClick={() => setChosenClass(c)} key={idx}>
+                                <img className="dashboard-class" src={c?.image} alt="class"></img>
                             </div>
                         ))}
                     </div>
@@ -71,7 +80,7 @@ const Dashboard = () => {
                 <div id="dashboard-side-bar-bottom">
                     <OpenModalButton
                         modalComponent={<CreateClassModal user_id={session?.user?.id} />}
-                        buttonText={<i class="fa-solid fa-circle-plus fa-xl" />}
+                        buttonText={<i className="fa-solid fa-circle-plus fa-xl" />}
                     />
                 </div>
             </div>
@@ -83,8 +92,28 @@ const Dashboard = () => {
                                 <img id="dashboard-class-image" src={chosenClass?.image} alt="class"></img>
                                 <div id="dashboard-class-info">
                                     <div id="dashboard-class-title-section">
-                                        <h2 id="class-title">{chosenClass?.name}</h2>
-                                        <i className="fa-solid fa-pencil" />
+                                        {editing ?
+                                            <form id="edit-class-title-form" onSubmit={(e) => handleEditSubmit(e)}>
+                                                <input
+                                                    id="edit-class-title-input"
+                                                    placeholder="Enter Class Name"
+                                                    onChange={(e) => setClassTitle(e.target.value)}
+                                                    value={classTitle || ""}
+                                                />
+                                                <i id="cancel-edit-title-button" className="fa-solid fa-xmark fa-2xl" />
+                                                <button
+                                                    id="submit-edit-title-button"
+                                                    disabled={!classTitle}
+                                                >Save</button>
+                                            </form>
+                                            :
+                                            <>
+                                                <h2 id="class-title">{chosenClass?.name}</h2>
+                                                {session?.user?.id === chosenClass?.user?.id &&
+                                                    <i id="edit-class-button" className="fa-solid fa-pencil" onClick={() => setEditing(true)} />
+                                                }
+                                            </>
+                                        }
                                     </div>
                                     <p className="class-info-details">Creator: {session?.user?.username}</p>
                                     <p className="class-info-details">0 of 2</p>
