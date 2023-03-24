@@ -52,12 +52,12 @@ def put_class(id):
 
     if form.validate_on_submit():
         user_id = form.user_id.data
-        name = form.name.data
-        mix_type = form.mix_type.data
-        visibility = form.visibility.data
-        image = form.image.data
-        headline = form.headline.data
-        description = form.description.data
+        name = form.name.data if form.name.data else a_class.name
+        mix_type = form.mix_type.data if form.mix_type.data else a_class.mix_type
+        visibility = form.visibility.data if form.visibility.data else a_class.visibility
+        image = form.image.data if form.image.data else a_class.image
+        headline = form.headline.data if form.headline.data else a_class.headline
+        description = form.description.data if form.description.data else a_class.description
 
         a_class.user_id = user_id
         a_class.name = name

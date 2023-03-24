@@ -73,11 +73,11 @@ export const postClass = (name, user_id) => async dispatch => {
     };
 };
 
-export const putClass = (name, description, headline, image, mix_type, visibility, id, user_id) => async dispatch => {
+export const putClass = (name, description, headline, mix_type, visibility, id, user_id) => async dispatch => {
     const res = await fetch(`/api/classes/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({name, description, headline, image, mix_type, visibility, user_id})
+        body: JSON.stringify({name, description, headline, mix_type, visibility, user_id})
     });
 
     if (res.ok) {
@@ -85,6 +85,32 @@ export const putClass = (name, description, headline, image, mix_type, visibilit
         dispatch(updateClass(newClass));
     };
 };
+
+export const simplePutClass = (name, id, user_id) => async dispatch => {
+    const res = await fetch(`/api/classes/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({name, user_id})
+    })
+
+    if (res.ok) {
+        const newClass = await res.json();
+        dispatch(updateClass(newClass));
+    };
+}
+
+export const imagePutClass = (image, id, user_id) => async dispatch => {
+    const res = await fetch(`/api/classes/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({image, user_id})
+    })
+
+    if (res.ok) {
+        const newClass = await res.json();
+        dispatch(updateClass(newClass));
+    };
+}
 
 export const deleteClass = (id) => async dispatch => {
     const res = await fetch(`/api/classes/${id}`, {
