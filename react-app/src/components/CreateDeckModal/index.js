@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { getClasses, postClass } from "../../store/classes";
+import { postDeck } from "../../store/decks";
 import "./CreateDeckModal.css"
 
-const CreateDeckModal = ({ user_id }) => {
+const CreateDeckModal = ({ props }) => {
     const dispatch = useDispatch();
-    const [deckName, setDeckName] = useState("")
+    const [name, setName] = useState("")
     const { closeModal } = useModal();
+    const [chosenClass, user_id] = props;
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        dispatch(postClass(deckName, user_id))
+        dispatch(postDeck(name, chosenClass.id))
         .then(closeModal)
     }
 
@@ -25,13 +26,13 @@ const CreateDeckModal = ({ user_id }) => {
                 <input
                     id="create-deck-title-input"
                     placeholder="e.g. Cell Division, Capitals of Asia"
-                    value={deckName}
-                    onChange={(e) => setDeckName(e.target.value)}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                 />
                 <p id="create-deck-input-text">Enter the title of your new deck above</p>
                 <button
                     id="create-deck-form-button"
-                    disabled={!deckName}
+                    disabled={!name}
                 >C O N T I N U E</button>
             </form>
         </div>

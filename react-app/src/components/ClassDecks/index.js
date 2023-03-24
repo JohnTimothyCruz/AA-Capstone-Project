@@ -16,7 +16,7 @@ const ClassDecks = ({ props }) => {
                 </div>
                 <div id="dashboard-decks-prompt-right">
                     <OpenModalButton
-                        modalComponent={<CreateDeckModal user_id={session.user.id} />}
+                        modalComponent={<CreateDeckModal props={[chosenClass, session.user.id]} />}
                         buttonText={<i className="fa-solid fa-circle-plus fa-xl" />}
                     />
                 </div>

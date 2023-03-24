@@ -61,11 +61,11 @@ export const getDeck = (id) => async dispatch => {
     };
 };
 
-export const postDeck = (name, user_id) => async dispatch => {
+export const postDeck = (name, class_id) => async dispatch => {
     const res = await fetch(`/api/decks`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({user_id, name})
+        body: JSON.stringify({class_id, name})
     });
 
     if (res.ok) {
@@ -74,11 +74,11 @@ export const postDeck = (name, user_id) => async dispatch => {
     };
 };
 
-export const putDeck = (name, objective, user_id) => async dispatch => {
+export const putDeck = (name, objective, id, class_id) => async dispatch => {
     const res = await fetch(`/api/decks/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({name, objective, user_id})
+        body: JSON.stringify({name, objective, class_id})
     });
 
     if (res.ok) {
@@ -103,21 +103,21 @@ const initialState = { allDecks: {}, singleDeck: {} }
 const DeckReducer = (state = initialState, action) => {
     const newState = { ...state }
     switch (action.type) {
-        case GET_CLASSES:
+        case GET_DECKS:
             action.decks.forEach(deck => {
                 newState.allDecks[deck.id] = deck
             })
             return newState;
-        case GET_CLASS:
+        case GET_DECK:
             newState.singleDeck[action.deck.id] = action.deck
             return newState;
-        case POST_CLASS:
+        case POST_DECK:
             newState.allDecks[action.deck.id] = action.deck
             return newState
-        case PUT_CLASS:
+        case PUT_DECK:
             newState.allDecks[action.deck.id] = action.deck
             return newState
-        case DELETE_CLASS:
+        case DELETE_DECK:
             delete newState.allDecks[action.id]
             return newState
         default:
