@@ -33,8 +33,9 @@
   gap: 5px;
 }
 
-#logo-icon {
+.logo-icon.fa-solid.fa-robot {
   text-decoration: underline rgb(0, 162, 255);
+  color: rgb(70, 64, 64);
 }
 
 #logo-text {
@@ -111,7 +112,7 @@
   border-radius: 100%;
 }
 
-#profile-button {
+.profile-button {
   color: black;
 }
 

@@ -4,9 +4,11 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { useHistory } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
   const [findingFlashcards, setFindingFlasshcards] = useState(false)
   const ulRef = useRef();
@@ -46,7 +48,7 @@ function ProfileButton({ user }) {
     <>
       <div id="navbar-options-container">
         <div className="navbar-option">
-          <div>
+          <div onClick={() => history.push('/dashboard')}>
             My Classes
           </div>
         </div>
@@ -63,11 +65,11 @@ function ProfileButton({ user }) {
       {user ? (
         <>
           <div id="profile-button-container">
-            <i id="profile-button" onClick={openMenu} className="fa-regular fa-circle-user fa-2xl" />
+            <i onClick={openMenu} className="profile-button fa-regular fa-circle-user fa-2xl" />
           </div>
           <div id="user-menu" className={dropdownClassName}>
             <div id="user-menu-section-top" className="user-menu-section">
-              <i id="user-menu-profile-icon" className="fa-regular fa-circle-user fa-2xl" />
+              <i className="user-menu-profile-icon fa-regular fa-circle-user fa-2xl" />
               <div id="user-username">
                 {user.username}
               </div>
