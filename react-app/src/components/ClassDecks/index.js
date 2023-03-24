@@ -1,4 +1,6 @@
 import { useHistory } from "react-router-dom";
+import CreateDeckModal from "../CreateDeckModal";
+import OpenModalButton from "../OpenModalButton";
 import "./ClassDecks.css"
 
 const ClassDecks = ({ props }) => {
@@ -13,7 +15,10 @@ const ClassDecks = ({ props }) => {
                     <div>Decks</div>
                 </div>
                 <div id="dashboard-decks-prompt-right">
-                    <i className="fa-solid fa-circle-plus fa-xl" />
+                    <OpenModalButton
+                        modalComponent={<CreateDeckModal user_id={session.user.id} />}
+                        buttonText={<i className="fa-solid fa-circle-plus fa-xl" />}
+                    />
                 </div>
             </div>
             {chosenClass?.decks && chosenClass?.decks.map((deck, idx) => (
