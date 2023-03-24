@@ -1,3 +1,5 @@
+import { getUser } from "./session"
+
 // -Action Types---------------
 const GET_CLASSES = "classes/GET_CLASSES"
 const GET_CLASS = "classes/GET_CLASS"
@@ -70,6 +72,7 @@ export const postClass = (name, user_id) => async dispatch => {
     if (res.ok) {
         const newClass = await res.json();
         dispatch(createClass(newClass));
+        dispatch(getUser(user_id));
     };
 };
 
@@ -112,13 +115,14 @@ export const imagePutClass = (image, id, user_id) => async dispatch => {
     };
 }
 
-export const deleteClass = (id) => async dispatch => {
-    const res = await fetch(`/api/classes/${id}`, {
+export const deleteClass = (chosenClass) => async dispatch => {
+    const res = await fetch(`/api/classes/${chosenClass.id}`, {
         method: "DELETE"
     });
 
     if (res.ok) {
-        dispatch(removeClass(id));
+        dispatch(removeClass(chosenClass.id));
+        dispatch(getUser(chosenClass.user.id));
     }
 };
 
