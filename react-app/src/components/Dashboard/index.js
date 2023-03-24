@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
 import { useHistory } from "react-router-dom";
-import { getClass, getClasses, imagePutClass, putClass } from "../../store/classes";
+import { getClasses } from "../../store/classes";
 import './Dashboard.css'
 import CreateClassModal from "../CreateClassModal";
-import { getUser } from "../../store/session";
 import ClassInfo from "../ClassInfo";
+import ClassLearners from "../ClassLearners";
+import ClassAbout from "../ClassAbout";
+import ClassDecks from "../ClassDecks";
 
 const Dashboard = () => {
     const dispatch = useDispatch()
@@ -99,34 +101,13 @@ const Dashboard = () => {
                             </div>
                         </div>
                         <div id="dashboard-class-about" className={`dashboard-menu-option-display ${menu === "about" ? "" : "hidden"}`}>
-                            about
+                            <ClassAbout props={[session, chosenClass]}/>
                         </div>
                         <div id="dashboard-class-decks" className={`dashboard-menu-option-display ${menu === "decks" ? "" : "hidden"}`}>
-                            <div id="dashboard-decks-container">
-                                <div id="dashboard-decks-prompt">
-                                    <div id="dashboard-decks-prompt-left">
-                                        <i className="fa-regular fa-circle fa-xl" />
-                                        <div>Decks</div>
-                                    </div>
-                                    <div id="dashboard-decks-prompt-right">
-                                        <i className="fa-solid fa-circle-plus fa-xl" />
-                                    </div>
-                                </div>
-                                {chosenClass?.decks && chosenClass?.decks.map((deck, idx) => (
-                                    <div className="deck-container" onClick={() => history.push(`/study/decks/${deck?.id}`)} key={idx}>
-                                        <i className="fa-regular fa-circle fa-xl" />
-                                        <div className="deck-progress-percent">20%</div>
-                                        <div className=" deck-info-container">
-                                            <div className="deck-name">{deck.name}</div>
-                                            <div className="deck-progress-bar"></div>
-                                        </div>
-                                    </div>
-                                ))
-                                }
-                            </div>
+                            <ClassDecks props={[session, chosenClass]}/>
                         </div>
                         <div id="dashboard-class-learners" className={`dashboard-menu-option-display ${menu === "learners" ? "" : "hidden"}`}>
-                            learners
+                            <ClassLearners props={[session, chosenClass]}/>
                         </div>
                     </>
                     :
