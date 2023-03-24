@@ -1,0 +1,174 @@
+#dashboard-class-info-container {
+    padding: 36px;
+    background-color: white;
+    height: 176px;
+}
+
+#dashboard-class-info-left-container {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    gap: 10px;
+}
+
+#dashboard-class-image {
+    height: 126px;
+    width: 126px;
+    border-radius: 5px;
+}
+
+#dashboard-class-info {
+    width: 100%;
+    height: fit-content;
+}
+
+#dashboard-class-title-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+#class-title {
+    margin: 0px;
+    color: rgb(39, 63, 97);
+}
+
+#edit-class-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(168, 168, 168);
+    cursor: pointer;
+}
+
+p.class-info-details {
+    margin: 0px;
+    font-size: 15px;
+    color: rgb(168, 168, 168);
+}
+
+#class-creator-name {
+    color: rgb(0, 162, 255);
+}
+
+#class-extra-options-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#class-study-button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px 10px 50px;
+    border-radius: 30px;
+    color: white;
+    background-color: rgb(168, 168, 168);
+}
+
+#class-options-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    color: rgb(124, 154, 158);
+}
+
+#class-options-button:hover:not(:has(*:hover)) {
+    background-color: rgba(151, 151, 151, 0.39);
+    border-radius: 30px;
+}
+
+#class-options-pop-up {
+    position: absolute;
+    width: 240px;
+}
+
+#class-options-pop-up.hidden {
+    display: none;
+}
+
+.class-options-pop-up-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 0px 10px;
+}
+
+.class-options-pop-up-section:hover {
+    background-color: rgb(46, 131, 180);
+}
+
+.class-options-pop-up-section:hover #delete-class-button-text,
+.class-options-pop-up-section:hover #delete-class-button-icon {
+    color: white;
+}
+
+#delete-class-button-icon {
+    color: rgb(168, 168, 168);
+}
+
+#delete-class-button-text {
+    color: black;
+}
+
+#class-options-pop-up{
+    display: block;
+    position: absolute;
+    top: 175px;
+    background-color: rgb(245, 245, 245);
+    border: 1px solid rgb(168, 168, 168);
+    border-radius: 3px;
+}
+
+/* Edit title stuff */
+#edit-class-title-form {
+    width: 100%;
+}
+
+#edit-class-title-input {
+    vertical-align: middle;
+    outline: none;
+    border: 3px solid rgb(219, 231, 235);
+    border-radius: 6px;
+    padding-left: 6px;
+    height: 43px;
+    width: 90%;
+    font-size: 30px;
+    font-weight: 700;
+    color: rgb(68, 68, 68);
+}
+
+#edit-class-title-input::placeholder {
+    color: rgb(168, 168, 168);
+}
+
+
+#cancel-edit-title-button {
+    cursor: pointer;
+    position: absolute;
+    top: 62px;
+    right: 15%;
+    color: rgb(127, 145, 151);
+}
+
+#submit-edit-title-button {
+    height: 24px;
+    padding: 0px 15px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(127, 145, 151);
+    color: white;
+    cursor: pointer;
+    font-weight: 300;
+    position: absolute;
+    top: 49px;
+    right: 11%;
+}
