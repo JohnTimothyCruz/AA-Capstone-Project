@@ -5,7 +5,7 @@ import "./ClassInfo.css"
 
 const ClassInfo = ({ props }) => {
     const dispatch = useDispatch()
-    const [session, chosenClass, swapClass] = props;
+    const [session, chosenClass, swapClass, getUserRelatedClasses] = props;
     const [editing, setEditing] = useState(false)
     const [classTitle, setClassTitle] = useState(chosenClass?.name)
     const [openDeleteMenu, setOpenDeleteMenu] = useState(false)
@@ -42,6 +42,7 @@ const ClassInfo = ({ props }) => {
 
     const handleDelete = () => {
         dispatch(deleteClass(chosenClass))
+            .then(dispatch(getClasses()))
     }
 
     const handleRemove = () => {

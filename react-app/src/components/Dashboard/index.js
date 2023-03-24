@@ -18,42 +18,46 @@ const Dashboard = () => {
     const session = useSelector(state => state.session)
     const classes = useSelector(state => state.classes)
 
-    const getUserMadeClasses = () => {
+    const getUserRelatedClasses = () => {
         const userClasses = session?.user?.classes
         const res = []
-        for (const c of userClasses) {
-            res.push(classes.allClasses[c.id])
-        }
-        return res
-    }
-
-    const getUserJoinedClasses = () => {
-        const res = []
-        const joinedClasses = session?.user?.learning
-        for (const c of Object.values(joinedClasses)) {
-            if (classes?.allClasses[c.class_id]?.user_id !== session?.user?.id) {
-                res.push(classes?.allClasses[c.class_id])
+        if (userClasses) {
+            for (const c of userClasses) {
+                res.push(classes.allClasses[c.id])
             }
         }
+
+        const joinedClasses = session?.user?.learning
+        if (joinedClasses) {
+            for (const c of Object.values(joinedClasses)) {
+                if (classes?.allClasses[c.class_id]?.user_id !== session?.user?.id) {
+                    res.push(classes?.allClasses[c.class_id])
+                }
+            }
+        }
+
         return res
     }
 
-    const userMadeClasses = getUserMadeClasses()
-    const userJoinedClasses = getUserJoinedClasses()
-    const [chosenClass, setChosenClass] = useState(userMadeClasses[0] ? userMadeClasses[0] : userJoinedClasses[0] ? userJoinedClasses[0] : null)
+    const userRelatedClasses = getUserRelatedClasses()
+    const [chosenClass, setChosenClass] = useState(userRelatedClasses[0] || null)
 
     const swapClass = (c) => {
         if (!c) {
-            if (userMadeClasses[0]) {
-                setChosenClass(userMadeClasses[0])
-            } else if (userJoinedClasses[0]) {
-                setChosenClass(userJoinedClasses[0])
+            if (userRelatedClasses[0]) {
+                setChosenClass(userRelatedClasses[0])
             }
         } else {
             dispatch(getClass(c?.id))
             setChosenClass(c)
         }
     }
+
+    useEffect(() => {
+        if (userRelatedClasses.length) {
+            swapClass(userRelatedClasses[0])
+        }
+    }, [session.user])
 
     useEffect(() => {
         dispatch(getClasses())
@@ -69,19 +73,11 @@ const Dashboard = () => {
                         <i className="fa-solid fa-gear fa-2xl" />
                     </div>
                     <div id="user-classes-list">
-                        {userMadeClasses && userMadeClasses.map((c, idx) => (
+                        {userRelatedClasses && userRelatedClasses.map((c, idx) => (
                             <>
                                 {(idx === 0 && !chosenClass) ? swapClass(c) : null}
                                 <div className={`class-image-container ${chosenClass?.id === c?.id && "selected"}`} onClick={() => swapClass(c)} key={`made ${idx}`}>
                                     <img className="dashboard-class" src={c?.image} onClick={() => swapClass(c)} alt="class"></img>
-                                </div>
-                            </>
-                        ))}
-                        {userJoinedClasses && userJoinedClasses.map((c, idx) => (
-                            <>
-                                {(idx === 0 && !chosenClass) ? swapClass(c) : null}
-                                <div className={`class-image-container ${chosenClass?.id === c?.id && "selected"}`} onClick={() => swapClass(c)} key={`learning ${idx}`}>
-                                    <img className="dashboard-class" src={c?.image} alt="class"></img>
                                 </div>
                             </>
                         ))}
@@ -97,7 +93,7 @@ const Dashboard = () => {
             <div id="dashboard-class-container">
                 {(session?.user?.classes.length || session?.user?.learning.length) ?
                     <>
-                        <ClassInfo props={[session, chosenClass, swapClass, getUserMadeClasses, getUserJoinedClasses]} />
+                        <ClassInfo props={[session, chosenClass, swapClass, getUserRelatedClasses]} />
                         <div id="dashboard-menu">
                             <div id="dashboard-about" className={menu === "about" ? "selected" : ""} onClick={() => setMenu("about")}>
                                 <div className="dashboard-menu-section-text">
@@ -134,7 +130,7 @@ const Dashboard = () => {
                             <div id="dashboard-find-flashcards-button">FIND FLASHCARDS</div>
                             <OpenModalButton
                                 buttonText="CREATE A NEW CLASS"
-                                modalComponent={<CreateClassModal user_id={session?.user?.id} />}
+                                modalComponent={<CreateClassModal props={[session?.user?.id, swapClass]} />}
                             />
                         </div>
                     </div>
