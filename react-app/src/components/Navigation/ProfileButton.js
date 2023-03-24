@@ -48,9 +48,10 @@ function ProfileButton({ user }) {
     <>
       <div id="navbar-options-container">
         <div className="navbar-option">
-          <div onClick={() => history.push('/dashboard')}>
+          {user && <div onClick={() => history.push('/dashboard')}>
             My Classes
           </div>
+          }
         </div>
         <div className={`navbar-option ${findingFlashcards ? "selected" : ""}`} onClick={openFind}>
           <i className="fa-solid fa-magnifying-glass fa-xs" />

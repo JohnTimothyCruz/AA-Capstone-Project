@@ -1,4 +1,5 @@
 // constants
+const GET_USER = "classes/GET_USERS"
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 
@@ -12,6 +13,16 @@ const removeUser = () => ({
 });
 
 const initialState = { user: null };
+
+export const getUser = (id) => async dispatch => {
+	const res = await fetch(`/api/users/${id}`)
+
+	if (res.ok) {
+		const user = await res.json();
+
+		dispatch(setUser(user))
+	}
+}
 
 export const authenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/", {
