@@ -60,6 +60,11 @@ const Dashboard = () => {
         dispatch(deleteClass(chosenClass))
     }
 
+    if (!chosenClass) {
+        dispatch(getUser(session.user.id))
+        dispatch(getClasses())
+    }
+
     return (
         <div id="dashboard-container">
             <div id="dashboard-side-bar">
