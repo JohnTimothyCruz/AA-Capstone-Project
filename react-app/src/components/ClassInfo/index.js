@@ -7,18 +7,25 @@ import "./ClassInfo.css"
 const ClassInfo = ({ props }) => {
     const dispatch = useDispatch()
     const history = useHistory()
-    const [session, chosenClass] = props;
+    const [session, chosenClass, userRelatedClasses] = props;
     const [editing, setEditing] = useState(false)
     const [classTitle, setClassTitle] = useState(chosenClass?.name)
     const [openDeleteMenu, setOpenDeleteMenu] = useState(false)
     const ulRef = useRef();
 
-    console.log(chosenClass)
-
     useEffect(() => {
         setEditing(false)
         setClassTitle(chosenClass?.name)
     }, [chosenClass])
+
+    const findAnotherClass = () => {
+        for (const c of Object.values(userRelatedClasses)) {
+            if (c) {
+                history.push(`/dashboard/classes/${c.id}`)
+            }
+        }
+        history.push("/dashboard/loading")
+    }
 
     const getLearnerId = () => {
         if (chosenClass) {
@@ -46,7 +53,7 @@ const ClassInfo = ({ props }) => {
 
     const handleDelete = () => {
         dispatch(deleteClass(chosenClass))
-            .then(history.push(`/dashboard`))
+            .then(() => findAnotherClass())
     }
 
     const handleRemove = () => {

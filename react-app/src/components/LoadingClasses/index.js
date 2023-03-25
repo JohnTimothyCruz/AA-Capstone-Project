@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import OpenModalButton from "../OpenModalButton";
 import { useHistory } from "react-router-dom";
 import { getClasses } from "../../store/classes";
-import './Dashboard.css'
-import CreateClassModal from "../CreateClassModal";
 import { getUser } from "../../store/session";
+import "./LoadingClasses.css"
 
-const Dashboard = () => {
+const LoadingClasses = () => {
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -40,6 +38,7 @@ const Dashboard = () => {
                 history.push(`/dashboard/classes/${c.id}`)
             }
         }
+        return null
     }
 
     const userRelatedClasses = getUserRelatedClasses()
@@ -47,7 +46,8 @@ const Dashboard = () => {
     useEffect(() => {
         dispatch(getClasses())
         dispatch(getUser(session?.user?.id))
-        findAnotherClass()
+        const res = findAnotherClass()
+        if (!res) history.push("/dashboard")
     }, [dispatch])
 
     findAnotherClass()
@@ -55,36 +55,19 @@ const Dashboard = () => {
     return (
         <div className="dashboard-container">
             <div className="dashboard-side-bar">
-                <div className="dashboard-side-bar-top">
+            <div className="dashboard-side-bar-top">
                     <div className="user-icon-container">
                         <i onClick={() => history.push("/")} className="dashboard-logo-icon fa-solid fa-robot fa-2xl" />
                         <i className="fa-regular fa-circle-user fa-2xl" />
                         <i className="fa-solid fa-gear fa-2xl" />
                     </div>
                 </div>
-                <div className="dashboard-side-bar-bottom">
-                    <OpenModalButton
-                        modalComponent={<CreateClassModal props={[session?.user?.id]} />}
-                        buttonText={<i className="fa-solid fa-circle-plus fa-xl" />}
-                    />
-                </div>
             </div>
-            <div id="dashboard-no-classes-container">
-                <div id="no-classes-page">
-                    <h2 id="no-classes-page-prompt">Add Classes to your Library</h2>
-                    <h3 id="no-classes-page-explaination">Your library is empty.</h3>
-                    <p>You can create your own class, or browse Brain Bash's catalog of flashcard classes covering thousands of subjects.</p>
-                    <div id="dashboard-find-create-button-container">
-                        <div id="dashboard-find-flashcards-button">FIND FLASHCARDS</div>
-                        <OpenModalButton
-                            buttonText="CREATE A NEW CLASS"
-                            modalComponent={<CreateClassModal props={[session?.user?.id]} />}
-                        />
-                    </div>
-                </div>
-            </div>
+            {/* <div id="loading-message">
+                Loading...
+            </div> */}
         </div>
     )
 }
 
-export default Dashboard
+export default LoadingClasses

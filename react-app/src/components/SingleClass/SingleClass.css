@@ -1,0 +1,77 @@
+/* Dashboard menu options */
+.dashboard-menu-option-display {
+    height: fit-content;
+}
+
+#dashboard-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    background-color: rgb(219, 231, 235);
+    border-bottom: 1px solid rgb(166, 175, 179);
+}
+
+#dashboard-about,
+#dashboard-decks,
+#dashboard-learners {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgb(59, 59, 59);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 44px;
+    width: 34%;
+    padding-top: 4px;
+    border-bottom: 3px solid rgba(240, 240, 240, 0);
+}
+
+#dashboard-about:hover:not(.selected),
+#dashboard-decks:hover:not(.selected),
+#dashboard-learners:hover:not(.selected) {
+    color: rgb(0, 162, 255);
+    border-bottom: 4px solid rgb(180, 180, 180);
+}
+
+#dashboard-about.selected,
+#dashboard-decks.selected,
+#dashboard-learners.selected {
+    border-bottom: 4px solid rgb(48, 79, 121);
+}
+
+/* Dashboard class list */
+#user-classes-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.class-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    padding: 15px 10px 15px 0px;
+    width: 87px;
+    cursor: pointer;
+    border-left: 10px solid rgba(255, 0, 0, 0);
+}
+
+.class-image-container:hover,
+.class-image-container.selected {
+    border-left: 10px solid rgb(198, 225, 235);
+}
+
+.dashboard-class {
+    width: 42px;
+    height: 42px;
+    border-radius: 3px;
+}
+
+/*  */
+#dashboard-classes-container {
+    width: 100%;
+}

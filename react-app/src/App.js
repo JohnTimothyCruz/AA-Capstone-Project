@@ -7,6 +7,7 @@ import HomePage from "./components/HomePage";
 import Dashboard from "./components/Dashboard";
 import StudyPage from "./components/StudyPage";
 import SingleClass from "./components/SingleClass";
+import LoadingClasses from "./components/LoadingClasses";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,10 @@ function App() {
         <Switch>
           <Route path="/study/decks/:id">
             <StudyPage />
+          </Route>
+
+          <Route path="/dashboard/loading" >
+            <LoadingClasses />
           </Route>
 
           <Route path="/dashboard/classes/:id" >
