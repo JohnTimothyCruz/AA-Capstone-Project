@@ -1,19 +1,23 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
-import { getClasses, postClass } from "../../store/classes";
+import { postClass } from "../../store/classes";
 import "./CreateClassModal.css"
 
 
-const CreateClassModal = ({ user_id }) => {
+const CreateClassModal = ({ props }) => {
     const dispatch = useDispatch();
+    const history = useHistory()
     const [className, setClassName] = useState("")
     const { closeModal } = useModal();
+    const [user_id] = props;
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         dispatch(postClass(className, user_id))
+        .then(res => history.push(`/dashboard/classes/${res.id}`))
         .then(closeModal)
     }
 

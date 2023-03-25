@@ -125,7 +125,7 @@
 }
 
 /* Dashboard class list */
-#user-made-classes-list {
+#user-classes-list {
     display: flex;
     flex-direction: column;
     align-items: center;

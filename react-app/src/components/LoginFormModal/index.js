@@ -39,7 +39,7 @@ function LoginFormModal() {
 
   return (
     <div id="login-form-modal-container">
-      <i id="close-login-modal-button" className="fa-solid fa-xmark fa-2xl" onClick={closeModal} />
+      <i id="close-login-modal-button" className="fa-solid fa-xmark fa-2xl" onClick={() => closeModal} />
       <h1 id="login-modal-prompt">Log In</h1>
       <form id="login-form" onSubmit={handleSubmit}>
         <label id="login-email-input">
@@ -76,7 +76,7 @@ function LoginFormModal() {
             buttonText="Create an account?"
             modalComponent={<SignupFormModal />}
           />
-          <div onClick={loginAsDemo}>Login as demo user?</div>
+          <div onClick={() => loginAsDemo()}>Login as demo user?</div>
         </div>
       </form>
     </div>

@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import db, Class
+from app.models import db, Class, Learner
 from app.forms import ClassForm
 
 class_routes = Blueprint('classes', __name__)
@@ -84,5 +84,18 @@ def delete_class(id):
         return {"errors": "Class does not exist."}
 
     db.session.delete(a_class)
+    db.session.commit()
+    return {"Message": "Delete successful!"}
+
+# Delete a learner from a class
+@class_routes.route('/<int:class_id>/learners/<int:learner_id>', methods=['DELETE'])
+@login_required
+def delete_learner(class_id, learner_id):
+    learner = Learner.query.get(learner_id)
+
+    if not learner:
+        return {"errors": "Learner does not exist."}
+
+    db.session.delete(learner)
     db.session.commit()
     return {"Message": "Delete successful!"}

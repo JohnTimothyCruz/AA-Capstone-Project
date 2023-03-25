@@ -6,6 +6,7 @@ const GET_CLASS = "classes/GET_CLASS"
 const POST_CLASS = "classes/POST_CLASS"
 const PUT_CLASS = "classes/PUT_CLASS"
 const DELETE_CLASS = "classes/DELETE_CLASS"
+const DELETE_LEARNER = "classes/DELETE_LEARNER"
 
 // -Actions--------------------
 export const readClasses = (classes) => {
@@ -43,6 +44,14 @@ export const removeClass = (id) => {
     }
 }
 
+export const removeLearner = (learner_id, class_id) => {
+    return {
+        type: DELETE_LEARNER,
+        learner_id,
+        class_id
+    }
+}
+
 // -Thunks---------------------
 export const getClasses = () => async dispatch => {
     const res = await fetch("/api/classes");
@@ -73,6 +82,7 @@ export const postClass = (name, user_id) => async dispatch => {
         const newClass = await res.json();
         dispatch(createClass(newClass));
         dispatch(getUser(user_id));
+        return newClass
     };
 };
 
@@ -122,8 +132,17 @@ export const deleteClass = (chosenClass) => async dispatch => {
 
     if (res.ok) {
         dispatch(removeClass(chosenClass.id));
+    }
+};
+
+export const deleteLearner = (learner_id, class_id, user_id) => async dispatch => {
+    const res = await fetch(`/api/classes/${class_id}/learners/${learner_id}`, {
+        method: "DELETE"
+    });
+
+    if (res.ok) {
+        dispatch(removeLearner(learner_id, class_id));
         dispatch(getClasses())
-        dispatch(getUser(chosenClass.user.id));
     }
 };
 
@@ -139,6 +158,7 @@ const ClassReducer = (state = initialState, action) => {
             })
             return newState;
         case GET_CLASS:
+            delete newState.singleClass[Object.keys(newState.singleClass)[0]]
             newState.singleClass[action.aClass.id] = action.aClass
             return newState;
         case POST_CLASS:
@@ -149,6 +169,9 @@ const ClassReducer = (state = initialState, action) => {
             return newState
         case DELETE_CLASS:
             delete newState.allClasses[action.id]
+            return newState
+        case DELETE_LEARNER:
+            delete newState.allClasses[action.class_id].learners.learner_id
             return newState
         default:
             return state

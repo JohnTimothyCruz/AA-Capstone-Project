@@ -1,37 +1,56 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { deleteClass, simplePutClass } from "../../store/classes";
+import { useHistory } from "react-router-dom";
+import { deleteClass, deleteLearner, simplePutClass } from "../../store/classes";
 import "./ClassInfo.css"
 
 const ClassInfo = ({ props }) => {
     const dispatch = useDispatch()
+    const history = useHistory()
     const [session, chosenClass] = props;
     const [editing, setEditing] = useState(false)
     const [classTitle, setClassTitle] = useState(chosenClass?.name)
     const [openDeleteMenu, setOpenDeleteMenu] = useState(false)
     const ulRef = useRef();
 
+    console.log(chosenClass)
+
     useEffect(() => {
         setEditing(false)
         setClassTitle(chosenClass?.name)
     }, [chosenClass])
 
+    const getLearnerId = () => {
+        if (chosenClass) {
+            for (const l of Object.values(chosenClass?.learners)) {
+                if (l.user_id === session.user.id) {
+                    return l.id
+                }
+            }
+        }
+    }
+
     useEffect(() => {
         if (!openDeleteMenu) return;
 
         const closeMenu = (e) => {
-          if (!ulRef.current?.contains(e.target)) {
-            setOpenDeleteMenu(false);
-          }
+            if (!ulRef.current?.contains(e.target)) {
+                setOpenDeleteMenu(false);
+            }
         };
 
         document.addEventListener("click", closeMenu);
 
         return () => document.removeEventListener("click", closeMenu);
-      }, [openDeleteMenu]);
+    }, [openDeleteMenu]);
 
     const handleDelete = () => {
         dispatch(deleteClass(chosenClass))
+            .then(history.push(`/dashboard`))
+    }
+
+    const handleRemove = () => {
+        dispatch(deleteLearner(getLearnerId(), chosenClass.id, session.user.id))
     }
 
     const handleEditTitleSubmit = (e) => {
@@ -70,7 +89,7 @@ const ClassInfo = ({ props }) => {
                             </>
                         }
                     </div>
-                    <p className="class-info-details">Creator: <span id="class-creator-name">{session?.user?.username}</span></p>
+                    <p className="class-info-details">Creator: <span id="class-creator-name">{chosenClass?.user?.username}</span></p>
                     <p className="class-info-details">0 of 2</p>
                     <div id="class-extra-options-menu">
                         <div id="class-study-button">
@@ -79,10 +98,17 @@ const ClassInfo = ({ props }) => {
                         </div>
                         <i id="class-options-button" className="fa-solid fa-ellipsis fa-2xl" onClick={() => setOpenDeleteMenu(true)}>
                             <div id="class-options-pop-up" className={openDeleteMenu ? "" : "hidden"}>
-                                <div id="delete-class-button" className="class-options-pop-up-section" onClick={() => handleDelete()}>
-                                    <i id="delete-class-button-icon" className="fa-regular fa-trash-can" />
-                                    <p id="delete-class-button-text">Delete this Class</p>
-                                </div>
+                                {session?.user?.id === chosenClass?.user?.id ?
+                                    <div className="class-button class-options-pop-up-section" onClick={() => handleDelete()}>
+                                        <i className="class-button-icon fa-regular fa-trash-can" />
+                                        <p className="class-button-text">Delete this Class</p>
+                                    </div>
+                                    :
+                                    <div className="class-button class-options-pop-up-section" onClick={() => handleRemove()}>
+                                        <i className="class-button-icon fa-solid fa-xmark" />
+                                        <p className="class-button-text">Remove from your Classes</p>
+                                    </div>
+                                }
                             </div>
                         </i>
                     </div>

@@ -6,7 +6,7 @@ from datetime import datetime
 def seed_learners():
     learner1 = Learner(
         user_id = 2,
-        class_id = 3,
+        class_id = 10,
         mastery = 0,
         days_studied = 1,
         time_studied = 4,

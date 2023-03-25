@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import Dashboard from "./components/Dashboard";
 import StudyPage from "./components/StudyPage";
+import SingleClass from "./components/SingleClass";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,9 +22,15 @@ function App() {
           <Route path="/study/decks/:id">
             <StudyPage />
           </Route>
+
+          <Route path="/dashboard/classes/:id" >
+            <SingleClass />
+          </Route>
+
           <Route path="/dashboard" >
             <Dashboard />
           </Route>
+
           <Route path="/" >
             <Navigation isLoaded={isLoaded} />
             <HomePage />
