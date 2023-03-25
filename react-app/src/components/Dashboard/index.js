@@ -2,18 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
 import { useHistory } from "react-router-dom";
-import { getClass, getClasses } from "../../store/classes";
+import { getClasses } from "../../store/classes";
 import './Dashboard.css'
 import CreateClassModal from "../CreateClassModal";
-import ClassInfo from "../ClassInfo";
-import ClassLearners from "../ClassLearners";
-import ClassAbout from "../ClassAbout";
-import ClassDecks from "../ClassDecks";
+import { getUser } from "../../store/session";
 
 const Dashboard = () => {
     const dispatch = useDispatch()
     const history = useHistory()
-    const [menu, setMenu] = useState("decks")
 
     const session = useSelector(state => state.session)
     const classes = useSelector(state => state.classes)
@@ -40,27 +36,15 @@ const Dashboard = () => {
     }
 
     const userRelatedClasses = getUserRelatedClasses()
-    const [chosenClass, setChosenClass] = useState(userRelatedClasses[0] || null)
-
-    const swapClass = (c) => {
-        if (!c) {
-            if (userRelatedClasses[0]) {
-                setChosenClass(userRelatedClasses[0])
-            }
-        } else {
-            dispatch(getClass(c?.id))
-            setChosenClass(c)
-        }
-    }
-
-    useEffect(() => {
-        if (userRelatedClasses.length) {
-            swapClass(userRelatedClasses[0])
-        }
-    }, [session.user])
 
     useEffect(() => {
         dispatch(getClasses())
+        dispatch(getUser(session?.user?.id))
+        if (userRelatedClasses[0]?.id && session.user.classes[0]?.id) {
+            history.push(`/dashboard/classes/${session.user.classes[0].id}`)
+        } else if (userRelatedClasses[0]?.id && session.user.learning[0]?.id) {
+            history.push(`/dashboard/classes/${session.user.learning[0].id}`)
+        }
     }, [dispatch])
 
     return (
@@ -72,69 +56,27 @@ const Dashboard = () => {
                         <i className="fa-regular fa-circle-user fa-2xl" />
                         <i className="fa-solid fa-gear fa-2xl" />
                     </div>
-                    <div id="user-classes-list">
-                        {userRelatedClasses && userRelatedClasses.map((c, idx) => (
-                            <>
-                                {(idx === 0 && !chosenClass) ? swapClass(c) : null}
-                                <div className={`class-image-container ${chosenClass?.id === c?.id && "selected"}`} onClick={() => swapClass(c)} key={`made ${idx}`}>
-                                    <img className="dashboard-class" src={c?.image} onClick={() => swapClass(c)} alt="class"></img>
-                                </div>
-                            </>
-                        ))}
-                    </div>
                 </div>
                 <div id="dashboard-side-bar-bottom">
                     <OpenModalButton
-                        modalComponent={<CreateClassModal props={[session?.user?.id, swapClass]} />}
+                        modalComponent={<CreateClassModal props={[session?.user?.id]} />}
                         buttonText={<i className="fa-solid fa-circle-plus fa-xl" />}
                     />
                 </div>
             </div>
             <div id="dashboard-class-container">
-                {(session?.user?.classes.length || session?.user?.learning.length) ?
-                    <>
-                        <ClassInfo props={[session, chosenClass, swapClass, getUserRelatedClasses]} />
-                        <div id="dashboard-menu">
-                            <div id="dashboard-about" className={menu === "about" ? "selected" : ""} onClick={() => setMenu("about")}>
-                                <div className="dashboard-menu-section-text">
-                                    About
-                                </div>
-                            </div>
-                            <div id="dashboard-decks" className={menu === "decks" ? "selected" : ""} onClick={() => setMenu("decks")}>
-                                <div className="dashboard-menu-section-text">
-                                    Decks
-                                </div>
-                            </div>
-                            <div id="dashboard-learners" className={menu === "learners" ? "selected" : ""} onClick={() => setMenu("learners")}>
-                                <div className="dashboard-menu-section-text">
-                                    Learners
-                                </div>
-                            </div>
-                        </div>
-                        <div id="dashboard-class-about" className={`dashboard-menu-option-display ${menu === "about" ? "" : "hidden"}`}>
-                            <ClassAbout props={[session, chosenClass]} />
-                        </div>
-                        <div id="dashboard-class-decks" className={`dashboard-menu-option-display ${menu === "decks" ? "" : "hidden"}`}>
-                            <ClassDecks props={[session, chosenClass]} />
-                        </div>
-                        <div id="dashboard-class-learners" className={`dashboard-menu-option-display ${menu === "learners" ? "" : "hidden"}`}>
-                            <ClassLearners props={[session, chosenClass]} />
-                        </div>
-                    </>
-                    :
-                    <div id="no-classes-page">
-                        <h2 id="no-classes-page-prompt">Add Classes to your Library</h2>
-                        <h3 id="no-classes-page-explaination">Your library is empty.</h3>
-                        <p>You can create your own class, or browse Brain Bash's catalog of flashcard classes covering thousands of subjects.</p>
-                        <div id="dashboard-find-create-button-container">
-                            <div id="dashboard-find-flashcards-button">FIND FLASHCARDS</div>
-                            <OpenModalButton
-                                buttonText="CREATE A NEW CLASS"
-                                modalComponent={<CreateClassModal props={[session?.user?.id, swapClass]} />}
-                            />
-                        </div>
+                <div id="no-classes-page">
+                    <h2 id="no-classes-page-prompt">Add Classes to your Library</h2>
+                    <h3 id="no-classes-page-explaination">Your library is empty.</h3>
+                    <p>You can create your own class, or browse Brain Bash's catalog of flashcard classes covering thousands of subjects.</p>
+                    <div id="dashboard-find-create-button-container">
+                        <div id="dashboard-find-flashcards-button">FIND FLASHCARDS</div>
+                        <OpenModalButton
+                            buttonText="CREATE A NEW CLASS"
+                            modalComponent={<CreateClassModal props={[session?.user?.id]} />}
+                        />
                     </div>
-                }
+                </div>
             </div>
         </div>
     )

@@ -13,7 +13,7 @@ const CreateDeckModal = ({ props }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        dispatch(postDeck(name, chosenClass.id))
+        dispatch(postDeck(name, chosenClass?.id))
         .then(closeModal)
     }
 

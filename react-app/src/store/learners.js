@@ -19,8 +19,6 @@ export const deleteClass = (id, user_id) => async dispatch => {
 
     if (res.ok) {
         dispatch(removeLearner(id));
-        dispatch(getUser(user_id));
-        dispatch(getClasses())
     }
 };
 

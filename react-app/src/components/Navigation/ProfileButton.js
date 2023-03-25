@@ -53,7 +53,7 @@ function ProfileButton({ user }) {
           </div>
           }
         </div>
-        <div className={`navbar-option ${findingFlashcards ? "selected" : ""}`} onClick={openFind}>
+        <div className={`navbar-option ${findingFlashcards ? "selected" : ""}`} onClick={() => openFind()}>
           <i className="fa-solid fa-magnifying-glass fa-xs" />
           <div id="find-flashcards-option-text">
             Find Flashcards
@@ -77,7 +77,7 @@ function ProfileButton({ user }) {
             </div>
             <div className="user-menu-section">View Profile</div>
             <div className="user-menu-section">My Account</div>
-            <div className="user-menu-section" onClick={handleLogout}>Log Out</div>
+            <div className="user-menu-section" onClick={() => handleLogout()}>Log Out</div>
           </div>
           <div id="orange-box"></div>
         </>

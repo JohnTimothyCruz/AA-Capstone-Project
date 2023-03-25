@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { postClass } from "../../store/classes";
 import "./CreateClassModal.css"
@@ -7,15 +8,16 @@ import "./CreateClassModal.css"
 
 const CreateClassModal = ({ props }) => {
     const dispatch = useDispatch();
+    const history = useHistory()
     const [className, setClassName] = useState("")
     const { closeModal } = useModal();
-    const [user_id, swapClass] = props;
+    const [user_id] = props;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         dispatch(postClass(className, user_id))
-        .then(res => swapClass(res))
+        .then(res => history.push(`/dashboard/classes/${res.id}`))
         .then(closeModal)
     }
 

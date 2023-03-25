@@ -1,15 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { deleteClass, deleteLearner, getClasses, simplePutClass } from "../../store/classes";
+import { useHistory } from "react-router-dom";
+import { deleteClass, deleteLearner, simplePutClass } from "../../store/classes";
 import "./ClassInfo.css"
 
 const ClassInfo = ({ props }) => {
     const dispatch = useDispatch()
-    const [session, chosenClass, swapClass, getUserRelatedClasses] = props;
+    const history = useHistory()
+    const [session, chosenClass] = props;
     const [editing, setEditing] = useState(false)
     const [classTitle, setClassTitle] = useState(chosenClass?.name)
     const [openDeleteMenu, setOpenDeleteMenu] = useState(false)
     const ulRef = useRef();
+
+    console.log(chosenClass)
 
     useEffect(() => {
         setEditing(false)
@@ -42,7 +46,7 @@ const ClassInfo = ({ props }) => {
 
     const handleDelete = () => {
         dispatch(deleteClass(chosenClass))
-            .then(dispatch(getClasses()))
+            .then(history.push(`/dashboard`))
     }
 
     const handleRemove = () => {

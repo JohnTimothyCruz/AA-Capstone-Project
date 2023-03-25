@@ -132,7 +132,6 @@ export const deleteClass = (chosenClass) => async dispatch => {
 
     if (res.ok) {
         dispatch(removeClass(chosenClass.id));
-        dispatch(getUser(chosenClass.user.id));
     }
 };
 
@@ -143,7 +142,6 @@ export const deleteLearner = (learner_id, class_id, user_id) => async dispatch =
 
     if (res.ok) {
         dispatch(removeLearner(learner_id, class_id));
-        dispatch(getUser(user_id));
         dispatch(getClasses())
     }
 };
