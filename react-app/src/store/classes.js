@@ -125,6 +125,32 @@ export const imagePutClass = (image, id, user_id) => async dispatch => {
     };
 }
 
+export const headlinePutClass = (headline, id, user_id) => async dispatch => {
+    const res = await fetch(`/api/classes/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({headline, user_id})
+    })
+
+    if (res.ok) {
+        const newClass = await res.json();
+        dispatch(updateClass(newClass));
+    };
+}
+
+export const descriptionPutClass = (description, id, user_id) => async dispatch => {
+    const res = await fetch(`/api/classes/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({description, user_id})
+    })
+
+    if (res.ok) {
+        const newClass = await res.json();
+        dispatch(updateClass(newClass));
+    };
+}
+
 export const deleteClass = (chosenClass) => async dispatch => {
     const res = await fetch(`/api/classes/${chosenClass.id}`, {
         method: "DELETE"

@@ -1,7 +1,7 @@
 #dashboard-class-info-container {
     padding: 36px;
     background-color: white;
-    height: 176px;
+    height: fit-content;
 }
 
 #dashboard-class-info-left-container {
