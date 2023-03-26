@@ -55,6 +55,7 @@ const SingleClass = () => {
 
     return (
         <div className="dashboard-container">
+            <div className="side-bar-space"></div>
             <div className="dashboard-side-bar">
                 <div className="dashboard-side-bar-top">
                     <div className="user-icon-container">

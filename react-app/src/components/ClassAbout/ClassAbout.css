@@ -1,0 +1,64 @@
+/* Side panel */
+#about-page-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+#about-side-panel {
+    width: 200px;
+    background-color: rgb(219, 231, 235);
+    padding-top: 10px;
+}
+
+.about-panel-section {
+    padding: 12px 24px;
+    border-left: 10px solid rgba(255, 0, 0, 0);
+    font-size: 15px;
+}
+
+.about-panel-section:hover,
+.about-panel-section.selected:hover {
+    border-left: 10px solid rgba(180, 180, 180, 0.493);
+}
+
+.about-panel-section.selected {
+    border-left: 10px solid rgb(144, 171, 187);
+}
+
+/* About stuff */
+#about-page-forms-container {
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    max-height: 795px;
+    padding: 5px 50px 0px 50px;
+    flex-grow: 1;
+}
+
+#about-preview-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+#about-preview-close-button {
+    margin-top: 5px;
+}
+
+.about-input-prompt-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.about-page-form {
+
+}
+
+.about-input-prompt-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
