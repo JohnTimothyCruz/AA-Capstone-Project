@@ -77,7 +77,7 @@ const ClassInfo = ({ props }) => {
                     <OpenModalButton
                         buttonText={
                             <>
-                                <i class="fa-solid fa-pencil" />
+                                <i className="fa-solid fa-pencil" />
                                 <p>Choose icon</p>
                             </>
                         }

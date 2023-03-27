@@ -96,7 +96,7 @@ const ClassAbout = ({ props }) => {
             </div> */}
             <div id="about-page-forms-container" className={editing ? "active" : ""}>
                 <div id="about-preview-container" className={editing ? "hidden" : ""}>
-                    <i id="about-preview-close-button" class="fa-solid fa-xmark fa-sm" />
+                    <i id="about-preview-close-button" className="fa-solid fa-xmark fa-sm" />
                     <p id="about-preview-button">Preview</p>
                 </div>
                 <div id="editing-what" className={editing ? "" : "hidden"}>
@@ -192,7 +192,7 @@ const ClassAbout = ({ props }) => {
                                         checked={mixType === "progressive"}
                                         onChange={() => handleMixRadios("progressive")}
                                     />
-                                    <label for="progressive">Progressive</label>
+                                    <label htmlFor="progressive">Progressive</label>
                                 </div>
                                 <div className="radio-label-container">
                                     <input
@@ -202,7 +202,7 @@ const ClassAbout = ({ props }) => {
                                         checked={mixType === "random"}
                                         onChange={() => handleMixRadios("random")}
                                     />
-                                    <label for="random">Random</label>
+                                    <label htmlFor="random">Random</label>
                                 </div>
                             </div>
                         </div>
@@ -217,7 +217,7 @@ const ClassAbout = ({ props }) => {
                                         checked={visibility === "public"}
                                         onChange={() => handleVisibilityRadios("public")}
                                     />
-                                    <label for="public">Public</label>
+                                    <label htmlFor="public">Public</label>
                                 </div>
                                 <div className="radio-label-container">
                                     <input
@@ -227,7 +227,7 @@ const ClassAbout = ({ props }) => {
                                         checked={visibility === "private"}
                                         onChange={() => handleVisibilityRadios("private")}
                                     />
-                                    <label for="private">Private</label>
+                                    <label htmlFor="private">Private</label>
                                 </div>
                             </div>
                         </div>
