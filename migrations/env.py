@@ -85,38 +85,36 @@ def run_migrations_online():
     # this callback is used to prevent an auto-migration from being generated
     # when there are no changes to the schema
     # reference: http://alembic.zzzcomputing.com/en/latest/cookbook.html
-    def run_migrations_online():
+    def process_revision_directives(context, revision, directives):
+        if getattr(config.cmd_opts, 'autogenerate', False):
+            script = directives[0]
+            if script.upgrade_ops.is_empty():
+                directives[:] = []
+                logger.info('No changes in schema detected.')
 
-        def process_revision_directives(context, revision, directives):
-            if getattr(config.cmd_opts, 'autogenerate', False):
-                script = directives[0]
-                if script.upgrade_ops.is_empty():
-                    directives[:] = []
-                    logger.info('No changes in schema detected.')
+    connectable = engine_from_config(
+        config.get_section(config.config_ini_section),
+        prefix='sqlalchemy.',
+        poolclass=pool.NullPool,
+    )
 
-        connectable = engine_from_config(
-            config.get_section(config.config_ini_section),
-            prefix='sqlalchemy.',
-            poolclass=pool.NullPool,
+    with connectable.connect() as connection:
+        context.configure(
+            connection=connection,
+            target_metadata=get_metadata(),
+            process_revision_directives=process_revision_directives,
+            **current_app.extensions['migrate'].configure_args
         )
 
-        with connectable.connect() as connection:
-            context.configure(
-                connection=connection,
-                target_metadata=get_metadata(),
-                process_revision_directives=process_revision_directives,
-                **current_app.extensions['migrate'].configure_args
-            )
+        # Create a schema (only in production)
+        if environment == "production":
+            connection.execute(f"CREATE SCHEMA IF NOT EXISTS {SCHEMA}")
 
-            # Create a schema (only in production)
+        # Set search path to your schema (only in production)
+        with context.begin_transaction():
             if environment == "production":
-                connection.execute(f"CREATE SCHEMA IF NOT EXISTS {SCHEMA}")
-
-            # Set search path to your schema (only in production)
-            with context.begin_transaction():
-                if environment == "production":
-                    context.execute(f"SET search_path TO {SCHEMA}")
-                context.run_migrations()
+                context.execute(f"SET search_path TO {SCHEMA}")
+            context.run_migrations()
 
 
 if context.is_offline_mode():
