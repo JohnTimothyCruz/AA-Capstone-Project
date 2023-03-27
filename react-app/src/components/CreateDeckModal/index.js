@@ -13,13 +13,13 @@ const CreateDeckModal = ({ props }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        dispatch(postDeck(name, chosenClass?.id))
-        .then(closeModal)
+        dispatch(postDeck(name, chosenClass?.id, user_id))
+            .then(closeModal)
     }
 
     return (
         <div id="create-deck-modal">
-            <i id="close-create-deck-modal-button" className="fa-solid fa-xmark fa-2xl" onClick={() => closeModal()}/>
+            <i id="close-create-deck-modal-button" className="fa-solid fa-xmark fa-2xl" onClick={() => closeModal()} />
             <h2 id="create-deck-prompt">Create New Deck</h2>
             <h3 id="create-deck-explaination">A Deck is a subset of Flashcards in a Class, similar to chapters in a book</h3>
             <form id="create-deck-form" onSubmit={(e) => handleSubmit(e)}>

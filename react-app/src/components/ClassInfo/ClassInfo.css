@@ -11,6 +11,32 @@
     gap: 10px;
 }
 
+#dashboard-class-image-container button {
+    display: none;
+}
+
+#dashboard-class-image-container:hover button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    top: 122px;
+    border: none;
+    background-color: rgba(39, 63, 97, 0.822);
+    height: 40px;
+    width: 126px;
+    color: white;
+    cursor: pointer;
+}
+
+#dashboard-class-image-container:hover button:hover i {
+    color: rgb(0, 162, 255);
+}
+
+#dashboard-class-image-container:hover i {
+    margin-left: 3px;
+}
+
 #dashboard-class-image {
     height: 126px;
     width: 126px;

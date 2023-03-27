@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
+import OpenModalButton from "../OpenModalButton";
 import { useHistory } from "react-router-dom";
 import { deleteClass, deleteLearner, simplePutClass } from "../../store/classes";
 import "./ClassInfo.css"
+import ClassImageModal from "../ClassImageModal";
 
 const ClassInfo = ({ props }) => {
     const dispatch = useDispatch()
@@ -70,7 +72,18 @@ const ClassInfo = ({ props }) => {
     return (
         <div id="dashboard-class-info-container">
             <div id="dashboard-class-info-left-container">
-                <img id="dashboard-class-image" src={chosenClass?.image} alt="class"></img>
+                <div id="dashboard-class-image-container">
+                    <img id="dashboard-class-image" src={chosenClass?.image} alt="class" />
+                    <OpenModalButton
+                        buttonText={
+                            <>
+                                <i class="fa-solid fa-pencil" />
+                                <p>Choose icon</p>
+                            </>
+                        }
+                        modalComponent={<ClassImageModal props={[chosenClass, session?.user?.id]} />}
+                    />
+                </div>
                 <div id="dashboard-class-info">
                     <div id="dashboard-class-title-section">
                         {editing ?
