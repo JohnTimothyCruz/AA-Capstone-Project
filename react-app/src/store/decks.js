@@ -89,6 +89,8 @@ export const putDeck = (name, objective, id, class_id) => async dispatch => {
     if (res.ok) {
         const deck = await res.json();
         dispatch(updateDeck(deck));
+        dispatch(getClasses())
+        dispatch(getClass(class_id))
     };
 };
 

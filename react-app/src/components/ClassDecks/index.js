@@ -88,7 +88,7 @@ const ClassDecks = ({ props }) => {
                                                     <p>Edit Deck Info</p>
                                                 </>
                                             }
-                                            modalComponent={<EditDeckModal />}
+                                            modalComponent={<EditDeckModal props={[chosenClass, deck]} />}
                                         />
                                     </div>
                                     <div className="deck-pop-up-section" onClick={(e) => e.stopPropagation()}>
