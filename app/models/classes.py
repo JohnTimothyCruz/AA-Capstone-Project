@@ -11,7 +11,7 @@ class Class(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     name = db.Column(db.String(250), nullable=False)
     mix_type = db.Column(db.String, nullable=False, default="progressive")
-    visibility = db.Column(db.Boolean, nullable=False, default=True)
+    visibility = db.Column(db.String, nullable=False, default="public")
     image = db.Column(db.String, default="https://www.brainscape.com/assets/app_icons/ugs.png")
     headline = db.Column(db.String(250))
     description = db.Column(db.String(500))

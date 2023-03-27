@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import CreateDeckModal from "../CreateDeckModal";
 import OpenModalButton from "../OpenModalButton";

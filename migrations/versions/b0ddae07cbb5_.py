@@ -33,7 +33,7 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('name', sa.String(length=250), nullable=False),
     sa.Column('mix_type', sa.String(), nullable=False),
-    sa.Column('visibility', sa.Boolean(), nullable=False),
+    sa.Column('visibility', sa.String(), nullable=False),
     sa.Column('image', sa.String(), nullable=True),
     sa.Column('headline', sa.String(length=250), nullable=True),
     sa.Column('description', sa.String(length=500), nullable=True),
