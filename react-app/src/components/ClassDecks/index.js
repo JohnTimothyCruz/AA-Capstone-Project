@@ -77,7 +77,7 @@ const ClassDecks = ({ props }) => {
                                                     <p>Deck Objective</p>
                                                 </>
                                             }
-                                            modalComponent={<DeckObjectiveModal />}
+                                            modalComponent={<DeckObjectiveModal props={[deck]} />}
                                         />
                                     </div>
                                     <div className="deck-pop-up-section" onClick={(e) => e.stopPropagation()}>

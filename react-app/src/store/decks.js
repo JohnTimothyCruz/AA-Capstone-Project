@@ -83,7 +83,7 @@ export const putDeck = (name, objective, id, class_id) => async dispatch => {
     const res = await fetch(`/api/decks/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({name, objective, class_id})
+        body: JSON.stringify({class_id, name, objective})
     });
 
     if (res.ok) {
