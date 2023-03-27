@@ -16,6 +16,15 @@ const ClassAbout = ({ props }) => {
     const [warn, setWarn] = useState(false)
 
     // MDN .scrollTop and .scrollTo
+    // const scrollToE = (id) => {
+    //     const topOfEl = document.getElementById(id).offsetTop;
+    //     document.getElementById("about-page-forms-container").scrollTop = topOfEl-10;
+    // }
+
+    function scrollToE(){
+        var topPos = document.getElementById('about-description-input-container').offsetTop;
+        document.getElementById('about-page-forms-container').scrollTop = topPos-10;
+      }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -57,21 +66,30 @@ const ClassAbout = ({ props }) => {
                 <a
                     href="#about-headline-input-container"
                     className={`about-panel-section ${menu === "Headline" ? "selected" : ""}`}
-                    onClick={() => setMenu("Headline")}
+                    onClick={() => {
+                        setMenu("Headline")
+                        scrollToE("about-headline-input-container")
+                    }}
                 >
                     Headline
                 </a>
                 <a
                     href="#about-description-input-container"
                     className={`about-panel-section ${menu === "Description" ? "selected" : ""}`}
-                    onClick={() => setMenu("Description")}
+                    onClick={() => {
+                        setMenu("Description")
+                        scrollToE("about-description-input-container")
+                    }}
                 >
                     Description
                 </a>
                 <a
                     href="#about-settings-options"
                     className={`about-panel-section ${menu === "settings" ? "selected" : ""}`}
-                    onClick={() => setMenu("settings")}
+                    onClick={() => {
+                        setMenu("settings")
+                        scrollToE("about-settings-container")
+                    }}
                 >
                     Settings
                 </a>
