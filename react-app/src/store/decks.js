@@ -1,3 +1,6 @@
+import { getClasses } from "./classes"
+import { getUser } from "./session"
+
 // -Action Types---------------
 const GET_DECKS = "decks/GET_DECKS"
 const GET_DECK = "decks/GET_DECK"
@@ -61,7 +64,7 @@ export const getDeck = (id) => async dispatch => {
     };
 };
 
-export const postDeck = (name, class_id) => async dispatch => {
+export const postDeck = (name, class_id, user_id) => async dispatch => {
     const res = await fetch(`/api/decks`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -71,6 +74,8 @@ export const postDeck = (name, class_id) => async dispatch => {
     if (res.ok) {
         const deck = await res.json();
         dispatch(createDeck(deck));
+        dispatch(getUser(user_id));
+        dispatch(getClasses())
     };
 };
 
