@@ -77,7 +77,7 @@ function ProfileButton({ user }) {
             </div>
             <div className="user-menu-section">View Profile</div>
             <div className="user-menu-section">My Account</div>
-            <div className="user-menu-section" onClick={() => handleLogout()}>Log Out</div>
+            <div className="user-menu-section" onClick={(e) => handleLogout(e)}>Log Out</div>
           </div>
           <div id="orange-box"></div>
         </>

@@ -39,7 +39,7 @@ function LoginFormModal() {
 
   return (
     <div id="login-form-modal-container">
-      <i id="close-login-modal-button" className="fa-solid fa-xmark fa-2xl" onClick={() => closeModal} />
+      <i id="close-login-modal-button" className="fa-solid fa-xmark fa-2xl" onClick={() => closeModal()} />
       <h1 id="login-modal-prompt">Log In</h1>
       <form id="login-form" onSubmit={handleSubmit}>
         <label id="login-email-input">

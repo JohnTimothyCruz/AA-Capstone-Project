@@ -15,7 +15,6 @@ const ClassAbout = ({ props }) => {
     const [editing, setEditing] = useState(false)
     const [warn, setWarn] = useState(false)
 
-    // MDN .scrollTop and .scrollTo
     // const scrollToE = (id) => {
     //     const topOfEl = document.getElementById(id).offsetTop;
     //     document.getElementById("about-page-forms-container").scrollTop = topOfEl-10;

@@ -107,7 +107,7 @@ function SignupFormModal() {
 
 	return (
 		<div id="sign-up-form-modal">
-			<i id="close-sign-up-modal-button" className="fa-solid fa-xmark fa-2xl" onClick={() => closeModal} />
+			<i id="close-sign-up-modal-button" className="fa-solid fa-xmark fa-2xl" onClick={() => closeModal()} />
 			<h1 id="sign-up-modal-prompt">Get Started</h1>
 			<form id="sign-up-form" onSubmit={handleSubmit} noValidate>
 				<div id="first-and-last-name-input-container">

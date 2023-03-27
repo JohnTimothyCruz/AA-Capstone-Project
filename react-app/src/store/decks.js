@@ -1,4 +1,4 @@
-import { getClasses } from "./classes"
+import { getClass, getClasses } from "./classes"
 import { getUser } from "./session"
 
 // -Action Types---------------
@@ -83,22 +83,26 @@ export const putDeck = (name, objective, id, class_id) => async dispatch => {
     const res = await fetch(`/api/decks/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({name, objective, class_id})
+        body: JSON.stringify({class_id, name, objective})
     });
 
     if (res.ok) {
         const deck = await res.json();
         dispatch(updateDeck(deck));
+        dispatch(getClasses())
+        dispatch(getClass(class_id))
     };
 };
 
-export const deleteDeck = (chosenDeck) => async dispatch => {
-    const res = await fetch(`/api/classes/${chosenDeck.id}`, {
+export const deleteDeck = (class_id, id) => async dispatch => {
+    const res = await fetch(`/api/decks/${id}`, {
         method: "DELETE"
     });
 
     if (res.ok) {
-        dispatch(removeDeck(chosenDeck.id));
+        dispatch(removeDeck(id));
+        dispatch(getClasses())
+        dispatch(getClass(class_id))
     }
 };
 
