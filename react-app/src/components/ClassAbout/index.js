@@ -190,7 +190,7 @@ const ClassAbout = ({ props }) => {
                                         id="progressive"
                                         name="mix-type"
                                         checked={mixType === "progressive"}
-                                        onClick={() => handleMixRadios("progressive")}
+                                        onChange={() => handleMixRadios("progressive")}
                                     />
                                     <label for="progressive">Progressive</label>
                                 </div>
@@ -200,7 +200,7 @@ const ClassAbout = ({ props }) => {
                                         id="random"
                                         name="mix-type"
                                         checked={mixType === "random"}
-                                        onClick={() => handleMixRadios("random")}
+                                        onChange={() => handleMixRadios("random")}
                                     />
                                     <label for="random">Random</label>
                                 </div>
@@ -214,8 +214,8 @@ const ClassAbout = ({ props }) => {
                                         type="radio"
                                         id="public"
                                         name="visibility"
-                                        checked={visibility === true}
-                                        onClick={() => handleVisibilityRadios(true)}
+                                        checked={visibility === "public"}
+                                        onChange={() => handleVisibilityRadios("public")}
                                     />
                                     <label for="public">Public</label>
                                 </div>
@@ -224,8 +224,8 @@ const ClassAbout = ({ props }) => {
                                         type="radio"
                                         id="private"
                                         name="visibility"
-                                        checked={visibility === false}
-                                        onClick={() => handleVisibilityRadios(false)}
+                                        checked={visibility === "private"}
+                                        onChange={() => handleVisibilityRadios("private")}
                                     />
                                     <label for="private">Private</label>
                                 </div>
