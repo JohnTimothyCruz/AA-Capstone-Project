@@ -62,7 +62,7 @@ const ClassAbout = ({ props }) => {
 
     return (
         <div id="about-page-container">
-            <div id="about-side-panel">
+            {/* <div id="about-side-panel">
                 <a
                     href="#about-headline-input-container"
                     className={`about-panel-section ${menu === "Headline" ? "selected" : ""}`}
@@ -93,7 +93,7 @@ const ClassAbout = ({ props }) => {
                 >
                     Settings
                 </a>
-            </div>
+            </div> */}
             <div id="about-page-forms-container" className={editing ? "active" : ""}>
                 <div id="about-preview-container" className={editing ? "hidden" : ""}>
                     <i id="about-preview-close-button" class="fa-solid fa-xmark fa-sm" />
@@ -110,7 +110,10 @@ const ClassAbout = ({ props }) => {
                             <i className={`fa-solid fa-pencil about-form-edit-button ${editing ? "hidden" : ""}`} onClick={() => setEditing("Headline")} />
                         </div>
                         <div className={`about-input-prompt-right ${editing === "Headline" ? "" : "hidden"}`}>
-                            <p className="about-form-cancel-button" onClick={() => setEditing(false)} >Cancel</p>
+                            <p className="about-form-cancel-button" onClick={() => {
+                                setEditing(false)
+                                setHeadline(chosenClass?.headline)
+                            }} >Cancel</p>
                             <div className="about-form-line"></div>
                             <button className="about-form-save-button">SAVE CHANGES</button>
                         </div>
@@ -129,7 +132,7 @@ const ClassAbout = ({ props }) => {
                         }}
                     />
                     <p className={`about-form-chars-container ${editing === "Headline" ? headline?.length > 280 ? "over" : "" : "hidden"}`}>
-                        {headline?.length <= 280 ?
+                        {!headline || headline?.length <= 280 ?
                             <p>{headline?.length || 0} of 280 char</p>
                             :
                             <p>Your headline exceeds the character limit <span>({headline?.length || 0} of 280 char)</span></p>}
@@ -143,7 +146,10 @@ const ClassAbout = ({ props }) => {
                             <i className={`fa-solid fa-pencil about-form-edit-button ${editing ? "hidden" : ""}`} onClick={() => setEditing("Description")} />
                         </div>
                         <div className={`about-input-prompt-right ${editing === "Description" ? "" : "hidden"}`}>
-                            <p className="about-form-cancel-button" onClick={() => setEditing(false)}>Cancel</p>
+                            <p className="about-form-cancel-button" onClick={() => {
+                                setEditing(false)
+                                setDescription(chosenClass?.description)
+                            }}>Cancel</p>
                             <div className="about-form-line"></div>
                             <button className="about-form-save-button">SAVE CHANGES</button>
                         </div>
@@ -162,7 +168,7 @@ const ClassAbout = ({ props }) => {
                         }}
                     />
                     <p className={`about-form-chars-container ${editing === "Description" ? "" : "hidden"}`}>
-                        {description?.length <= 5000 ?
+                        {!description || description?.length <= 5000 ?
                             <p>{description?.length || 0} of 5000 char</p>
                             :
                             <p>Your description exceeds the character limit <span>({description?.length || 0} of 5000 char)</span></p>}
