@@ -97,7 +97,7 @@ const ClassDecks = ({ props }) => {
                                                 <i className="fa-solid fa-xmark" />
                                                 <p>Remove this Deck</p>
                                             </>}
-                                            modalComponent={<DeleteDeckModal />}
+                                            modalComponent={<DeleteDeckModal props={[chosenClass, deck]} />}
                                         />
                                     </div>
                                 </>

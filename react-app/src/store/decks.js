@@ -1,4 +1,4 @@
-import { getClasses } from "./classes"
+import { getClass, getClasses } from "./classes"
 import { getUser } from "./session"
 
 // -Action Types---------------
@@ -92,13 +92,15 @@ export const putDeck = (name, objective, id, class_id) => async dispatch => {
     };
 };
 
-export const deleteDeck = (chosenDeck) => async dispatch => {
-    const res = await fetch(`/api/classes/${chosenDeck.id}`, {
+export const deleteDeck = (class_id, id) => async dispatch => {
+    const res = await fetch(`/api/decks/${id}`, {
         method: "DELETE"
     });
 
     if (res.ok) {
-        dispatch(removeDeck(chosenDeck.id));
+        dispatch(removeDeck(id));
+        dispatch(getClasses())
+        dispatch(getClass(class_id))
     }
 };
 
