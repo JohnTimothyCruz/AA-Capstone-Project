@@ -1,0 +1,73 @@
+#class-image-selection-container {
+    background-color: white;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    height: 410px;
+    border-radius: 25px;
+}
+
+#class-image-selection-close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: rgb(130, 148, 155);
+    cursor: pointer;
+    padding: 20px 10px 20px 10px;
+    border-radius: 30px;
+}
+
+#class-image-selection-close-button:hover {
+    color: rgb(0, 162, 255);
+    background-color: rgba(107, 107, 107, 0.144);
+}
+
+#class-image-selection-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#class-image-selection-prompt {
+    color: rgb(48, 79, 121);
+    font-size: 30px;
+    font-weight: 800;
+    margin: 0px;
+}
+
+#class-image-selection-text {
+    font-weight: 300;
+    font-size: 17px;
+    margin: 0px 0px 20px 0px;
+}
+
+#class-image-selection {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: flex;
+    /* justify-content: center; */
+    flex-wrap: wrap;
+    width: 600px;
+    gap: 25px 45px;
+}
+
+#class-image-selection img {
+    height: 72px;
+    width: 72px;
+    border: 3px solid rgba(255, 0, 0, 0);
+    cursor: pointer;
+}
+
+#class-image-selection img:hover {
+    border: 3px solid rgb(0, 162, 255);
+}
+
+#class-image-cancel-button {
+    text-decoration: underline;
+    color: grey;
+    font-size: 15px;
+    margin-bottom: 0px;
+    cursor: pointer;
+}
