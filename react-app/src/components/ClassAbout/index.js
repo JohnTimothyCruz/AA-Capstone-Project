@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import "./ClassAbout.css";
-import { descriptionPutClass, headlinePutClass } from "../../store/classes";
+import { descriptionPutClass, headlinePutClass, mixPutClass, visibilityPutClass } from "../../store/classes";
 
 const ClassAbout = ({ props }) => {
     const dispatch = useDispatch()
@@ -11,9 +11,20 @@ const ClassAbout = ({ props }) => {
     const [headline, setHeadline] = useState(chosenClass?.headline);
     const [description, setDescription] = useState(chosenClass?.description);
     const [visibility, setVisibility] = useState(chosenClass?.visibility);
-    const [mixType, setMixType] = useState(chosenClass?.mixType);
+    const [mixType, setMixType] = useState(chosenClass?.mix_type);
     const [editing, setEditing] = useState(false)
     const [warn, setWarn] = useState(false)
+
+    // MDN .scrollTop and .scrollTo
+    // const scrollToE = (id) => {
+    //     const topOfEl = document.getElementById(id).offsetTop;
+    //     document.getElementById("about-page-forms-container").scrollTop = topOfEl-10;
+    // }
+
+    function scrollToE(){
+        var topPos = document.getElementById('about-description-input-container').offsetTop;
+        document.getElementById('about-page-forms-container').scrollTop = topPos-10;
+      }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -35,27 +46,53 @@ const ClassAbout = ({ props }) => {
         }
     }
 
+    const handleMixRadios = (type) => {
+        if (type !== mixType) {
+            dispatch(mixPutClass(type, chosenClass?.id, session?.user?.id))
+                .then(setMixType(type))
+        }
+    }
+
+    const handleVisibilityRadios = (type) => {
+        if (type !== visibility) {
+            dispatch(visibilityPutClass(type, chosenClass?.id, session?.user?.id))
+                .then(setVisibility(type))
+        }
+    }
+
     return (
         <div id="about-page-container">
             <div id="about-side-panel">
-                <div
+                <a
+                    href="#about-headline-input-container"
                     className={`about-panel-section ${menu === "Headline" ? "selected" : ""}`}
-                    onClick={() => setMenu("Headline")}
+                    onClick={() => {
+                        setMenu("Headline")
+                        scrollToE("about-headline-input-container")
+                    }}
                 >
                     Headline
-                </div>
-                <div
+                </a>
+                <a
+                    href="#about-description-input-container"
                     className={`about-panel-section ${menu === "Description" ? "selected" : ""}`}
-                    onClick={() => setMenu("Description")}
+                    onClick={() => {
+                        setMenu("Description")
+                        scrollToE("about-description-input-container")
+                    }}
                 >
                     Description
-                </div>
-                <div
+                </a>
+                <a
+                    href="#about-settings-options"
                     className={`about-panel-section ${menu === "settings" ? "selected" : ""}`}
-                    onClick={() => setMenu("settings")}
+                    onClick={() => {
+                        setMenu("settings")
+                        scrollToE("about-settings-container")
+                    }}
                 >
                     Settings
-                </div>
+                </a>
             </div>
             <div id="about-page-forms-container" className={editing ? "active" : ""}>
                 <div id="about-preview-container" className={editing ? "hidden" : ""}>
@@ -66,7 +103,7 @@ const ClassAbout = ({ props }) => {
                     {`Editing ${editing}`}
                 </div>
                 <form onSubmit={(e) => handleSubmit(e)} className="about-page-form">
-                    <div className={`about-input-prompt-container ${editing === "Headline" ? "no-underline" : ""}`}>
+                    <div id="about-headline-input-container" className={`about-input-prompt-container ${editing === "Headline" ? "no-underline" : ""}`}>
                         <div className="about-input-prompt-left">
                             <p className="about-input-prompt">Headline</p>
                             {/* <i className="fa-solid fa-circle-info about-form-info" /> */}
@@ -99,7 +136,7 @@ const ClassAbout = ({ props }) => {
                     </p>
                 </form>
                 <form onSubmit={(e) => handleSubmit(e)} className="about-page-form">
-                    <div className={`about-input-prompt-container ${editing === "Description" ? "no-underline" : ""}`}>
+                    <div id="about-description-input-container" className={`about-input-prompt-container ${editing === "Description" ? "no-underline" : ""}`}>
                         <div className="about-input-prompt-left">
                             <p className="about-input-prompt">Description</p>
                             {/* <i className="fa-solid fa-circle-info about-form-info" /> */}
@@ -131,6 +168,65 @@ const ClassAbout = ({ props }) => {
                             <p>Your description exceeds the character limit <span>({description?.length || 0} of 5000 char)</span></p>}
                     </p>
                 </form>
+                <div id="about-settings-container">
+                    <div className={`about-input-prompt-container ${editing === "Description" ? "no-underline" : ""}`}>
+                        <div className="about-input-prompt-left">
+                            <p className="about-input-prompt">Settings</p>
+                        </div>
+                    </div>
+                    <div id="about-settings-options">
+                        <div className="about-settings-options-section">
+                            <p className="radio-section-prompt">Default Study Mix Type</p>
+                            <div className="radio-section-radios">
+                                <div className="radio-label-container">
+                                    <input
+                                        type="radio"
+                                        id="progressive"
+                                        name="mix-type"
+                                        checked={mixType === "progressive"}
+                                        onClick={() => handleMixRadios("progressive")}
+                                    />
+                                    <label for="progressive">Progressive</label>
+                                </div>
+                                <div className="radio-label-container">
+                                    <input
+                                        type="radio"
+                                        id="random"
+                                        name="mix-type"
+                                        checked={mixType === "random"}
+                                        onClick={() => handleMixRadios("random")}
+                                    />
+                                    <label for="random">Random</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="about-settings-options-section">
+                            <p className="radio-section-prompt">Class Visibility</p>
+                            <div className="radio-section-radios">
+                                <div className="radio-label-container">
+                                    <input
+                                        type="radio"
+                                        id="public"
+                                        name="visibility"
+                                        checked={visibility === true}
+                                        onClick={() => handleVisibilityRadios(true)}
+                                    />
+                                    <label for="public">Public</label>
+                                </div>
+                                <div className="radio-label-container">
+                                    <input
+                                        type="radio"
+                                        id="private"
+                                        name="visibility"
+                                        checked={visibility === false}
+                                        onClick={() => handleVisibilityRadios(false)}
+                                    />
+                                    <label for="private">Private</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

@@ -6,15 +6,28 @@
 }
 
 #about-side-panel {
+    display: flex;
+    flex-direction: column;
     width: 200px;
+    height: 792px;
     background-color: rgb(219, 231, 235);
     padding-top: 10px;
+}
+
+#about-side-panel a {
+    text-decoration: none;
+    color: rgb(53, 53, 53);
+}
+
+#about-side-panel a.selected {
+    font-weight: 600;
 }
 
 .about-panel-section {
     padding: 12px 24px;
     border-left: 10px solid rgba(255, 0, 0, 0);
     font-size: 15px;
+    cursor: pointer;
 }
 
 .about-panel-section:hover,
@@ -31,7 +44,7 @@
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    max-height: 795px;
+    max-height: 800px;
     padding: 5px 50px 0px 50px;
     flex-grow: 1;
 }
@@ -77,7 +90,7 @@
 }
 
 .about-page-form {
-    padding-bottom: 20px;
+    padding-bottom: 50px;
 }
 
 .about-input-prompt-left {
@@ -92,7 +105,7 @@
 
 .about-input-prompt {
     margin:  0px;
-    color: rgb(0, 162, 255);
+    color: rgb(0, 136, 214);
 }
 
 .about-form-edit-button {
@@ -106,7 +119,7 @@
 }
 
 .about-form-edit-button:hover {
-    color: rgb(0, 162, 255);
+    color: rgb(0, 136, 214);
     background-color: rgba(189, 189, 189, 0.562);
     border-radius: 20px;
 }
@@ -197,4 +210,45 @@
 
 .warn {
     background-color: rgba(192, 0, 0, 0.418);
+}
+
+/* The radio buttons */
+#about-settings-container {
+    padding-bottom: 700px;
+}
+
+#about-settings-options {
+    display: flex;
+    gap: 15px;
+}
+
+.radio-section-prompt {
+    margin: 0px 0px 5px 0px;
+    font-style: italic;
+    font-size: 13px;
+    color: rgb(94, 94, 94);
+}
+
+.radio-section-radios {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    gap: 15px;
+}
+
+.radio-label-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.radio-label-container input {
+    margin: 0px;
+    height: 20px;
+    width: 20px;
+    accent-color: rgb(0, 136, 214);
+}
+
+.radio-label-container label {
+    font-size: 13px;
 }

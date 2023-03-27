@@ -151,6 +151,32 @@ export const descriptionPutClass = (description, id, user_id) => async dispatch 
     };
 }
 
+export const mixPutClass = (mix_type, id, user_id) => async dispatch => {
+    const res = await fetch(`/api/classes/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({mix_type, user_id})
+    })
+
+    if (res.ok) {
+        const newClass = await res.json();
+        dispatch(updateClass(newClass));
+    };
+}
+
+export const visibilityPutClass = (visibility, id, user_id) => async dispatch => {
+    const res = await fetch(`/api/classes/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({visibility, user_id})
+    })
+
+    if (res.ok) {
+        const newClass = await res.json();
+        dispatch(updateClass(newClass));
+    };
+}
+
 export const deleteClass = (chosenClass) => async dispatch => {
     const res = await fetch(`/api/classes/${chosenClass.id}`, {
         method: "DELETE"
