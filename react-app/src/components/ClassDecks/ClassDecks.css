@@ -34,11 +34,17 @@
 .deck-container {
     display: flex;
     align-items: center;
-    gap: 30px;
+    justify-content: space-between;
     padding: 24px 30px 24px 42px;
     border-bottom: 1px solid grey;
     height: fit-content;
     cursor: pointer;
+}
+
+.deck-container-left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
 .deck-container:hover {
@@ -71,8 +77,69 @@
 .deck-progress-bar {
     background-color: rgb(226, 231, 233);
     height: 8px;
-    width: 650px;
+    width: 30vw;
     border-radius: 15px;
+}
+
+.deck-container-right {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.deck-container-right button {
+    background: none;
+    border: none;
+}
+
+/* .deck-container-right.empty button {
+    display: none;
+} */
+
+.deck-container-right button i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 20px;
+    padding: 3px;
+    color: rgb(124, 154, 158);
+    cursor: pointer;
+}
+
+.deck-container-right-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    width: 20px;
+    padding: 8px;
+    color: rgb(124, 154, 158);
+}
+
+.deck-container:hover button:hover i,
+.deck-container:hover .deck-container-study {
+    color: rgb(0, 162, 255);
+}
+
+.deck-container-right button:hover,
+.deck-container-right-icons:hover {
+    color: rgb(0, 162, 255);
+    background-color: rgba(151, 151, 151, 0.39);
+    border-radius: 100px;
+}
+
+.deck-container-right:not(.empty) .deck-container-add {
+    display: none;
+}
+
+.deck-container-add {
+    background-color: rgb(255, 125, 65);
+    color: white;
+    padding: 5px 20px;
+    font-size: 13px;
+    border-radius: 30px;
+    margin: 0px 5px 0px 5px;
 }
 
 /* Empty deck styles */
@@ -98,4 +165,8 @@
     font-weight: 200;
     font-size: 15px;
     cursor: pointer;
+}
+
+.hidden {
+    display: none;
 }
