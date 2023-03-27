@@ -125,7 +125,7 @@ const ClassAbout = ({ props }) => {
                         id="about-headline-form"
                         className={editing === "Headline" ? headline?.length > 280 ? warn ? "over warn" : "over" : "" : "hidden"}
                         placeholder="Enter a short summary of your class"
-                        value={headline}
+                        value={headline || ""}
                         onChange={(e) => {
                             setHeadline(e.target.value)
                             setWarn(false)
@@ -161,7 +161,7 @@ const ClassAbout = ({ props }) => {
                         id="about-description-form"
                         className={editing === "Description" ? description?.length > 5000 ? warn ? "over warn" : "over" : "" : "hidden"}
                         placeholder="Enter a detailed description for your class."
-                        value={description}
+                        value={description || ""}
                         onChange={(e) => {
                             setDescription(e.target.value)
                             setWarn(false)
