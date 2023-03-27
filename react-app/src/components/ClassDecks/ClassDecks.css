@@ -47,7 +47,7 @@
     gap: 30px;
 }
 
-.deck-container:hover {
+.deck-container:hover:not(:has(*:hover)) {
     background-color: rgb(198, 225, 235);
 }
 
@@ -55,7 +55,7 @@
     color: rgb(146, 154, 156);
 }
 
-.deck-container:hover .deck-progress-percent {
+.deck-container:hover:not(:has(*:hover)) .deck-progress-percent {
     color: purple;
 }
 
@@ -70,7 +70,7 @@
     font-weight: 800;
 }
 
-.deck-container:hover .deck-name {
+.deck-container:hover:not(:has(*:hover)) .deck-name {
     color: rgb(0, 162, 255);
 }
 
@@ -107,7 +107,13 @@
     cursor: pointer;
 }
 
-.deck-container-right-icons {
+.deck-container:not(:hover) .deck-container-preview,
+.deck-container:not(:hover) .deck-container-edit,
+.deck-container:not(:hover) .deck-container-options {
+    display: none;
+}
+
+.deck-container .deck-container-right-icons {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -117,12 +123,12 @@
     color: rgb(124, 154, 158);
 }
 
-.deck-container:hover button:hover i,
+.deck-container:hover .deck-container-preview button:hover i,
 .deck-container:hover .deck-container-study {
     color: rgb(0, 162, 255);
 }
 
-.deck-container-right button:hover,
+.deck-container-right .deck-container-preview button:hover,
 .deck-container-right-icons:hover {
     color: rgb(0, 162, 255);
     background-color: rgba(151, 151, 151, 0.39);
@@ -169,4 +175,45 @@
 
 .hidden {
     display: none;
+}
+
+/* Deck options menu */
+.deck-pop-up-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 420px;
+    right: 150px;
+    margin: 0px;
+    border: 1px solid rgb(168, 168, 168);
+    background-color: rgb(245, 245, 245);
+    border-radius: 3px;
+}
+
+.deck-pop-up-section button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 0px 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.deck-pop-up-section button:hover {
+    background-color: rgb(46, 131, 180);
+    color: white;
+    border-radius: 0px;
+}
+
+.deck-pop-up-section button p {
+    margin: 0px 10px 0px 0px ;
+}
+
+.deck-pop-up-section:hover button i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
 }
