@@ -1,7 +1,9 @@
+import NewLearnerModal from "../NewLearnerModal";
 import OpenModalButton from "../OpenModalButton";
 import "./ClassLearners.css"
 
-const ClassLearners = () => {
+const ClassLearners = ({ props }) => {
+    const [session, chosenClass] = props;
 
     return (
         <div id="learners-page-container">
@@ -25,6 +27,7 @@ const ClassLearners = () => {
 
                 <div id="add-learner-container">
                     <OpenModalButton
+                        modalComponent={<NewLearnerModal props={[chosenClass]} />}
                         buttonText={
                             <div id="add-learner-container">
                                 <i id="add-learner-circle" className="fa-regular fa-circle fa-xl" />
