@@ -74,3 +74,27 @@
     width: 650px;
     border-radius: 15px;
 }
+
+/* Empty deck styles */
+#empty-deck-message-container {
+    padding: 42px;
+}
+
+#empty-deck-prompt {
+    margin: 0px;
+    color: rgb(48, 79, 121);
+}
+
+#empty-deck-message {
+    color: rgb(58, 58, 58);
+}
+
+#empty-deck-message-container button {
+    border: none;
+    background-color: rgb(255, 125, 65);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 200;
+    font-size: 15px;
+}

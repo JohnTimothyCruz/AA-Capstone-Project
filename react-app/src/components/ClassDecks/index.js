@@ -11,7 +11,7 @@ const ClassDecks = ({ props }) => {
         <div id="dashboard-decks-container">
             <div id="dashboard-decks-prompt">
                 <div id="dashboard-decks-prompt-left">
-                    <i className="fa-regular fa-circle fa-xl" />
+                    {/* <i className="fa-regular fa-circle fa-xl" /> */}
                     <div>Decks</div>
                 </div>
                 <div id="dashboard-decks-prompt-right">
@@ -21,7 +21,7 @@ const ClassDecks = ({ props }) => {
                     />
                 </div>
             </div>
-            {chosenClass?.decks ? chosenClass?.decks.map((deck, idx) => (
+            {chosenClass?.decks?.length ? chosenClass?.decks.map((deck, idx) => (
                 <div className="deck-container" onClick={() => history.push(`/study/decks/${deck?.id}`)} key={idx}>
                     <i className="fa-regular fa-circle fa-xl" />
                     <div className="deck-progress-percent">20%</div>
@@ -31,8 +31,15 @@ const ClassDecks = ({ props }) => {
                     </div>
                 </div>
             ))
-            :
-            <div>Add decks to your class</div>
+                :
+                <div id="empty-deck-message-container">
+                    <h2 id="empty-deck-prompt">Add Decks to your Class</h2>
+                    <p id="empty-deck-message"><b>Your Class has no Decks.</b> A Deck is a collection of Flashcards in a Class, similar to chapters in a book. Add a Deck to get started.</p>
+                    <OpenModalButton
+                        buttonText="Create New Deck"
+                        modalComponent={<CreateDeckModal props={[chosenClass, session?.user?.id]} />}
+                    />
+                </div>
             }
         </div>
     )
