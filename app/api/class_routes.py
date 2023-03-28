@@ -112,11 +112,14 @@ def create_learner(class_id):
 @class_routes.route('/<int:class_id>/learners/<int:learner_id>', methods=['DELETE'])
 @login_required
 def delete_learner(class_id, learner_id):
-    learner = Learner.query.get(learner_id)
+    learner = Learner.query.filter(
+        Learner.class_id==class_id,
+        Learner.user_id==learner_id
+    ).first()
 
     if not learner:
         return {"errors": "Learner does not exist."}
 
     db.session.delete(learner)
     db.session.commit()
-    return {"Message": "Delete successful!"}
+    return {learner}

@@ -52,7 +52,7 @@ const SingleClass = () => {
     }
 
     if (!classes.allClasses[params.id]?.id) history.push("/dashboard/loading")
-
+    console.log(session, classes, userRelatedClasses)
     return (
         <div className="dashboard-container">
             <div className="dashboard-side-bar">

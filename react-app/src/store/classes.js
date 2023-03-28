@@ -175,13 +175,15 @@ export const visibilityPutClass = (visibility, id, user_id) => async dispatch =>
     };
 }
 
-export const deleteClass = (chosenClass) => async dispatch => {
+export const deleteClass = (chosenClass, user_id) => async dispatch => {
     const res = await fetch(`/api/classes/${chosenClass.id}`, {
         method: "DELETE"
     });
 
     if (res.ok) {
         dispatch(removeClass(chosenClass.id));
+        dispatch(deleteLearner(user_id, chosenClass.id))
+        dispatch(getUser(user_id))
     }
 };
 
@@ -206,7 +208,9 @@ export const deleteLearner = (learner_id, class_id) => async dispatch => {
     });
 
     if (res.ok) {
-        dispatch(removeLearner(learner_id, class_id));
+        const deleted = await res.json()
+        console.log(deleted)
+        dispatch(getUser(learner_id));
         dispatch(getClasses())
     }
 };
@@ -239,7 +243,7 @@ const ClassReducer = (state = initialState, action) => {
             newState.allClasses[action.learner.id] = action.learner
             return newState
         case DELETE_LEARNER:
-            delete newState.allClasses[action.class_id].learners.learner_id
+            delete newState.allClasses[action.class_id].learners[action.learner_id]
             return newState
         default:
             return state
