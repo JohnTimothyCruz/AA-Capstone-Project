@@ -8,8 +8,6 @@ const DeleteDeckModal = ({ props }) => {
     const { closeModal } = useModal();
     const [chosenClass, deck] = props;
 
-    console.log(deck?.id)
-
     const handleConfirmDelete = () => {
         dispatch(deleteDeck(chosenClass?.id, deck?.id))
             .then(closeModal)

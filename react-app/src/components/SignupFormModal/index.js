@@ -94,7 +94,6 @@ function SignupFormModal() {
 			if (!data.id) {
 				setErrors(data);
 			} else {
-				console.log(data.id)
 				history.push("/dashboard")
 				closeModal()
 			}

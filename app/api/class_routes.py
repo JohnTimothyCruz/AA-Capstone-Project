@@ -97,7 +97,7 @@ def create_learner(class_id):
     if form.validate_on_submit():
         new_learner = Learner(
             user_id = form.user_id.data,
-            class_id = form.class_id.data
+            class_id = class_id
         )
         db.session.add(new_learner)
         db.session.commit()
@@ -122,4 +122,4 @@ def delete_learner(class_id, learner_id):
 
     db.session.delete(learner)
     db.session.commit()
-    return {learner}
+    return {"message": "Delete Successful!"}
