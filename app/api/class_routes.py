@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
 from app.models import db, Class, Learner
-from app.forms import ClassForm
+from app.forms import ClassForm, LearnerForm
 
 class_routes = Blueprint('classes', __name__)
 
@@ -86,6 +86,27 @@ def delete_class(id):
     db.session.delete(a_class)
     db.session.commit()
     return {"Message": "Delete successful!"}
+
+#Post a learner to a class
+@class_routes.route('/<int:class_id>/learners', methods=['POST'])
+@login_required
+def create_learner(class_id):
+    form = LearnerForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        new_learner = Learner(
+            user_id = form.user_id.data,
+            class_id = form.class_id.data
+        )
+        db.session.add(new_learner)
+        db.session.commit()
+
+        res = Learner.query.get(new_learner.id)
+        return res.to_dict()
+
+    if form.errors:
+        return {"errors": form.errors}
 
 # Delete a learner from a class
 @class_routes.route('/<int:class_id>/learners/<int:learner_id>', methods=['DELETE'])
