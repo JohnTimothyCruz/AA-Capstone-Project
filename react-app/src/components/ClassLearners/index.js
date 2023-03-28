@@ -1,10 +1,29 @@
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 import NewLearnerModal from "../NewLearnerModal";
 import OpenModalButton from "../OpenModalButton";
 import SingleLearner from "../SingleLearner";
 import "./ClassLearners.css"
+import { visibilityPutClass } from "../../store/classes";
 
 const ClassLearners = ({ props }) => {
+    const dispatch = useDispatch()
     const [session, chosenClass] = props;
+    const [visibility, setVisibility] = useState(chosenClass?.visibility);
+    const [copied, setCopied] = useState(false)
+
+    const copyTo = () => {
+        navigator.clipboard.writeText("(link goes here)");
+
+        setCopied(true)
+    }
+
+    const handleVisibilityRadios = (type) => {
+        if (type !== visibility) {
+            dispatch(visibilityPutClass(type, chosenClass?.id, session?.user?.id))
+                .then(setVisibility(type))
+        }
+    }
 
     return (
         <div id="learners-page-container">
@@ -46,14 +65,43 @@ const ClassLearners = ({ props }) => {
             </div>
             <div id="learners-page-extras">
                 <div id="share-link-container">
-                    <p>SHARE LINK</p>
-                    <div>
+                    <p>SHARE LINK:</p>
+                    <div id="link-container">
                         <i className="fa-solid fa-link" />
                         <p>Link goes here</p>
                     </div>
-                    <div>
+                    <div id="copy-container" className={copied ? "copied" : ""} onClick={() => copyTo()}>
+                        {copied ?
+                            <p>Copied to Clipboard</p>
+                            :
+                            <p>Copy to Clipboard</p>
+                        }
                         <i class="fa-regular fa-clipboard" />
-                        <p>Copy to Clipboard</p>
+                    </div>
+                </div>
+                <div id="class-visibility-container">
+                    <p id="learner-radio-prompt">CLASS VISIBILITY:</p>
+                    <div id="radio-section-radios">
+                        <div className="radio-container">
+                            <input
+                                type="radio"
+                                id="public"
+                                name="visibility"
+                                checked={visibility === "public"}
+                                onChange={() => handleVisibilityRadios("public")}
+                            />
+                            <label htmlFor="public">Public</label>
+                        </div>
+                        <div className="radio-container">
+                            <input
+                                type="radio"
+                                id="private"
+                                name="visibility"
+                                checked={visibility === "private"}
+                                onChange={() => handleVisibilityRadios("private")}
+                            />
+                            <label htmlFor="private">Private</label>
+                        </div>
                     </div>
                 </div>
             </div>

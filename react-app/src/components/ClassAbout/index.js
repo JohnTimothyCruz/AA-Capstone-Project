@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import "./ClassAbout.css";
 import { descriptionPutClass, headlinePutClass, mixPutClass, visibilityPutClass } from "../../store/classes";
@@ -7,7 +7,6 @@ const ClassAbout = ({ props }) => {
     const dispatch = useDispatch()
 
     const [session, chosenClass] = props;
-    const [menu, setMenu] = useState("Headline");
     const [headline, setHeadline] = useState(chosenClass?.headline);
     const [description, setDescription] = useState(chosenClass?.description);
     const [visibility, setVisibility] = useState(chosenClass?.visibility);
@@ -20,10 +19,10 @@ const ClassAbout = ({ props }) => {
     //     document.getElementById("about-page-forms-container").scrollTop = topOfEl-10;
     // }
 
-    function scrollToE(){
-        var topPos = document.getElementById('about-description-input-container').offsetTop;
-        document.getElementById('about-page-forms-container').scrollTop = topPos-10;
-      }
+    // function scrollToE() {
+    //     var topPos = document.getElementById('about-description-input-container').offsetTop;
+    //     document.getElementById('about-page-forms-container').scrollTop = topPos - 10;
+    // }
 
     const handleSubmit = (e) => {
         e.preventDefault();

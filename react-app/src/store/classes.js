@@ -6,7 +6,8 @@ const GET_CLASS = "classes/GET_CLASS"
 const POST_CLASS = "classes/POST_CLASS"
 const PUT_CLASS = "classes/PUT_CLASS"
 const DELETE_CLASS = "classes/DELETE_CLASS"
-const DELETE_LEARNER = "classes/DELETE_LEARNER"
+
+const POST_LEARNER = "classes/POST_LEARNER"
 
 // -Actions--------------------
 export const readClasses = (classes) => {
@@ -44,10 +45,10 @@ export const removeClass = (id) => {
     }
 }
 
-export const removeLearner = (learner_id, class_id) => {
+export const createLearner = (learner, class_id) => {
     return {
-        type: DELETE_LEARNER,
-        learner_id,
+        type: POST_LEARNER,
+        learner,
         class_id
     }
 }
@@ -75,27 +76,15 @@ export const postClass = (name, user_id) => async dispatch => {
     const res = await fetch(`/api/classes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({user_id, name})
+        body: JSON.stringify({ user_id, name })
     });
 
     if (res.ok) {
         const newClass = await res.json();
         dispatch(createClass(newClass));
+        dispatch(postLearner(newClass.id, user_id));
         dispatch(getUser(user_id));
         return newClass
-    };
-};
-
-export const putClass = (name, description, headline, mix_type, visibility, id, user_id) => async dispatch => {
-    const res = await fetch(`/api/classes/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({name, description, headline, mix_type, visibility, user_id})
-    });
-
-    if (res.ok) {
-        const newClass = await res.json();
-        dispatch(updateClass(newClass));
     };
 };
 
@@ -103,7 +92,7 @@ export const simplePutClass = (name, id, user_id) => async dispatch => {
     const res = await fetch(`/api/classes/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({name, user_id})
+        body: JSON.stringify({ name, user_id })
     })
 
     if (res.ok) {
@@ -116,7 +105,7 @@ export const imagePutClass = (image, id, user_id) => async dispatch => {
     const res = await fetch(`/api/classes/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({image, user_id})
+        body: JSON.stringify({ image, user_id })
     })
 
     if (res.ok) {
@@ -129,7 +118,7 @@ export const headlinePutClass = (headline, id, user_id) => async dispatch => {
     const res = await fetch(`/api/classes/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({headline, user_id})
+        body: JSON.stringify({ headline, user_id })
     })
 
     if (res.ok) {
@@ -142,7 +131,7 @@ export const descriptionPutClass = (description, id, user_id) => async dispatch 
     const res = await fetch(`/api/classes/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({description, user_id})
+        body: JSON.stringify({ description, user_id })
     })
 
     if (res.ok) {
@@ -155,7 +144,7 @@ export const mixPutClass = (mix_type, id, user_id) => async dispatch => {
     const res = await fetch(`/api/classes/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({mix_type, user_id})
+        body: JSON.stringify({ mix_type, user_id })
     })
 
     if (res.ok) {
@@ -168,7 +157,7 @@ export const visibilityPutClass = (visibility, id, user_id) => async dispatch =>
     const res = await fetch(`/api/classes/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({visibility, user_id})
+        body: JSON.stringify({ visibility, user_id })
     })
 
     if (res.ok) {
@@ -177,23 +166,40 @@ export const visibilityPutClass = (visibility, id, user_id) => async dispatch =>
     };
 }
 
-export const deleteClass = (chosenClass) => async dispatch => {
+export const deleteClass = (chosenClass, user_id) => async dispatch => {
     const res = await fetch(`/api/classes/${chosenClass.id}`, {
         method: "DELETE"
     });
 
     if (res.ok) {
         dispatch(removeClass(chosenClass.id));
+        dispatch(deleteLearner(user_id, chosenClass.id))
+        dispatch(getUser(user_id))
     }
 };
 
-export const deleteLearner = (learner_id, class_id, user_id) => async dispatch => {
+export const postLearner = (class_id, user_id) => async dispatch => {
+    const res = await fetch(`/api/classes/${class_id}/learners`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id, class_id })
+    });
+
+    if (res.ok) {
+        const newLearner = await res.json();
+        console.log(newLearner)
+        dispatch(createLearner(newLearner, class_id))
+        return newLearner
+    };
+}
+
+export const deleteLearner = (learner_id, class_id) => async dispatch => {
     const res = await fetch(`/api/classes/${class_id}/learners/${learner_id}`, {
         method: "DELETE"
     });
 
     if (res.ok) {
-        dispatch(removeLearner(learner_id, class_id));
+        dispatch(getUser(learner_id));
         dispatch(getClasses())
     }
 };
@@ -222,8 +228,8 @@ const ClassReducer = (state = initialState, action) => {
         case DELETE_CLASS:
             delete newState.allClasses[action.id]
             return newState
-        case DELETE_LEARNER:
-            delete newState.allClasses[action.class_id].learners.learner_id
+        case POST_LEARNER:
+            newState.allClasses[action.learner.id] = action.learner
             return newState
         default:
             return state

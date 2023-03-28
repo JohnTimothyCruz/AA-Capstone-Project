@@ -47,7 +47,7 @@ function SignupFormModal() {
 				setPassesValidations(false)
 				setErrors(["A valid email is required."])
 				break
-			case password:
+			case password !== "":
 				setPassesValidations(false)
 				setErrors(["Please enter a password and a matching confirmation."])
 				break
@@ -94,7 +94,6 @@ function SignupFormModal() {
 			if (!data.id) {
 				setErrors(data);
 			} else {
-				console.log(data.id)
 				history.push("/dashboard")
 				closeModal()
 			}

@@ -54,7 +54,8 @@ const ClassInfo = ({ props }) => {
     }, [openDeleteMenu]);
 
     const handleDelete = () => {
-        dispatch(deleteClass(chosenClass))
+        dispatch(deleteLearner(session?.user?.id, chosenClass?.id))
+        dispatch(deleteClass(chosenClass, session?.user?.id))
             .then(() => findAnotherClass())
     }
 
