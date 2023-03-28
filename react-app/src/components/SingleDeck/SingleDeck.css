@@ -1,0 +1,38 @@
+.deck-pop-up-container:not(.hidden) {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    right: 30px;
+    margin: 10px 0px 0px 0px;
+    border: 1px solid rgb(168, 168, 168);
+    background-color: rgb(245, 245, 245);
+    border-radius: 3px;
+}
+
+.deck-pop-up-section button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    padding: 0px 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.deck-pop-up-section button:hover {
+    background-color: rgb(46, 131, 180);
+    color: white;
+    border-radius: 0px;
+}
+
+.deck-pop-up-section button p {
+    margin: 0px 10px 0px 0px ;
+}
+
+.deck-pop-up-section:hover button i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
