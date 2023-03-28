@@ -110,3 +110,72 @@
     background-color: rgb(226, 231, 233);
     border-radius: 15px;
 }
+
+#learners-page-extras {
+    display: flex;
+    margin-left: 30px;
+    margin-top: 15px;
+    gap: 100px;
+}
+
+#share-link-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#share-link-container * {
+    margin: 0px;
+}
+
+#share-link-container > p,
+#learner-radio-prompt {
+    font-size: 11px;
+    margin: 0px;
+    color: rgb(94, 94, 94);
+}
+
+#link-container {
+    display: flex;
+    align-items: center;
+    color: rgb(94, 94, 94);
+    font-size: 12px;
+    gap: 5px;
+}
+
+#copy-container {
+    color: rgb(0, 162, 255);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    align-self: flex-end;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+#copy-container.copied {
+    color: rgb(0, 156, 0);
+    font-style: italic;
+}
+
+/* Radio buttons */
+#class-visibility-container {
+    margin: 0px;
+}
+
+#radio-section-radios {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.radio-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+}
+
+.radio-container input {
+    accent-color: rgb(0, 136, 214);
+    margin: 0px;
+}
