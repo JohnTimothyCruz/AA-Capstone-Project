@@ -1,5 +1,6 @@
 import NewLearnerModal from "../NewLearnerModal";
 import OpenModalButton from "../OpenModalButton";
+import SingleLearner from "../SingleLearner";
 import "./ClassLearners.css"
 
 const ClassLearners = ({ props }) => {
@@ -9,11 +10,11 @@ const ClassLearners = ({ props }) => {
         <div id="learners-page-container">
             <div id="learner-info-bar">
                 <p id="learner-prompt" className="learner-info-bar-header">Learner</p>
-                <p className="learner-info-bar-header">Mastery</p>
-                <p className="learner-info-bar-header">Days Studied</p>
-                <p className="learner-info-bar-header">Time Studied</p>
-                <p className="learner-info-bar-header">Cards Studied</p>
-                <p className="learner-info-bar-header">Cards Permission</p>
+                <p id="learner-mastery" className="learner-info-bar-header">Mastery</p>
+                <p id="learner-days" className="learner-info-bar-header">Days Studied</p>
+                <p id="learner-time" className="learner-info-bar-header">Time Studied</p>
+                <p id="learner-cards" className="learner-info-bar-header">Cards Studied</p>
+                <p id="learner-permission" className="learner-info-bar-header">Cards Permission</p>
             </div>
             {/* <div id="selected-learners-options">
                 <div id="selected-learners-options-left">
@@ -24,8 +25,10 @@ const ClassLearners = ({ props }) => {
                 </div>
             </div> */}
             <div id="learners-container">
-
-                <div id="add-learner-container">
+                {chosenClass?.learners && chosenClass.learners.map((learner, idx) => (
+                    <SingleLearner props={[learner]} key={idx} />
+                ))}
+                <div id="add-learner-container-container">
                     <OpenModalButton
                         modalComponent={<NewLearnerModal props={[chosenClass]} />}
                         buttonText={
