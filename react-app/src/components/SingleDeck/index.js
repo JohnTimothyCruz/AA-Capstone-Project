@@ -46,7 +46,10 @@ const SingleDeck = ({ props }) => {
                         buttonText={<i className="fa-solid fa-glasses fa-lg" />}
                     />
                 </div>
-                <i onClick={(e) => e.stopPropagation()} className="deck-container-right-icons deck-container-edit fa-solid fa-pencil fa-lg" />
+                <i onClick={(e) => {
+                    e.stopPropagation()
+                    history.push(`/dashboard/classes/${chosenClass.id}/decks/${deck.id}/flashcards/edit`)
+                }} className="deck-container-right-icons deck-container-edit fa-solid fa-pencil fa-lg" />
                 <i onClick={(e) => {
                     e.stopPropagation()
                     setShowMenu(true)
@@ -70,7 +73,7 @@ const SingleDeck = ({ props }) => {
                                     <OpenModalButton
                                         buttonText={
                                             <>
-                                                <i class="fa-solid fa-pencil" />
+                                                <i className="fa-solid fa-pencil" />
                                                 <p>Edit Deck Info</p>
                                             </>
                                         }

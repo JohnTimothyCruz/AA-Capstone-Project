@@ -6,8 +6,8 @@ import ClassInfo from "../ClassInfo";
 import ClassLearners from "../ClassLearners";
 import ClassAbout from "../ClassAbout";
 import ClassDecks from "../ClassDecks";
-import "./SingleClass.css"
 import Sidebar from "../Sidebar";
+import "./SingleClass.css"
 
 const SingleClass = () => {
     const dispatch = useDispatch()
