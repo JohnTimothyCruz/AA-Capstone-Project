@@ -105,7 +105,7 @@
 }
 
 #sign-up-confirm-password-prompt {
-    top: 310px;
+    top: 306px;
 }
 
 /* Stuff to make the "placeholders" move */
@@ -113,28 +113,28 @@
 #sign-up-first-name-prompt.stay,
 #sign-up-last-name-input:focus-within #sign-up-last-name-prompt,
 #sign-up-last-name-prompt.stay {
-    top: 112px;
+    top: 110px;
     font-size: 13px;
     font-weight: 400;
 }
 
 #sign-up-email-input:focus-within #sign-up-email-prompt,
 #sign-up-email-prompt.stay {
-    top: 169px;
+    top: 168px;
     font-size: 13px;
     font-weight: 400;
 }
 
 #sign-up-password-input:focus-within #sign-up-password-prompt,
 #sign-up-password-prompt.stay {
-    top: 227px;
+    top: 224px;
     font-size: 13px;
     font-weight: 400;
 }
 
 #sign-up-confirm-password-input:focus-within #sign-up-confirm-password-prompt,
 #sign-up-confirm-password-prompt.stay {
-    top: 286px;
+    top: 280px;
     font-size: 13px;
     font-weight: 400;
 }

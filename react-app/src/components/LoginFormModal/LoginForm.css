@@ -57,14 +57,14 @@
 /* Stuff to make the "placeholders" move */
 #login-email-input:focus-within #login-email-prompt,
 #login-email-input #login-email-prompt.stay {
-    top: 100px;
+    top: 98px;
     font-size: 13px;
     font-weight: 400;
 }
 
 #login-password-input:focus-within #login-password-prompt,
 #login-password-input #login-password-prompt.stay {
-    top: 170px;
+    top: 166px;
     font-size: 13px;
     font-weight: 400;
 }
