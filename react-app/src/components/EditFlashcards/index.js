@@ -181,7 +181,7 @@ const EditFlashcards = () => {
                         <p>Edit hey hey hey</p>
                     </div>
                     <div className={`deck-option-display ${type === "browse" ? "" : "hidden"}`}>
-                        <BrowseDeck />
+                        <BrowseDeck props={[chosenDeck, setType]} />
                     </div>
                 </div>
             </div>

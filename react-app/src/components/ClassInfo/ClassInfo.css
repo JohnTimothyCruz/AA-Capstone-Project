@@ -11,6 +11,10 @@
     gap: 10px;
 }
 
+#dashboard-class-image-container {
+    margin-right: 20px;
+}
+
 #dashboard-class-image-container button {
     display: none;
 }

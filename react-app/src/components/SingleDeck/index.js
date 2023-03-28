@@ -105,7 +105,14 @@ const SingleDeck = ({ props }) => {
                         }
                     </div>
                 </div>
-                <div onClick={(e) => e.stopPropagation()} className="deck-container-add">ADD CARDS</div>
+                <div
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        history.push(`/dashboard/classes/${chosenClass.id}/decks/${deck.id}/flashcards/edit`)
+                    }}
+                    className="deck-container-add">
+                    ADD CARDS
+                </div>
                 <i className="deck-container-right-icons deck-container-study fa-solid fa-circle-play fa-lg" />
                 <i onClick={(e) => e.stopPropagation()} className="deck-container-right-icons deck-container-view fa-solid fa-angle-right fa-lg" />
             </div>
