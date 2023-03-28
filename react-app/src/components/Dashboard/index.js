@@ -6,6 +6,7 @@ import { getClasses } from "../../store/classes";
 import './Dashboard.css'
 import CreateClassModal from "../CreateClassModal";
 import { getUser } from "../../store/session";
+import Sidebar from "../Sidebar";
 
 const Dashboard = () => {
     const dispatch = useDispatch()
@@ -54,21 +55,7 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard-container">
-            <div className="dashboard-side-bar">
-                <div className="dashboard-side-bar-top">
-                    <div className="user-icon-container">
-                        <i onClick={() => history.push("/")} className="dashboard-logo-icon fa-solid fa-robot fa-2xl" />
-                        <i className="fa-regular fa-circle-user fa-2xl" />
-                        <i className="fa-solid fa-gear fa-2xl" />
-                    </div>
-                </div>
-                <div className="dashboard-side-bar-bottom">
-                    <OpenModalButton
-                        modalComponent={<CreateClassModal props={[session?.user?.id]} />}
-                        buttonText={<i className="fa-solid fa-circle-plus fa-xl" />}
-                    />
-                </div>
-            </div>
+            <Sidebar props={[session, userRelatedClasses, null]}/>
             <div id="dashboard-no-classes-container">
                 <div id="no-classes-page">
                     <h2 id="no-classes-page-prompt">Add Classes to your Library</h2>

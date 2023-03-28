@@ -187,7 +187,6 @@ export const postLearner = (class_id, user_id) => async dispatch => {
 
     if (res.ok) {
         const newLearner = await res.json();
-        console.log(newLearner)
         dispatch(createLearner(newLearner, class_id))
         return newLearner
     };

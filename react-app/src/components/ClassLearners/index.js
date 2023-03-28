@@ -40,7 +40,7 @@ const ClassLearners = ({ props }) => {
                     <p>Bulk actions for 1 selected Learner(s)</p>
                 </div>
                 <div id="selected-learners-options-right">
-                    <i class="fa-solid fa-angle-up" />
+                    <i className="fa-solid fa-angle-up" />
                 </div>
             </div> */}
             <div id="learners-container">
@@ -53,7 +53,7 @@ const ClassLearners = ({ props }) => {
                         buttonText={
                             <div id="add-learner-container">
                                 <i id="add-learner-circle" className="fa-regular fa-circle fa-xl" />
-                                <i id="add-learner-icon" class="fa-solid fa-user-plus fa-xl" />
+                                <i id="add-learner-icon" className="fa-solid fa-user-plus fa-xl" />
                                 <div id="add-learner-right">
                                     <p id="add-learner-prompt">Add New Learner</p>
                                     <div id="add-learner-progress-bar"></div>
@@ -76,7 +76,7 @@ const ClassLearners = ({ props }) => {
                             :
                             <p>Copy to Clipboard</p>
                         }
-                        <i class="fa-regular fa-clipboard" />
+                        <i className="fa-regular fa-clipboard" />
                     </div>
                 </div>
                 <div id="class-visibility-container">

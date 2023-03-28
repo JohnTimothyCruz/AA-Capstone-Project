@@ -8,6 +8,7 @@ import Dashboard from "./components/Dashboard";
 import StudyPage from "./components/StudyPage";
 import SingleClass from "./components/SingleClass";
 import LoadingClasses from "./components/LoadingClasses";
+import EditFlashcards from "./components/EditFlashcards";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,10 @@ function App() {
 
           <Route path="/dashboard/loading" >
             <LoadingClasses />
+          </Route>
+
+          <Route path="/dashboard/classes/:class_id/decks/:deck_id/flashcards/:type" >
+            <EditFlashcards />
           </Route>
 
           <Route path="/dashboard/classes/:id" >

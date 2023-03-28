@@ -1,0 +1,35 @@
+#browse-deck-container {
+    display: flex;
+}
+
+
+/* No cards page */
+#browse-empty-message-container {
+    padding: 40px 30px;
+}
+
+#browse-empty-prompt {
+    margin: 0px;
+    font-weight: 400;
+}
+
+#browse-empty-explaination {
+    margin: 15px 0px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+#browse-add-cards-button {
+    cursor: pointer;
+    width: fit-content;
+    padding: 10px 30px;
+    border-radius: 50px;
+    color: white;
+    font-size: 13px;
+    font-weight: 300;
+    background-color: rgb(255, 125, 65);
+}
+
+#browse-add-cards-button:hover {
+    background-color: rgba(255, 125, 65, 0.712);
+}

@@ -76,6 +76,7 @@ export const postDeck = (name, class_id, user_id) => async dispatch => {
         dispatch(createDeck(deck));
         dispatch(getUser(user_id));
         dispatch(getClasses())
+        return deck
     };
 };
 

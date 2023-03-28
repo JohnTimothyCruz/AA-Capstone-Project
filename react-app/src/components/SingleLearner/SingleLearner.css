@@ -102,7 +102,6 @@
     align-items: center;
     gap: 10px;
     padding: 0px 10px;
-    /* width: 100%; */
     cursor: pointer;
 }
 
@@ -110,7 +109,7 @@
     color: grey;
 }
 
-.learner-container:hover .learner-options i {
+.learner-container:hover .learner-options i.fa-angle-right {
     color: rgb(0, 162, 255);
 }
 
@@ -120,7 +119,8 @@
     font-weight: 400;
 }
 
-.learner-option:hover {
+.learner-option:hover,
+.learner-option:hover i {
     background-color: rgb(46, 131, 180);
     color: white;
     border-radius: 0px;

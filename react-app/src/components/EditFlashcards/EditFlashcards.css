@@ -1,0 +1,202 @@
+#edit-flashcards-container {
+    display: flex;
+    height: 100%;
+}
+
+#edit-flashcards-right {
+    flex-grow: 1;
+}
+
+#deck-flashcards-options-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    background-color: rgb(219, 231, 235);
+    border-bottom: 1px solid rgb(166, 175, 179);
+}
+
+.deck-flashcards-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 300;
+    color: rgb(59, 59, 59);
+    cursor: pointer;
+    height: 44px;
+    width: 34%;
+    padding-top: 4px;
+    border-bottom: 3px solid rgba(240, 240, 240, 0);
+}
+
+.deck-flashcards-option:hover:not(.chosen) {
+    color: rgb(0, 162, 255);
+    border-bottom: 4px solid rgb(180, 180, 180);
+}
+
+.deck-flashcards-option.chosen {
+    border-bottom: 4px solid rgb(48, 79, 121);
+    font-weight: 600;
+}
+
+#deck-flashcards-header {
+    display: flex;
+    align-items: center;
+    height: 55px;
+    padding: 12px 36px;
+}
+
+/* header left */
+#deck-flashcards-header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-grow: 1;
+}
+
+#deck-flashcards-header-left > i {
+    color: rgb(155, 155, 155);
+    padding: 5px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+#deck-flashcards-header-left > i:hover {
+    color: rgb(0, 162, 255);
+    background-color: rgba(134, 134, 134, 0.342);
+}
+
+#header-left-class {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgb(88, 88, 88);
+    cursor: pointer;
+}
+
+#header-left-class:hover * {
+    color: rgb(0, 162, 255);
+}
+
+#deck-header-class-image {
+    height: 30px;
+    width: 30px;
+    border-radius: 3px;
+}
+
+#decks-drop-down {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 900;
+    color: rgb(48, 79, 121);
+    cursor: pointer;
+}
+
+#decks-drop-down i {
+    color: rgb(0, 162, 255);
+}
+
+#decks-popup {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: rgb(245, 245, 245);
+    border: 1px solid rgb(168, 168, 168);
+    border-radius: 3px;
+    position: absolute;
+    color: rgb(68, 68, 68);
+    font-weight: 400;
+    top: 60px;
+}
+
+#decks-popup.hidden {
+    display: none;
+}
+
+#decks-popup button,
+.decks-popup-section {
+    text-align: start;
+    background-color: rgb(245, 245, 245);
+    border: none;
+    font-weight: 400;
+    padding: 8px 50px 8px 15px;
+    font-size: 15px;
+    color: rgb(46, 46, 46);
+}
+
+#decks-popup button:hover,
+.decks-popup-section:hover {
+    cursor: pointer;
+    background-color: rgb(46, 131, 180);
+    color: white;
+}
+
+#deck-flashcards-header-right {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    background-color: rgb(194, 194, 194);
+    color: white;
+    padding: 10px 20px 10px 90px;
+    border-radius: 100px;
+    height: fit-content;
+    cursor: pointer;
+}
+
+#deck-flashcards-header-right p {
+    margin: 0px;
+}
+
+/* Edit deck name form */
+#edit-deck-title-form {
+    width: 90%;
+}
+
+#edit-deck-title-input {
+    vertical-align: middle;
+    outline: none;
+    border: 3px solid rgb(219, 231, 235);
+    border-radius: 6px;
+    padding-left: 6px;
+    height: 43px;
+    width: 100%;
+    font-size: 30px;
+    font-weight: 700;
+    color: rgb(68, 68, 68);
+}
+
+#edit-deck-title-input::placeholder {
+    color: rgb(168, 168, 168);
+}
+
+#cancel-edit-deck-title-button {
+    cursor: pointer;
+    position: absolute;
+    top: 40px;
+    right: 25%;
+    color: rgb(127, 145, 151);
+}
+
+#submit-edit-deck-title-button {
+    height: 24px;
+    padding: 0px 15px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(127, 145, 151);
+    color: white;
+    cursor: pointer;
+    font-weight: 300;
+    position: absolute;
+    top: 28px;
+    right: 21%;
+}
+
+#submit-edit-deck-title-button:disabled {
+    background-color: rgba(134, 138, 139, 0.26);
+    color: rgb(121, 121, 121);
+}
