@@ -184,7 +184,7 @@ p.class-info-details {
 #cancel-edit-title-button {
     cursor: pointer;
     position: absolute;
-    top: 62px;
+    top: 60px;
     right: 15%;
     color: rgb(127, 145, 151);
 }
@@ -201,4 +201,9 @@ p.class-info-details {
     position: absolute;
     top: 49px;
     right: 11%;
+}
+
+#submit-edit-title-button:disabled {
+    background-color: rgba(134, 138, 139, 0.26);
+    color: rgb(121, 121, 121);
 }
