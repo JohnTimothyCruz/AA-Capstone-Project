@@ -52,7 +52,7 @@ const SingleClass = () => {
         <div className="dashboard-container">
             <Sidebar props={[session, userRelatedClasses, chosenClass]}/>
             <div id="dashboard-classes-container">
-                <ClassInfo props={[session, chosenClass, userRelatedClasses]} />
+                <ClassInfo props={[session, chosenClass, getUserRelatedClasses]} />
                 <div id="dashboard-menu">
                     <div id="dashboard-about" className={menu === "about" ? "selected" : ""} onClick={() => setMenu("about")}>
                         <div className="dashboard-menu-section-text">

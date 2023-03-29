@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
-import { useHistory } from "react-router-dom";
-import { deleteClass, deleteLearner, simplePutClass } from "../../store/classes";
+import { simplePutClass } from "../../store/classes";
 import "./ClassInfo.css"
 import ClassImageModal from "../ClassImageModal";
+import DeleteClassModal from "../DeleteClassModal";
 
 const ClassInfo = ({ props }) => {
     const dispatch = useDispatch()
-    const history = useHistory()
-    const [session, chosenClass, userRelatedClasses] = props;
+    const [session, chosenClass, getUserRelatedClasses] = props;
     const [editing, setEditing] = useState(false)
     const [classTitle, setClassTitle] = useState(chosenClass?.name)
     const [openDeleteMenu, setOpenDeleteMenu] = useState(false)
@@ -19,25 +18,6 @@ const ClassInfo = ({ props }) => {
         setEditing(false)
         setClassTitle(chosenClass?.name)
     }, [chosenClass])
-
-    const findAnotherClass = () => {
-        for (const c of Object.values(userRelatedClasses)) {
-            if (c) {
-                history.push(`/dashboard/classes/${c.id}`)
-            }
-        }
-        history.push("/dashboard/loading")
-    }
-
-    const getLearnerId = () => {
-        if (chosenClass) {
-            for (const l of Object.values(chosenClass?.learners)) {
-                if (l.user_id === session.user.id) {
-                    return l.id
-                }
-            }
-        }
-    }
 
     useEffect(() => {
         if (!openDeleteMenu) return;
@@ -52,16 +32,6 @@ const ClassInfo = ({ props }) => {
 
         return () => document.removeEventListener("click", closeMenu);
     }, [openDeleteMenu]);
-
-    const handleDelete = () => {
-        dispatch(deleteLearner(session?.user?.id, chosenClass?.id))
-        dispatch(deleteClass(chosenClass, session?.user?.id))
-            .then(() => findAnotherClass())
-    }
-
-    const handleRemove = () => {
-        dispatch(deleteLearner(getLearnerId(), chosenClass.id, session.user.id))
-    }
 
     const handleEditTitleSubmit = (e) => {
         e.preventDefault()
@@ -120,15 +90,25 @@ const ClassInfo = ({ props }) => {
                         <i id="class-options-button" className="fa-solid fa-ellipsis fa-2xl" onClick={() => setOpenDeleteMenu(true)}>
                             <div id="class-options-pop-up" className={openDeleteMenu ? "" : "hidden"}>
                                 {session?.user?.id === chosenClass?.user?.id ?
-                                    <div className="class-button class-options-pop-up-section" onClick={() => handleDelete()}>
-                                        <i className="class-button-icon fa-regular fa-trash-can" />
-                                        <p className="class-button-text">Delete this Class</p>
-                                    </div>
+                                    <OpenModalButton
+                                        modalComponent={<DeleteClassModal props={[chosenClass, session, getUserRelatedClasses, "delete"]} />}
+                                        buttonText={
+                                            <div className="class-button class-options-pop-up-section">
+                                                <i className="class-button-icon fa-regular fa-trash-can" />
+                                                <p className="class-button-text">Delete this Class</p>
+                                            </div>
+                                        }
+                                    />
                                     :
-                                    <div className="class-button class-options-pop-up-section" onClick={() => handleRemove()}>
-                                        <i className="class-button-icon fa-solid fa-xmark" />
-                                        <p className="class-button-text">Remove from your Classes</p>
-                                    </div>
+                                    <OpenModalButton
+                                        modalComponent={<DeleteClassModal props={[chosenClass, session, getUserRelatedClasses, "remove"]} />}
+                                        buttonText={
+                                            <div className="class-button class-options-pop-up-section">
+                                                <i className="class-button-icon fa-solid fa-xmark" />
+                                                <p className="class-button-text">Remove from your Classes</p>
+                                            </div>
+                                        }
+                                    />
                                 }
                             </div>
                         </i>

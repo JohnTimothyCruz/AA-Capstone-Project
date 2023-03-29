@@ -173,7 +173,7 @@ export const deleteClass = (chosenClass, user_id) => async dispatch => {
 
     if (res.ok) {
         dispatch(removeClass(chosenClass.id));
-        dispatch(deleteLearner(user_id, chosenClass.id))
+        dispatch(getClasses())
         dispatch(getUser(user_id))
     }
 };
@@ -192,14 +192,14 @@ export const postLearner = (class_id, user_id) => async dispatch => {
     };
 }
 
-export const deleteLearner = (learner_id, class_id) => async dispatch => {
+export const deleteLearner = (class_id, learner_id, user_id) => async dispatch => {
     const res = await fetch(`/api/classes/${class_id}/learners/${learner_id}`, {
         method: "DELETE"
     });
 
     if (res.ok) {
-        dispatch(getUser(learner_id));
         dispatch(getClasses())
+        dispatch(getUser(user_id));
     }
 };
 
