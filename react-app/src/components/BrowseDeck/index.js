@@ -28,8 +28,13 @@ const BrowseDeck = ({ props }) => {
                     <div id="browse-deck-middle">
                         <div id="browse-deck-flashcard">
                             <div id="browse-deck-flashcard-top">
-                                {`${cardNumber + 1} of ${chosenDeck?.flashcards?.length}`}
+                                {`Card ${cardNumber + 1} of ${chosenDeck?.flashcards?.length}`}
                             </div>
+                                {revealed ?
+                                    <p className="letter-at-top-left">A</p>
+                                    :
+                                    <p className="letter-at-top-left">Q</p>
+                                }
                             <div id="browse-deck-flashcard-bottom">
                                 {revealed ?
                                     <>
