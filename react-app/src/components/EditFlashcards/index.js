@@ -9,6 +9,8 @@ import PreviewCards from "../PreviewCards";
 import BrowseDeck from "../BrowseDeck";
 import OpenModalButton from "../OpenModalButton";
 import { putDeck } from "../../store/decks"
+import SingleEditFlashcard from "../SingleEditFlashcard";
+import EditCards from "../EditCards";
 
 const EditFlashcards = () => {
     const dispatch = useDispatch()
@@ -178,7 +180,7 @@ const EditFlashcards = () => {
                         <PreviewCards />
                     </div>
                     <div className={`deck-option-display ${type === "edit" ? "" : "hidden"}`}>
-                        <p>Edit hey hey hey</p>
+                        <EditCards props={[chosenDeck?.flashcards]} />
                     </div>
                     <div className={`deck-option-display ${type === "browse" ? "" : "hidden"}`}>
                         <BrowseDeck props={[chosenDeck, setType]} />
