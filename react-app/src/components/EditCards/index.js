@@ -10,24 +10,24 @@ const EditCards = ({ props }) => {
         <div id="edit-cards-page">
             <div id="edit-cards-left">
                 <div id="edit-cards-number-container">
-                {flashcards && flashcards.map((flashcard, idx) => (
-                    <div
-                    onClick={() => setSelected(idx)}
-                    className={`single-flashcard-number-container ${selected === idx ? "selected" : ""}`}
-                    key={idx}
-                    >
-                        <div className="single-flashcard-number">
-                            {idx + 1}
+                    {flashcards && flashcards.map((flashcard, idx) => (
+                        <div
+                            onClick={() => setSelected(idx)}
+                            className={`single-flashcard-number-container ${selected === idx ? "selected" : ""}`}
+                            key={idx}
+                        >
+                            <div className="single-flashcard-number">
+                                {idx + 1}
+                            </div>
                         </div>
-                    </div>
-                ))}
-                <div
-                    onClick={() => setSelected("new")}
-                    className={`single-flashcard-number-container ${selected === "new" ? "selected" : ""}`}
+                    ))}
+                    <div
+                        onClick={() => setSelected("new")}
+                        className={`single-flashcard-number-container ${selected === "new" ? "selected" : ""}`}
                     >
-                    <div className="single-flashcard-number new">
-                        New
-                    </div>
+                        <div className="single-flashcard-number new">
+                            New
+                        </div>
                     </div>
                 </div>
             </div>
