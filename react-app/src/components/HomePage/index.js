@@ -2,9 +2,9 @@ import "./HomePage.css";
 
 const HomePage = () => {
     return (
-        <>
-            <div>hi</div>
-        </>
+        <div id="homepage">
+            <div id="homepage-image"></div>
+        </div>
     )
 }
 
