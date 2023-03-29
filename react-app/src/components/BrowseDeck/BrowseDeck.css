@@ -103,12 +103,13 @@
 
 #browse-deck-flashcard-bottom {
     font-size: 20px;
-    font-weight: 300;
     padding: 54px;
-    height: 100%;
-    width: 900px;
+    font-weight: 300;
+    height: 90%;
+    width: 791px;
     display: flex;
     flex-direction: column;
+    text-align: center;
     align-items: center;
     justify-content: center;
     overflow-wrap: break-word;
