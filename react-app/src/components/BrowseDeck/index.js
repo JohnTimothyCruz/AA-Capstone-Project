@@ -3,23 +3,57 @@ import "./BrowseDeck.css"
 
 const BrowseDeck = ({ props }) => {
     const [chosenDeck, setType] = props;
-    const [currentCard, setCurrentCard] = useState(chosenDeck?.flashcards[0]);
+    const [cardNumber, setCardNumber] = useState(0)
+    const [currentCard, setCurrentCard] = useState(chosenDeck?.flashcards[cardNumber]);
     const [revealed, setRevealed] = useState(false);
 
+    useEffect(() => {
+        setCurrentCard(chosenDeck?.flashcards[cardNumber])
+    }, [chosenDeck, cardNumber])
+
+    const handleChangeCard = (n) => {
+        setRevealed(false)
+        setCardNumber(cardNumber + n)
+    }
+
     return (
-        <div id="browse-deck-container">
+        <div id="browse-deck-container" className={currentCard ? "" : "empty-deck"}>
             {currentCard ?
-                <>
-                    <div id="browse-deck-left">
+                <div id="browse-deck-flashcard-container">
+                    <i
+                        id="browse-deck-left"
+                        className={`fa-solid fa-chevron-left fa-2xl ${chosenDeck?.flashcards[cardNumber - 1] ? "" : "invisible"}`}
+                        onClick={() => handleChangeCard(-1)}
+                    />
+                    <div id="browse-deck-middle">
                         <div id="browse-deck-flashcard">
                             <div id="browse-deck-flashcard-top">
-
+                                {`Card ${cardNumber + 1} of ${chosenDeck?.flashcards?.length}`}
                             </div>
+                                {revealed ?
+                                    <p className="letter-at-top-left">A</p>
+                                    :
+                                    <p className="letter-at-top-left">Q</p>
+                                }
                             <div id="browse-deck-flashcard-bottom">
                                 {revealed ?
-                                    <p>{currentCard.answer}</p>
+                                    <>
+                                        <p>{currentCard.answer}</p>
+                                        {currentCard?.answer_image ?
+                                            <img id="browse-answer-image" src={currentCard.answer_image} alt="answer" />
+                                            :
+                                            <p className="hidden"></p>
+                                        }
+                                    </>
                                     :
-                                    <p>{currentCard.question}</p>
+                                    <>
+                                        <p id="browse-question-text">{currentCard.question}</p>
+                                        {currentCard?.question_image ?
+                                            <img id="browse-question-image" src={currentCard.question_image} alt="answer" />
+                                            :
+                                            <p className="hidden"></p>
+                                        }
+                                    </>
                                 }
                             </div>
                         </div>
@@ -34,8 +68,12 @@ const BrowseDeck = ({ props }) => {
                             }
                         </div>
                     </div>
-                    <i id="browse-deck-right" className="fa-solid fa-chevron-right" />
-                </>
+                    <i
+                        id="browse-deck-right"
+                        className={`fa-solid fa-chevron-right fa-2xl ${chosenDeck?.flashcards[cardNumber + 1] ? "" : "invisible"}`}
+                        onClick={() => handleChangeCard(1)}
+                    />
+                </div>
                 :
                 <div id="browse-empty-message-container">
                     <p id="browse-empty-prompt">Browse Deck not Available</p>

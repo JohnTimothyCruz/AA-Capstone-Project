@@ -4,6 +4,8 @@
 }
 
 #edit-flashcards-right {
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
 }
 
@@ -28,6 +30,14 @@
     width: 34%;
     padding-top: 4px;
     border-bottom: 3px solid rgba(240, 240, 240, 0);
+}
+
+#deck-flashcards-option-container {
+    flex-grow: 1;
+}
+
+.deck-option-display:not(.hidden) {
+    height: 100%;
 }
 
 .deck-flashcards-option:hover:not(.chosen) {

@@ -1,7 +1,138 @@
 #browse-deck-container {
     display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
+#browse-deck-container.empty-deck {
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#browse-deck-flashcard-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+#browse-deck-left.invisible,
+#browse-deck-right.invisible {
+    color: rgba(220, 230, 245, 0);
+    cursor: default;
+    pointer-events: none;
+}
+
+#browse-deck-left {
+    margin-left: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: grey;
+    height: 32px;
+    border-radius: 50px;
+    width: 32px;
+    padding: 5px;
+}
+
+#browse-deck-right {
+    margin-right: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: grey;
+    height: 32px;
+    padding: 5px;
+    border-radius: 50px;
+    width: 32px;
+}
+
+#browse-deck-left:hover:not(.invisible),
+#browse-deck-right:hover:not(.invisible) {
+    background-color: rgba(221, 221, 221, 0.74);
+    color: rgb(0, 136, 214);
+    border-radius: 50px;
+}
+
+#browse-deck-middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 40px;
+}
+
+/* The flashcards */
+#browse-deck-flashcard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 660px;
+    width: 900px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.589);
+}
+
+#browse-deck-flashcard-top {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: rgb(121, 143, 161);
+    width: 100%;
+    font-weight: 300;
+    padding: 8px 0px;
+}
+
+.letter-at-top-left {
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    color: rgb(224, 224, 224);
+    left: 575px;
+    top: 175px;
+    position: absolute;
+}
+
+#browse-deck-flashcard-bottom {
+    font-size: 20px;
+    padding: 54px;
+    font-weight: 300;
+    height: 90%;
+    width: 791px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#browse-answer-image,
+#browse-question-image {
+    max-height: 300px;
+    max-width: 600px;
+}
+
+#browse-deck-reveal-button {
+    display: flex;
+    color: white;
+    font-weight: 300;
+    font-size: 14px;
+    background-color: rgb(121, 143, 161);
+    padding: 18px 180px;
+    border-radius: 200px;
+    cursor: pointer;
+}
 
 /* No cards page */
 #browse-empty-message-container {
