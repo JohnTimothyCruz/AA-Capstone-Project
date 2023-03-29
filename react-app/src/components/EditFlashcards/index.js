@@ -180,7 +180,7 @@ const EditFlashcards = () => {
                         <PreviewCards />
                     </div>
                     <div className={`deck-option-display ${type === "edit" ? "" : "hidden"}`}>
-                        <EditCards props={[chosenDeck?.flashcards]} />
+                        <EditCards props={[chosenDeck?.flashcards, chosenDeck]} />
                     </div>
                     <div className={`deck-option-display ${type === "browse" ? "" : "hidden"}`}>
                         <BrowseDeck props={[chosenDeck, setType]} />

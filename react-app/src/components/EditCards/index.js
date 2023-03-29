@@ -3,7 +3,7 @@ import SingleEditFlashcard from "../SingleEditFlashcard"
 import "./EditCards.css"
 
 const EditCards = ({ props }) => {
-    const [flashcards] = props;
+    const [flashcards, chosenDeck] = props;
     const [selected, setSelected] = useState(0)
 
     return (
@@ -36,12 +36,12 @@ const EditCards = ({ props }) => {
                     {flashcards && flashcards.map((flashcard, idx) => (
                         <div className="single-flashcard-container" key={idx}>
                             <h2>{idx + 1}</h2>
-                            <SingleEditFlashcard props={[flashcard, "edit"]} />
+                            <SingleEditFlashcard props={[flashcard, "edit", chosenDeck, idx]} />
                         </div>
                     ))}
                     <div className="single-flashcard-container">
                         <h3>New Card</h3>
-                        <SingleEditFlashcard props={[null, "create"]} />
+                        <SingleEditFlashcard props={[null, "create", chosenDeck, "new"]} />
                     </div>
                 </div>
             </div>

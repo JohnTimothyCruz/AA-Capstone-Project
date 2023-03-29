@@ -8,6 +8,10 @@ const POST_DECK = "decks/POST_DECK"
 const PUT_DECK = "decks/PUT_DECK"
 const DELETE_DECK = "decks/DELETE_DECK"
 
+const POST_FLASHCARD = "decks/POST_FLASHCARDS"
+const PUT_FLASHCARD = "decks/PUT_FLASHCARDS"
+const DELETE_FLASHCARD = "decks/DELETE_FLASHCARDS"
+
 // -Actions--------------------
 export const readDecks = (decks) => {
     return {
@@ -44,6 +48,29 @@ export const removeDeck = (id) => {
     }
 }
 
+export const createFlashcard = (flashcard, class_id) => {
+    return {
+        type: POST_FLASHCARD,
+        flashcard,
+        class_id
+    }
+}
+
+export const editFlashcard = (flashcard, class_id) => {
+    return {
+        type: PUT_FLASHCARD,
+        flashcard,
+        class_id
+    }
+}
+
+export const removeFlashcard = (flashcard, class_id) => {
+    return {
+        type: DELETE_FLASHCARD,
+        flashcard,
+        class_id
+    }
+}
 
 // -Thunks---------------------
 export const getDecks = (id) => async dispatch => {
@@ -106,6 +133,32 @@ export const deleteDeck = (class_id, id) => async dispatch => {
         dispatch(getClass(class_id))
     }
 };
+
+export const postFlashcard = (question, answer, question_image, answer_image, deck_id) => async dispatch => {
+    const res = await fetch(`/api/flashcards/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({deck_id, question, answer, question_image, answer_image})
+    })
+
+    if (res.ok) {
+        const flashcard = await res.json();
+        dispatch(getClasses())
+    }
+}
+
+export const putFlashcard = (question, answer, question_image, answer_image, deck_id, id) => async dispatch => {
+    const res = await fetch(`/api/flashcards/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({deck_id, question, answer, question_image, answer_image})
+    })
+
+    if (res.ok) {
+        const flashcard = await res.json();
+        dispatch(getClasses())
+    }
+}
 
 // -Reducer--------------------
 const initialState = { allDecks: {}, singleDeck: {} }
