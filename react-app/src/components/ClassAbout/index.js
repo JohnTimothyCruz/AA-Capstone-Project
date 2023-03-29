@@ -129,12 +129,12 @@ const ClassAbout = ({ props }) => {
                             setWarn(false)
                         }}
                     />
-                    <p className={`about-form-chars-container ${editing === "Headline" ? headline?.length > 280 ? "over" : "" : "hidden"}`}>
+                    <div className={`about-form-chars-container ${editing === "Headline" ? headline?.length > 280 ? "over" : "" : "hidden"}`}>
                         {!headline || headline?.length <= 280 ?
                             <p>{headline?.length || 0} of 280 char</p>
                             :
                             <p>Your headline exceeds the character limit <span>({headline?.length || 0} of 280 char)</span></p>}
-                    </p>
+                    </div>
                 </form>
                 <form onSubmit={(e) => handleSubmit(e)} className="about-page-form">
                     <div id="about-description-input-container" className={`about-input-prompt-container ${editing === "Description" ? "no-underline" : ""}`}>
@@ -165,12 +165,12 @@ const ClassAbout = ({ props }) => {
                             setWarn(false)
                         }}
                     />
-                    <p className={`about-form-chars-container ${editing === "Description" ? "" : "hidden"}`}>
+                    <div className={`about-form-chars-container ${editing === "Description" ? "" : "hidden"}`}>
                         {!description || description?.length <= 5000 ?
                             <p>{description?.length || 0} of 5000 char</p>
                             :
                             <p>Your description exceeds the character limit <span>({description?.length || 0} of 5000 char)</span></p>}
-                    </p>
+                    </div>
                 </form>
                 <div id="about-settings-container">
                     <div className={`about-input-prompt-container ${editing === "Description" ? "no-underline" : ""}`}>
