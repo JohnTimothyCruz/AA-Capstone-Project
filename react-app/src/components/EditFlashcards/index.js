@@ -173,7 +173,7 @@ const EditFlashcards = () => {
                         </p>
                     </div>
                 </div>
-                <div id="deck-flashcards-option">
+                <div id="deck-flashcards-option-container">
                     <div className={`deck-option-display ${type === "preview" ? "" : "hidden"}`}>
                         <PreviewCards />
                     </div>

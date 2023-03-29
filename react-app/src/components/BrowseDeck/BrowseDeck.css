@@ -1,7 +1,62 @@
 #browse-deck-container {
     display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
+#browse-deck-container.empty-deck {
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#browse-deck-flashcard-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+#browse-deck-left.invisible,
+#browse-deck-right.invisible {
+    color: rgba(220, 230, 245, 0);
+    cursor: default;
+    pointer-events: none;
+}
+
+#browse-deck-left {
+    margin-left: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: grey;
+    height: 32px;
+    border-radius: 50px;
+    width: 32px;
+    padding: 5px;
+}
+
+#browse-deck-right {
+    margin-right: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: grey;
+    height: 32px;
+    padding: 5px;
+    border-radius: 50px;
+    width: 32px;
+}
+
+#browse-deck-left:hover:not(.invisible),
+#browse-deck-right:hover:not(.invisible) {
+    background-color: rgba(221, 221, 221, 0.74);
+    color: rgb(0, 136, 214);
+    border-radius: 50px;
+}
 
 /* No cards page */
 #browse-empty-message-container {
