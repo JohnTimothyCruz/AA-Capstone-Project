@@ -64,3 +64,16 @@ def put_class(id):
 
     if form.errors:
         return {"errors": form.errors}
+
+@flashcard_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_flashcard(id):
+    flashcard = Flashcard.query.get(id)
+
+    if not flashcard:
+        return {"errors": "Flashcard does not exist"}
+
+    db.session.delete(flashcard)
+    db.session.commit()
+
+    return {"Message": "Delete successful!"}

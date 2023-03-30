@@ -9,10 +9,12 @@ const ClassAbout = ({ props }) => {
     const [session, chosenClass] = props;
     const [headline, setHeadline] = useState(chosenClass?.headline);
     const [description, setDescription] = useState(chosenClass?.description);
-    const [visibility, setVisibility] = useState(chosenClass?.visibility);
     const [mixType, setMixType] = useState(chosenClass?.mix_type);
+    const [visibility, setVisibility] = useState(chosenClass?.visibility);
     const [editing, setEditing] = useState(false)
     const [warn, setWarn] = useState(false)
+
+    console.log(visibility === "public")
 
     // const scrollToE = (id) => {
     //     const topOfEl = document.getElementById(id).offsetTop;

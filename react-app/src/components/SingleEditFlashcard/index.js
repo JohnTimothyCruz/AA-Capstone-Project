@@ -22,6 +22,15 @@ const SingleEditFlashcard = ({ props }) => {
                 setShowButtons(true)
             }
         }
+        if (flashcard?.answer_image || flashcard?.question_image) {
+            if ((answerImage !== flashcard?.answer_image && answerImage?.length) || (questionImage ?.length && questionImage !== flashcard?.question_image)) {
+                setShowButtons(true)
+            }
+        } else {
+            if (answerImage?.length || questionImage ?.length) {
+                setShowButtons(true)
+            }
+        }
     }, [question, answer, questionImage, answerImage])
 
     const growInput = () => {
@@ -67,7 +76,7 @@ const SingleEditFlashcard = ({ props }) => {
                             <p>Image Url (optional)</p>
                             <input
                                 className="flashcard-form-input-input"
-                                value={questionImage}
+                                value={questionImage || ""}
                                 onChange={(e) => setQuestionImage(e.target.value)}
                                 placeholder="Question Image"
                             />
@@ -88,7 +97,7 @@ const SingleEditFlashcard = ({ props }) => {
                             <p>Image Url (optional)</p>
                             <input
                                 className="flashcard-form-input-input"
-                                value={answerImage}
+                                value={answerImage || ""}
                                 onChange={(e) => setAnswerImage(e.target.value)}
                                 placeholder="Answer Image"
                             />
@@ -102,6 +111,8 @@ const SingleEditFlashcard = ({ props }) => {
                             onClick={() => {
                                 setAnswer(flashcard?.answer)
                                 setQuestion(flashcard?.question)
+                                setQuestionImage(flashcard?.question_image)
+                                setAnswerImage(flashcard?.answer_image)
                                 setShowButtons(false)
                             }}
                         >

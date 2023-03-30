@@ -75,6 +75,10 @@
     width: 100%;
 }
 
+.single-flashcard-container.new {
+    margin-bottom: 700px;
+}
+
 .single-flashcard-container h2 {
     display: flex;
     align-items: center;
@@ -92,4 +96,27 @@
     font-size: 15px;
     font-weight: 600;
     color: rgb(48, 79, 121);
+}
+
+.single-flashcard-container button {
+    background: none;
+    border: none;
+    align-self: flex-start;
+}
+
+.single-flashcard-delete-flashcard {
+    margin-top: 5px;
+    color: rgb(97, 115, 139);
+    cursor: pointer;
+    padding: 8px 10px;
+    border-radius: 50px;
+}
+
+.single-flashcard-delete-flashcard:hover {
+    color: rgb(0, 162, 255);
+    background-color: rgba(107, 107, 107, 0.144);
+}
+
+#single-flashcard-new-take-space {
+    width: 45px;
 }

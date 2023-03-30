@@ -85,6 +85,7 @@ def delete_class(id):
 
     db.session.delete(a_class)
     db.session.commit()
+    
     return {"Message": "Delete successful!"}
 
 #Post a learner to a class

@@ -1,0 +1,62 @@
+#delete-flashcard-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 30px;
+    border-radius: 25px;
+    width: 580px;
+    height: fit-content;
+}
+
+#close-delete-flashcard-modal-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: rgb(130, 148, 155);
+    cursor: pointer;
+    padding: 20px 8px 20px 8px;
+    border-radius: 50px;
+}
+
+#close-delete-flashcard-modal-button:hover {
+    color: rgb(0, 162, 255);
+    background-color: rgba(107, 107, 107, 0.144);
+}
+
+#delete-flashcard-prompt {
+    color: rgb(48, 79, 121);
+    font-size: 30px;
+    font-weight: 800;
+    margin: 10px 0px 0px;
+}
+
+#delete-flashcard-explaination {
+    font-weight: 400;
+    font-size: 17px;
+    color: rgb(107, 107, 107);
+    text-align: center;
+}
+
+#delete-flashcard-buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+#delete-flashcard-confirm-button,
+#delete-flashcard-cancel-button {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    padding: 0px 29px;
+    border: none;
+    background: none;
+    background-color: rgb(130, 148, 155);
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 200;
+}
