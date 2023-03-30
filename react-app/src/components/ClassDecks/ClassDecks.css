@@ -68,6 +68,10 @@
 .deck-name {
     color: rgb(48, 79, 121);
     font-weight: 800;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 40%;
+    text-overflow: ellipsis;
 }
 
 .deck-container:hover .deck-name {
