@@ -95,7 +95,7 @@ export const postDeck = (name, class_id, user_id) => async dispatch => {
     const res = await fetch(`/api/decks`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({class_id, name})
+        body: JSON.stringify({ class_id, name })
     });
 
     if (res.ok) {
@@ -111,7 +111,7 @@ export const putDeck = (name, objective, id, class_id) => async dispatch => {
     const res = await fetch(`/api/decks/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({class_id, name, objective})
+        body: JSON.stringify({ class_id, name, objective })
     });
 
     if (res.ok) {
@@ -138,11 +138,10 @@ export const postFlashcard = (question, answer, question_image, answer_image, de
     const res = await fetch(`/api/flashcards/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({deck_id, question, answer, question_image, answer_image})
+        body: JSON.stringify({ deck_id, question, answer, question_image, answer_image })
     })
 
     if (res.ok) {
-        const flashcard = await res.json();
         dispatch(getClasses())
     }
 }
@@ -151,11 +150,20 @@ export const putFlashcard = (question, answer, question_image, answer_image, dec
     const res = await fetch(`/api/flashcards/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({deck_id, question, answer, question_image, answer_image})
+        body: JSON.stringify({ deck_id, question, answer, question_image, answer_image })
     })
 
     if (res.ok) {
-        const flashcard = await res.json();
+        dispatch(getClasses())
+    }
+}
+
+export const deleteFlashcard = (id) => async dispatch => {
+    const res = await fetch(`/api/flashcards/${id}`, {
+        method: "DELETE"
+    })
+
+    if (res.ok) {
         dispatch(getClasses())
     }
 }

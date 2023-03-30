@@ -7,11 +7,11 @@
     position: absolute;
     align-items: center;
     margin-top: 5px;
-    right: 35px;
+    right: 95px;
     gap: 10px;
 }
 
-.single-edit-flashcard-cancel-button {
+.single-flashcard-container .single-edit-flashcard-cancel-button {
     display: flex;
     color: grey;
     text-decoration: underline;
@@ -19,7 +19,7 @@
     cursor: pointer;
 }
 
-.single-edit-flashcard-save-button {
+.single-flashcard-container .single-edit-flashcard-save-button {
     border: none;
     background-color: rgb(255, 125, 65);
     color: white;
