@@ -176,11 +176,18 @@ const EditFlashcards = () => {
                 </div>
                 <div id="deck-flashcards-option-container">
                     <div className={`deck-option-display preview ${type === "preview" ? "" : "hidden"}`}>
-                        {chosenDeck?.flashcards && chosenDeck?.flashcards.map((flashcard, idx) => (
+                        {chosenDeck?.flashcards ? chosenDeck?.flashcards.map((flashcard, idx) => (
                             <div key={idx}>
                                 <PreviewCards props={[flashcard, idx]} />
                             </div>
-                        ))}
+                        ))
+                            :
+                            <div id="preview-empty-message-container">
+                                <p id="preview-empty-prompt">Preview Deck not Available</p>
+                                <p id="preview-empty-explaination">This Deck has no cards yet. Click Add Cards below to get started.</p>
+                                <div id="preview-add-cards-button" onClick={() => setType("edit")}>ADD CARDS</div>
+                            </div>
+                        }
                     </div>
                     <div className={`deck-option-display ${type === "edit" ? "" : "hidden"}`}>
                         <EditCards props={[chosenDeck?.flashcards, chosenDeck]} />

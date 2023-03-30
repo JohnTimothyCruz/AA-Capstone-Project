@@ -123,6 +123,18 @@ p.class-info-details {
     display: none;
 }
 
+#class-options-pop-up button {
+    border: none;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+}
+
+#class-options-pop-up button p {
+    margin: 2px 0px;
+}
+
 .class-options-pop-up-section {
     display: flex;
     align-items: center;

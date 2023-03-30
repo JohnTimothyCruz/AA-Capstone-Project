@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./ClassAbout.css";
 import { descriptionPutClass, headlinePutClass, mixPutClass, visibilityPutClass } from "../../store/classes";
 
@@ -13,8 +13,6 @@ const ClassAbout = ({ props }) => {
     const [visibility, setVisibility] = useState(chosenClass?.visibility);
     const [editing, setEditing] = useState(false)
     const [warn, setWarn] = useState(false)
-
-    console.log(visibility === "public")
 
     // const scrollToE = (id) => {
     //     const topOfEl = document.getElementById(id).offsetTop;
