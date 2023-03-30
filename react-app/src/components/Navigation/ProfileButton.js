@@ -37,10 +37,6 @@ function ProfileButton({ user }) {
     dispatch(logout());
   };
 
-  const openFind = () => {
-    setFindingFlasshcards(!findingFlashcards)
-  }
-
   const dropdownClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
@@ -53,12 +49,10 @@ function ProfileButton({ user }) {
           </div>
           }
         </div>
-        <div className={`navbar-option ${findingFlashcards ? "selected" : ""}`} onClick={() => openFind()}>
-          <i className="fa-solid fa-magnifying-glass fa-xs" />
+        <div className={`navbar-option`} onClick={() => history.push("/classes")}>
           <div id="find-flashcards-option-text">
             Find Flashcards
           </div>
-          <i className={`fa-solid ${findingFlashcards ? "fa-caret-up" : "fa-caret-down"}`} />
         </div>
         <div className="navbar-option">Make Flashcards</div>
         <div className="navbar-option">About</div>

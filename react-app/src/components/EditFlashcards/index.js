@@ -17,7 +17,6 @@ const EditFlashcards = () => {
     const params = useParams()
     const [type, setType] = useState(params?.type)
     const [showMenu, setShowMenu] = useState(false)
-    const [showPopup, setShowPopup] = useState(false)
     const ulRef = useRef();
 
     const session = useSelector(state => state.session)
