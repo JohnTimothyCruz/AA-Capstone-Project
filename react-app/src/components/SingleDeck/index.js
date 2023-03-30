@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import { useRef } from "react";
 import EditDeckModal from "../EditDeckModal";
+import NoCardsModal from "../NoCardsModal"
 import "./SingleDeck.css"
 
 const SingleDeck = ({ props }) => {
@@ -29,10 +30,10 @@ const SingleDeck = ({ props }) => {
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
 
-    return (
-        <div className="deck-container" onClick={() => history.push(`/study/decks/${deck?.id}`)}>
+    const body = (
+        <>
             <div className="deck-container-left">
-                <i className="fa-regular fa-circle fa-xl" />
+                <div className="deck-container-circle"></div>
                 <div className="deck-progress-percent">%</div>
                 <div className=" deck-info-container">
                     <div className="deck-name">{deck.name}</div>
@@ -114,9 +115,26 @@ const SingleDeck = ({ props }) => {
                     ADD CARDS
                 </div>
                 <i className="deck-container-right-icons deck-container-study fa-solid fa-circle-play fa-lg" />
-                <i onClick={(e) => e.stopPropagation()} className="deck-container-right-icons deck-container-view fa-solid fa-angle-right fa-lg" />
+                <i onClick={(e) => {
+                    e.stopPropagation()
+                    history.push(`/dashboard/classes/${chosenClass.id}/decks/${deck.id}/flashcards/preview`)
+                }} className="deck-container-right-icons deck-container-view fa-solid fa-angle-right fa-lg" />
             </div>
-        </div>
+        </>
+    )
+
+    return (
+        deck?.flashcards?.length ?
+            <div className="deck-container" onClick={() => history.push(`/study/decks/${deck?.id}`)}>
+                {body}
+            </div>
+            :
+            <div className="deck-container empty">
+                <OpenModalButton
+                    modalComponent={<NoCardsModal />}
+                    buttonText={body}
+                />
+            </div>
     )
 }
 

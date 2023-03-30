@@ -176,7 +176,7 @@ const EditFlashcards = () => {
                 </div>
                 <div id="deck-flashcards-option-container">
                     <div className={`deck-option-display preview ${type === "preview" ? "" : "hidden"}`}>
-                        {chosenDeck?.flashcards ? chosenDeck?.flashcards.map((flashcard, idx) => (
+                        {chosenDeck?.flashcards?.length ? chosenDeck?.flashcards.map((flashcard, idx) => (
                             <div key={idx}>
                                 <PreviewCards props={[flashcard, idx]} />
                             </div>

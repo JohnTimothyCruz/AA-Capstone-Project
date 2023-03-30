@@ -36,3 +36,37 @@
     justify-content: center;
     color: white;
 }
+
+.deck-container.empty {
+    padding: 0px;
+}
+
+.deck-container.empty:hover > button {
+    background-color: rgb(198, 225, 235);
+}
+
+.deck-container.empty > button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 30px 24px 42px;
+    border: none;
+    background-color: white;
+    height: fit-content;
+    cursor: pointer;
+    width: 100%;
+}
+
+.deck-container-left .deck-container-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 15px;
+    width: 15px;
+    border: 2px solid black;
+    border-radius: 40px;
+}
+
+.deck-container.empty i {
+    display: none;
+}
