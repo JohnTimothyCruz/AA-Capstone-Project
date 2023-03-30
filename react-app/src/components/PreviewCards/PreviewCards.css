@@ -1,0 +1,46 @@
+.preview-cards-container {
+    display: flex;
+    align-items: center;
+    margin: 20px 0px;
+}
+
+.preview-single-card-number {
+    padding: 30px;
+}
+
+.preview-single-card {
+    display: flex;
+    border-radius: 5px;
+    border: 1px solid rgb(223, 223, 223);
+    border-left: 10px solid rgb(48, 79, 121);
+    width: 92%;
+}
+
+.preview-single-card-question-container,
+.preview-single-card-answer-container {
+    display: flex;
+    width: 50%;
+}
+
+.preview-single-card-question-container {
+    border-right: 1px solid rgb(223, 223, 223);
+}
+
+.preview-top-left-letter {
+    color: rgb(112, 129, 139);
+    margin: 12px 20px 0px;
+}
+
+.flashcard-content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px 20px 20px 0px;
+    flex-wrap: wrap;
+    word-break: break-word;
+}
+
+.flashcard-content-container p {
+    margin: 0px 0px 0px 0px;
+}

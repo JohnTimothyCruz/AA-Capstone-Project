@@ -40,6 +40,10 @@
     height: 100%;
 }
 
+.deck-option-display.preview {
+    margin-bottom: 700px;
+}
+
 .deck-flashcards-option:hover:not(.chosen) {
     color: rgb(0, 162, 255);
     border-bottom: 4px solid rgb(180, 180, 180);
