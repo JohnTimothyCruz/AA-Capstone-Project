@@ -1,4 +1,4 @@
-#delete-class-modal {
+#no-cards-modal {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,7 +10,7 @@
     height: fit-content;
 }
 
-#close-delete-class-modal-button {
+#close-no-cards-modal-button {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -20,33 +20,26 @@
     border-radius: 50px;
 }
 
-#close-delete-class-modal-button:hover {
+#close-no-cards-modal-button:hover {
     color: rgb(0, 162, 255);
     background-color: rgba(107, 107, 107, 0.144);
 }
 
-#delete-class-prompt {
+#no-cards-prompt {
     color: rgb(48, 79, 121);
     font-size: 30px;
     font-weight: 800;
     margin: 10px 0px 0px;
 }
 
-#delete-class-explaination {
+#no-cards-explaination {
     font-weight: 400;
     font-size: 17px;
     color: rgb(107, 107, 107);
     text-align: center;
 }
 
-#delete-class-buttons-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-}
-
-#delete-class-cancel-button {
+#no-cards-cancel-button {
     display: flex;
     align-items: center;
     height: 42px;
@@ -58,11 +51,4 @@
     border-radius: 30px;
     cursor: pointer;
     font-weight: 200;
-}
-
-#delete-class-confirm-button {
-    text-decoration: underline;
-    color: rgb(107, 107, 107);
-    font-size: 15px;
-    cursor: pointer;
 }

@@ -9,6 +9,7 @@ import StudyPage from "./components/StudyPage";
 import SingleClass from "./components/SingleClass";
 import LoadingClasses from "./components/LoadingClasses";
 import EditFlashcards from "./components/EditFlashcards";
+import AllClassesPage from "./components/AllClassesPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,11 @@ function App() {
 
           <Route path="/dashboard" >
             <Dashboard />
+          </Route>
+
+          <Route path="/classes" >
+            <Navigation isLoaded={isLoaded} />
+            <AllClassesPage />
           </Route>
 
           <Route path="/" >

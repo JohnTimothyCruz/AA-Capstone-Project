@@ -67,11 +67,14 @@
 
 .deck-name {
     color: rgb(48, 79, 121);
+    font-size: 16px;
+    justify-self: flex-start;
     font-weight: 800;
     white-space: nowrap;
     overflow: hidden;
     width: 40%;
     text-overflow: ellipsis;
+    text-align: left;
 }
 
 .deck-container:hover .deck-name {

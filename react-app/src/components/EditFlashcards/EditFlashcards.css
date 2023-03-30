@@ -222,3 +222,34 @@
     background-color: rgba(134, 138, 139, 0.26);
     color: rgb(121, 121, 121);
 }
+
+/* No cards page */
+#preview-empty-message-container {
+    padding: 40px 30px;
+}
+
+#preview-empty-prompt {
+    margin: 0px;
+    font-weight: 400;
+}
+
+#preview-empty-explaination {
+    margin: 15px 0px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+#preview-add-cards-button {
+    cursor: pointer;
+    width: fit-content;
+    padding: 10px 30px;
+    border-radius: 50px;
+    color: white;
+    font-size: 13px;
+    font-weight: 300;
+    background-color: rgb(255, 125, 65);
+}
+
+#preview-add-cards-button:hover {
+    background-color: rgba(255, 125, 65, 0.712);
+}

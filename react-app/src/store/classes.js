@@ -59,6 +59,7 @@ export const getClasses = () => async dispatch => {
 
     if (res.ok) {
         const classes = await res.json();
+        console.log("Hello from getClasses thunk, classes:", classes)
         dispatch(readClasses(classes));
     };
 };
@@ -207,9 +208,10 @@ export const deleteLearner = (class_id, learner_id, user_id) => async dispatch =
 const initialState = { allClasses: {}, singleClass: {} }
 
 const ClassReducer = (state = initialState, action) => {
-    const newState = { ...state }
+    const newState = { ...state, allClasses: { ...state.allClasses }, singleClass: { ...state.singleClass } }
     switch (action.type) {
         case GET_CLASSES:
+            console.log("Hello from GET_CLASSES case, action.allClasses: ", action.classes)
             action.classes.forEach(aClass => {
                 newState.allClasses[aClass.id] = aClass
             })

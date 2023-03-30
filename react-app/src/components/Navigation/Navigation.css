@@ -108,8 +108,9 @@
 }
 
 #profile-button-container {
+  cursor: pointer;
   padding: 9px;
-  border-radius: 100%;
+  border-radius: 50px;
 }
 
 .profile-button {
