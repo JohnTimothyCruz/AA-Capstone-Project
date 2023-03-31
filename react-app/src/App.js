@@ -10,6 +10,7 @@ import SingleClass from "./components/SingleClass";
 import LoadingClasses from "./components/LoadingClasses";
 import EditFlashcards from "./components/EditFlashcards";
 import AllClassesPage from "./components/AllClassesPage";
+import ClassEnrollPage from "./components/ClassEnrollPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,11 @@ function App() {
 
           <Route path="/dashboard" >
             <Dashboard />
+          </Route>
+
+          <Route path="/classes/:id" >
+            <Navigation isLoaded={isLoaded} />
+            <ClassEnrollPage />
           </Route>
 
           <Route path="/classes" >

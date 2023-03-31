@@ -218,7 +218,7 @@ const ClassReducer = (state = initialState, action) => {
             return newState;
         case GET_CLASS:
             delete newState.singleClass[Object.keys(newState.singleClass)[0]]
-            newState.singleClass[action.aClass.id] = action.aClass
+            newState.singleClass = action.aClass
             return newState;
         case POST_CLASS:
             newState.allClasses[action.aClass.id] = action.aClass

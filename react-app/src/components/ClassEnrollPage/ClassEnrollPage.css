@@ -1,0 +1,63 @@
+#class-enroll-page {
+    width: 100%;
+}
+
+#enroll-class-prompt-container {
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    background-color: rgb(252, 252, 252);
+}
+
+#enroll-class-image {
+    height: 246px;
+    width: 246px;
+}
+
+#enroll-class-prompt {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#enroll-class-prompt * {
+    margin: 0px;
+}
+
+#enroll-class-name {
+
+}
+
+#enroll-class-credit {
+    font-weight: 300;
+}
+
+#enroll-class-creator {
+    font-weight: 600;
+}
+
+#enroll-class-creator-name {
+    color: rgb(191, 0, 216);
+}
+
+#enroll-class-button,
+#enroll-class-button-logged-out button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 125, 65);
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    height: 22px;
+    width: 90px;
+    padding: 25px 70px;
+    cursor: pointer;
+    border: none;
+}
+
+#enroll-class-button-logged-out button {
+    height: 72px;
+    width: 230px;
+}

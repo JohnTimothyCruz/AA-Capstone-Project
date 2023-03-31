@@ -28,6 +28,7 @@ const Sidebar = ({ props }) => {
                 </div>
             </div>
             <div className="dashboard-side-bar-bottom">
+                <i className="fa-solid fa-magnifying-glass fa-lg" onClick={() => history.push("/classes")}/>
                 <OpenModalButton
                     modalComponent={<CreateClassModal props={[session?.user?.id]} />}
                     buttonText={<i className="fa-solid fa-circle-plus fa-xl" />}

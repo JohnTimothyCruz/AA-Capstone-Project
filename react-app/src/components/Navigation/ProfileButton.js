@@ -54,7 +54,6 @@ function ProfileButton({ user }) {
             Find Flashcards
           </div>
         </div>
-        <div className="navbar-option">Make Flashcards</div>
         <div className="navbar-option">About</div>
       </div>
       {user ? (
