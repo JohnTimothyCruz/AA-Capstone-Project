@@ -43,7 +43,7 @@ const SingleDeck = ({ props }) => {
             <div className={`deck-container-right ${deck?.flashcards?.length ? "" : "empty"}`}>
                 <div onClick={(e) => e.stopPropagation()} className={`deck-container-preview ${session?.user?.id === chosenClass?.user?.id ? deck?.flashcards?.length ? "" : "hidden" : "hidden"}`}>
                     <OpenModalButton
-                        modalComponent={<PreviewFlashcardsModal />}
+                        modalComponent={<PreviewFlashcardsModal props={[deck]} />}
                         buttonText={<i className="fa-solid fa-glasses fa-lg" />}
                     />
                 </div>
