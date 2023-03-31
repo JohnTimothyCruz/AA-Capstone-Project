@@ -11,6 +11,7 @@ import LoadingClasses from "./components/LoadingClasses";
 import EditFlashcards from "./components/EditFlashcards";
 import AllClassesPage from "./components/AllClassesPage";
 import ClassEnrollPage from "./components/ClassEnrollPage";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +52,11 @@ function App() {
           <Route path="/classes" >
             <Navigation isLoaded={isLoaded} />
             <AllClassesPage />
+          </Route>
+
+          <Route path="/profiles/:id" >
+            <Navigation isLoaded={isLoaded} />
+            <UserProfile />
           </Route>
 
           <Route path="/" >

@@ -1,4 +1,4 @@
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import CreateClassModal from "../CreateClassModal";
 import "./Sidebar.css"

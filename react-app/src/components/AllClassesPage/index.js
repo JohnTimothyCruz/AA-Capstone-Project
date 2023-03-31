@@ -8,7 +8,19 @@ const AllClassesPage = () => {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    const classes = useSelector(state => state.classes.allClasses)
+    const unfilteredClasses = useSelector(state => state.classes.allClasses)
+    const filterClasses = () => {
+        const arr = []
+        if (unfilteredClasses) {
+            for (const a_class of Object.values(unfilteredClasses)) {
+                if (a_class?.visibility === "public") {
+                    arr.push(a_class)
+                }
+            }
+        }
+            return arr
+    }
+    const classes = filterClasses()
 
     const getCardNumber = (a_class) => {
         let num = 0
@@ -42,8 +54,8 @@ const AllClassesPage = () => {
             <h1 id="all-classes-prompt">BrainBash Classes</h1>
             <p id="all-classes-explanation">Find a class that suits your needs and study it for absolutely free!</p>
             <div id="classes-container">
-                {classes ? Object.values(classes).map((a_class, idx) => (
-                    <div className="class-card-container" onClick={() => history.push(`/classes/${a_class?.id}`)}>
+                {classes ? classes.map((a_class, idx) => (
+                    <div className="class-card-container" onClick={() => history.push(`/classes/${a_class?.id}`)} key={idx}>
                         <img className="class-card-image" src={a_class?.image} alt="class" />
                         <div className="class-card-info-container">
                             <h2 className="class-card-class-name">{a_class?.name}</h2>
