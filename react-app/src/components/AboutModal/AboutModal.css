@@ -34,11 +34,19 @@
 }
 
 #about-me-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     text-align: center;
     font-weight: 400;
     font-size: 17px;
     color: rgb(107, 107, 107);
     text-align: center;
+}
+
+#about-me-container i {
+    cursor: pointer;
+    color: black;
 }
 
 #about-close-button {
