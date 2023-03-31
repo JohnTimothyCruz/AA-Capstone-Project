@@ -41,7 +41,7 @@
 
 /* About stuff */
 #about-page-forms-container {
-    overflow-y: scroll;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     max-height: 800px;
@@ -127,6 +127,7 @@
 .about-input-prompt-right {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .about-input-prompt-right.hidden {
@@ -214,7 +215,7 @@
 
 /* The radio buttons */
 #about-settings-container {
-    padding-bottom: 700px;
+    /* padding-bottom: 700px; */
 }
 
 #about-settings-options {
@@ -251,4 +252,52 @@
 
 .radio-label-container label {
     font-size: 13px;
+}
+
+/* Preview styles */
+#about-preview-button {
+    cursor: pointer;
+    text-decoration: underline;
+    color: grey;
+}
+
+#about-preview-close-button {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    height: 16px;
+    align-self: flex-end;
+    justify-self: center;
+    cursor: pointer;
+    color: orange;
+}
+
+#about-page-container-preview {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 50px 0px 50px;
+}
+
+#about-page-container * {
+    margin: 0px;
+}
+
+.about-page-preview-title {
+    width: 100%;
+    padding: 21px 0px 10px 0px;
+    margin: 0px;
+    border-bottom: 1px solid rgb(146, 154, 156);
+    color: rgb(0, 136, 214);
+}
+
+.about-page-preview-text {
+    padding-top: 5px;
+    margin: 0px;
+    height: fit-content;
+    width: 100%;
+}
+
+#class-about-creator {
+    text-decoration: underline;
+    cursor: pointer;
 }

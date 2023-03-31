@@ -1,17 +1,20 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { getClasses } from "../../store/classes";
 import "./UserProfile.css"
+import { getOtherUser } from "../../store/session";
 
 const UserProfile = () => {
     const dispatch = useDispatch()
     const history = useHistory()
+    const params = useParams()
     const session = useSelector(state => state.session)
     const allClasses = useSelector(state => state?.classes?.allClasses)
 
     useEffect(() => {
         dispatch(getClasses())
+        dispatch(getOtherUser(params?.id))
     }, [dispatch])
 
     const getCardNumber = (a_class) => {
@@ -26,32 +29,31 @@ const UserProfile = () => {
 
     const getUserMadeClasses = () => {
         const arr = []
-        for (const a_class of session?.user?.classes) {
+        for (const a_class of session?.otherUser?.classes) {
             arr.push(allClasses[a_class?.id])
         }
         return arr
     }
-    const classes = getUserMadeClasses()
+    const classes = session?.otherUser && getUserMadeClasses()
 
     const getUserEnrolledClasses = () => {
         const arr = []
-        for (const a_class of session?.user?.learning) {
-            console.log(a_class)
-            if (session?.user?.id !== allClasses[a_class?.class_id].user_id) {
+        for (const a_class of session?.otherUser?.learning) {
+            if (session?.otherUser?.id !== allClasses[a_class?.class_id]?.user_id) {
                 arr.push(allClasses[a_class?.class_id])
             }
         }
         return arr
     }
-    const learning = getUserEnrolledClasses()
+    const learning = session?.otherUser && getUserEnrolledClasses()
 
     return (
         <div id="user-profile-page">
             <div id="user-profile-banner">
-                <h1 id="user-profile-username">{session?.user?.username}</h1>
+                <h1 id="user-profile-username">{session?.otherUser?.username}</h1>
             </div>
             <div id="user-profile-created-classes-container">
-                <h2 className="user-profile-classes-number">Classes Created ({session?.user?.classes?.length})</h2>
+                <h2 className="user-profile-classes-number">Classes Created ({session?.otherUser?.classes?.length})</h2>
                 <div className="user-profile-enrolled-classes">
                     {classes && classes.map((a_class, idx) => (
                         <div
@@ -71,7 +73,7 @@ const UserProfile = () => {
             <div id="user-profile-enrolled-classes-container">
                 <h2 className="user-profile-classes-number">Classes Studying ({learning?.length})</h2>
                 <div className="user-profile-enrolled-classes">
-                    {learning.map((a_class, idx) => (
+                    {learning && learning.map((a_class, idx) => (
                         <div
                             className="user-profile-class-container"
                             key={idx}
