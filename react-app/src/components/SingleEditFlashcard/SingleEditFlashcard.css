@@ -107,3 +107,20 @@
     width: 100%;
     flex-wrap: wrap;
 }
+
+/* Errors */
+#edit-cards-errors {
+    padding: 5px;
+    border-top: 1px solid rgb(185, 185, 185);
+}
+
+.single-edit-flashcard:focus-within #edit-cards-errors {
+    box-shadow: 0 0 1px rgb(48, 79, 121), 0 0 1px rgb(48, 79, 121);
+    border-top: 1px solid rgb(48, 79, 121);
+}
+
+.edit-cards-error {
+    font-size: 12px;
+    font-style: italic;
+    color: rgb(214, 0, 0);
+}

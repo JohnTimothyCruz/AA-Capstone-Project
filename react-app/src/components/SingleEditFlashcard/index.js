@@ -11,6 +11,7 @@ const SingleEditFlashcard = ({ props }) => {
     const [answerImage, setAnswerImage] = useState(flashcard?.answer_image || "")
     const [questionImage, setQuestionImage] = useState(flashcard?.question_image || "")
     const [showButtons, setShowButtons] = useState(false)
+    const [errors, setErrors] = useState([])
 
     useEffect(() => {
         if (type === "edit") {
@@ -23,14 +24,30 @@ const SingleEditFlashcard = ({ props }) => {
             }
         }
         if (flashcard?.answer_image || flashcard?.question_image) {
-            if ((answerImage !== flashcard?.answer_image && answerImage?.length) || (questionImage ?.length && questionImage !== flashcard?.question_image)) {
+            if ((answerImage !== flashcard?.answer_image && answerImage?.length) || (questionImage?.length && questionImage !== flashcard?.question_image)) {
                 setShowButtons(true)
             }
         } else {
-            if (answerImage?.length || questionImage ?.length) {
+            if (answerImage?.length || questionImage?.length) {
                 setShowButtons(true)
             }
         }
+
+        const errs = [];
+        if (answer?.length > 250) {
+            errs.push("Answer text must be less than 250 characters")
+        }
+        if (question?.length > 250) {
+            errs.push("Question text must be less than 250 characters")
+        }
+        if (answerImage && !answerImage.endsWith(".jpg") && !answerImage.endsWith(".jpeg") && !answerImage.endsWith(".png") && !answerImage.endsWith(".gif")) {
+            errs.push("Answer image must end with .jpg, .jpeg, .png, or .gif")
+        }
+        if (questionImage && !questionImage.endsWith(".jpg") && !questionImage.endsWith(".jpeg") && !questionImage.endsWith(".png") && !questionImage.endsWith(".gif")) {
+            errs.push("Question image must end with .jpg, .jpeg, .png, or .gif")
+        }
+        setErrors(errs)
+
     }, [question, answer, questionImage, answerImage])
 
     const growInput = () => {
@@ -120,12 +137,24 @@ const SingleEditFlashcard = ({ props }) => {
                         </div>
                         <button
                             className="single-edit-flashcard-save-button"
-                            disabled={answer === "" || question === ""}
+                            disabled={answer === "" || question === "" || errors.length}
                         >
                             SAVE
                         </button>
                     </div>
                 </form>
+                {errors?.length ?
+                    <div id="edit-cards-errors">
+                        {errors.map((error, idx) => (
+                            <>
+                            <div className="edit-cards-error" key={idx}>{error}</div>
+                            {console.log(error)}
+                            </>
+                        ))}
+                    </div>
+                    :
+                    <div></div>
+                }
             </div>
         </div>
     )
