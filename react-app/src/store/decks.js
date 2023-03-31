@@ -88,6 +88,7 @@ export const getDeck = (id) => async dispatch => {
     if (res.ok) {
         const deck = await res.json();
         dispatch(readDeck(deck));
+        return deck
     };
 };
 
@@ -180,7 +181,7 @@ const DeckReducer = (state = initialState, action) => {
             })
             return newState;
         case GET_DECK:
-            newState.singleDeck[action.deck.id] = action.deck
+            newState.singleDeck = action.deck
             return newState;
         case POST_DECK:
             newState.allDecks[action.deck.id] = action.deck

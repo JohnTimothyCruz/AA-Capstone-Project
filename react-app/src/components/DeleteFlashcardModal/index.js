@@ -13,8 +13,6 @@ const DeleteFlashcardModal = ({ props }) => {
             .then(closeModal)
     }
 
-    console.log(flashcard?.id)
-
     return (
         <div id="delete-flashcard-modal">
             <i id="close-delete-flashcard-modal-button" className="fa-solid fa-xmark fa-2xl" onClick={() => closeModal()} />

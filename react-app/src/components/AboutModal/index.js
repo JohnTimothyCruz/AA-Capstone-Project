@@ -10,6 +10,7 @@ const AboutModal = () => {
             <h2 id="about-prompt">Get in touch with the creator of BrainBash:</h2>
             <div id="about-me-container">
                 <p>John Cruz</p>
+                <a href="https://github.com/JohnTimothyCruz" target="_blank"><i className="fa-brands fa-github fa-xl" /></a>
             </div>
             <div id="about-close-button" onClick={() => closeModal()}>OK</div>
         </div>

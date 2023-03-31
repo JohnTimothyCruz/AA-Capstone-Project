@@ -32,7 +32,7 @@ const EditFlashcards = () => {
         }
     }
     const chosenDeck = getChoseDeck()
-
+console.log(type)
     const [editing, setEditing] = useState(false)
     const [deckTitle, setDeckTitle] = useState(chosenDeck?.name)
 
@@ -86,9 +86,6 @@ const EditFlashcards = () => {
             setEditing(false)
         }
     }
-
-    // if (classes?.allClasses && !classes.allClasses[params.id]?.id) history.push("/dashboard/loading")
-    // if (userRelatedClasses.length && !classes.allClasses[params?.class_id]) console.log("!!!")
 
     return (
         <div id="edit-flashcards-container">
@@ -162,11 +159,13 @@ const EditFlashcards = () => {
                             Preview Cards
                         </p>
                     </div>
-                    <div className={`deck-flashcards-option ${type === "edit" ? "chosen" : ""}`} onClick={() => setType("edit")}>
-                        <p>
-                            Edit Cards
-                        </p>
-                    </div>
+                    {session?.user?.id === chosenClass?.user_id &&
+                        <div className={`deck-flashcards-option ${type === "edit" ? "chosen" : ""}`} onClick={() => setType("edit")}>
+                            <p>
+                                Edit Cards
+                            </p>
+                        </div>
+                    }
                     <div className={`deck-flashcards-option ${type === "browse" ? "chosen" : ""}`} onClick={() => setType("browse")}>
                         <p>
                             Browse Deck
@@ -188,9 +187,11 @@ const EditFlashcards = () => {
                             </div>
                         }
                     </div>
-                    <div className={`deck-option-display ${type === "edit" ? "" : "hidden"}`}>
-                        <EditCards props={[chosenDeck?.flashcards, chosenDeck]} />
-                    </div>
+                    {session?.user?.id === chosenClass?.user_id &&
+                        <div className={`deck-option-display ${type === "edit" ? "" : "hidden"}`}>
+                            <EditCards props={[chosenDeck?.flashcards, chosenDeck]} />
+                        </div>
+                    }
                     <div className={`deck-option-display ${type === "browse" ? "" : "hidden"}`}>
                         <BrowseDeck props={[chosenDeck, setType]} />
                     </div>

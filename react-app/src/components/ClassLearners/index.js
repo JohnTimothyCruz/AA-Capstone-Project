@@ -13,7 +13,7 @@ const ClassLearners = ({ props }) => {
     const [copied, setCopied] = useState(false)
 
     const copyTo = () => {
-        navigator.clipboard.writeText("(link goes here)");
+        navigator.clipboard.writeText(`https://brainbash.onrender.com/classes/${chosenClass?.id}`);
 
         setCopied(true)
     }
@@ -35,14 +35,6 @@ const ClassLearners = ({ props }) => {
                 <p id="learner-cards" className="learner-info-bar-header">Cards Studied</p>
                 <p id="learner-permission" className="learner-info-bar-header">Cards Permission</p>
             </div>
-            {/* <div id="selected-learners-options">
-                <div id="selected-learners-options-left">
-                    <p>Bulk actions for 1 selected Learner(s)</p>
-                </div>
-                <div id="selected-learners-options-right">
-                    <i className="fa-solid fa-angle-up" />
-                </div>
-            </div> */}
             <div id="learners-container">
                 {chosenClass?.learners && chosenClass.learners.map((learner, idx) => (
                     <SingleLearner props={[learner]} key={idx} />
@@ -68,7 +60,7 @@ const ClassLearners = ({ props }) => {
                     <p>SHARE LINK:</p>
                     <div id="link-container">
                         <i className="fa-solid fa-link" />
-                        <p>Link goes here</p>
+                        <p>{`https://brainbash.onrender.com/classes/${chosenClass?.id}`}</p>
                     </div>
                     <div id="copy-container" className={copied ? "copied" : ""} onClick={() => copyTo()}>
                         {copied ?
