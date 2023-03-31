@@ -108,7 +108,7 @@ const SingleDeck = ({ props }) => {
                         }
                     </div>
                 </div>
-                {session?.user?.id === chosenClass?.user?.id &&
+                {session?.user?.id === chosenClass?.user_id &&
                     <div
                         onClick={(e) => {
                             e.stopPropagation()
