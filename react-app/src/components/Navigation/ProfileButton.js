@@ -5,6 +5,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { useHistory } from "react-router-dom";
+import AboutModal from "../AboutModal";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -18,19 +19,19 @@ function ProfileButton({ user }) {
     setShowMenu(true);
   };
 
-  // useEffect(() => {
-  //   if (!showMenu) return;
+  useEffect(() => {
+    if (!showMenu) return;
 
-  //   const closeMenu = (e) => {
-  //     if (!ulRef.current?.contains(e.target)) {
-  //       setShowMenu(false);
-  //     }
-  //   };
+    const closeMenu = (e) => {
+      if (!ulRef.current?.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
 
-  //   document.addEventListener("click", closeMenu);
+    document.addEventListener("click", closeMenu);
 
-  //   return () => document.removeEventListener("click", closeMenu);
-  // }, [showMenu]);
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -43,10 +44,11 @@ function ProfileButton({ user }) {
   return (
     <>
       <div id="navbar-options-container">
-        <div className="navbar-option">
-          {user && <div onClick={() => history.push('/dashboard')}>
-            My Classes
-          </div>
+        <div className="navbar-option" onClick={() => history.push('/dashboard')}>
+          {user &&
+            <div>
+              My Classes
+            </div>
           }
         </div>
         <div className={`navbar-option`} onClick={() => history.push("/classes")}>
@@ -54,7 +56,10 @@ function ProfileButton({ user }) {
             Find Flashcards
           </div>
         </div>
-        <div className="navbar-option">About</div>
+        <OpenModalButton
+          buttonText="About"
+          modalComponent={<AboutModal />}
+        />
       </div>
       {user ? (
         <>
@@ -69,7 +74,6 @@ function ProfileButton({ user }) {
               </div>
             </div>
             <div className="user-menu-section" onClick={() => history.push(`/profiles/${user?.id}`)}>View Profile</div>
-            <div className="user-menu-section">My Account</div>
             <div className="user-menu-section" onClick={(e) => handleLogout(e)}>Log Out</div>
           </div>
           <div id="orange-box"></div>
