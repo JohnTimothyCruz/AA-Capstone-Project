@@ -2,6 +2,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 500px;
+    background: linear-gradient(45deg,
+            white 0px, white 50px,
+            rgb(39, 63, 97) 50px, rgb(39, 63, 97) 100px,
+            white 100px, white 150px
+            /* rgb(48, 79, 121) 150px, rgb(48, 79, 121) 200px */
+            /* white 200px, white 100% */
+            /* rgb(48, 79, 121) 8%, rgb(48, 79, 121) 16%, */
+            /* rgb(84, 137, 211) 16%, rgb(84, 137, 211) 24%, */
+        );
+}
+
+#all-classes-prompt {
+    color: rgb(56, 56, 56);
+    margin: 20px 0px 0px 0px;
+}
+
+#all-classes-explanation {
+    font-weight: 300;
+    margin: 0px 0px 20px 0px;
 }
 
 #classes-container {
@@ -13,18 +33,57 @@
 
 .class-card-container {
     display: flex;
-    align-items: center;
     padding: 20px;
     gap: 20px;
     border-radius: 5px;
-    background-color: grey;
+    background-color: rgb(226, 226, 226);
     width: 100%;
+    cursor: pointer;
+}
+
+.class-card-container:hover {
+    background-color: rgb(198, 225, 235);
 }
 
 .class-card-image {
     height: 138px;
 }
 
-.class-card-caret-right {
+.class-card-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
+.class-card-info-container * {
+    margin: 0px;
+}
+
+.class-card-class-name {
+    font-weight: 300;
+    color: rgb(0, 162, 255);
+}
+
+.class-card-class-decks,
+.class-card-class-creator {
+    font-size: 13px;
+    color: rgb(126, 126, 126);
+}
+
+.class-card-class-creator-name {
+    color: rgb(0, 162, 255);
+}
+
+.class-card-class-stats {
+    font-size: 14px;
+    color: rgb(61, 61, 61);
+}
+
+.class-card-caret-right {
+    flex-grow: 1;
+    align-self: center;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    color: rgb(0, 162, 255);
 }

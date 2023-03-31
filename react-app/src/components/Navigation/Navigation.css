@@ -16,6 +16,7 @@
   justify-content: space-between;
   align-items: center;
   z-index: 100;
+  border-bottom: 1px solid rgb(180, 180, 180);
 }
 
 #takes-up-space {
@@ -159,16 +160,16 @@
 .user-menu-section {
   display: flex;
   align-items: center;
-  padding: 12px 18px;
-  background-color: rgba(230, 230, 230, 0.87);
+  padding: 12px 10px;
+  background-color: rgb(230, 230, 230);
 }
 
 .user-menu-section:not(#user-menu-section-top) {
+  border-left: 5px solid rgba(255, 0, 0, 0);
   font-size: 13px;
   cursor: pointer;
 }
 
 .user-menu-section:not(#user-menu-section-top):hover {
   border-left: 5px solid grey;
-  padding-left: 13px;
 }

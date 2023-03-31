@@ -1,0 +1,67 @@
+#user-profile-page {
+    width: 100%;
+}
+
+#user-profile-banner {
+    background-color: rgb(48, 79, 121);
+    padding: 70px 56px;
+}
+
+#user-profile-username {
+    color: white;
+    margin: 0px;
+    font-weight: 500;
+}
+
+#user-profile-created-classes-container,
+#user-profile-enrolled-classes-container {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 56px;
+}
+
+.user-profile-classes-number {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0px 0px 15px 0px;
+}
+
+.user-profile-enrolled-classes {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.user-profile-class-container {
+    display: flex;
+    gap: 15px;
+    background-color: rgba(240, 240, 240, 0.596);
+    border-radius: 5px;
+    padding: 15px;
+    width: 250px;
+    cursor: pointer;
+}
+
+.user-profile-class-image {
+    height: 54px;
+    width: 54px;
+    border-radius: 5px;
+}
+
+.user-profile-class-container p {
+    margin: 0px;
+}
+
+.user-profile-class-name {
+    width: 185px;
+    font-weight: 500;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.user-profile-class-stats {
+    font-weight: 300;
+    font-size: 14px;
+}

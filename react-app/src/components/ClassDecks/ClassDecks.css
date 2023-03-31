@@ -99,10 +99,6 @@
     border: none;
 }
 
-/* .deck-container-right.empty button {
-    display: none;
-} */
-
 .deck-container-right button i {
     display: flex;
     align-items: center;

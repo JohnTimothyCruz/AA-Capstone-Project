@@ -1,4 +1,4 @@
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import CreateClassModal from "../CreateClassModal";
 import "./Sidebar.css"
@@ -28,6 +28,7 @@ const Sidebar = ({ props }) => {
                 </div>
             </div>
             <div className="dashboard-side-bar-bottom">
+                <i className="fa-solid fa-magnifying-glass fa-lg" onClick={() => history.push("/classes")}/>
                 <OpenModalButton
                     modalComponent={<CreateClassModal props={[session?.user?.id]} />}
                     buttonText={<i className="fa-solid fa-circle-plus fa-xl" />}
