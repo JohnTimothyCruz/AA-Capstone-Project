@@ -47,10 +47,12 @@ const SingleDeck = ({ props }) => {
                         buttonText={<i className="fa-solid fa-glasses fa-lg" />}
                     />
                 </div>
-                <i onClick={(e) => {
-                    e.stopPropagation()
-                    history.push(`/dashboard/classes/${chosenClass.id}/decks/${deck.id}/flashcards/edit`)
-                }} className="deck-container-right-icons deck-container-edit fa-solid fa-pencil fa-lg" />
+                {session?.user?.id === chosenClass?.user?.id &&
+                    <i onClick={(e) => {
+                        e.stopPropagation()
+                        history.push(`/dashboard/classes/${chosenClass.id}/decks/${deck.id}/flashcards/edit`)
+                    }} className="deck-container-right-icons deck-container-edit fa-solid fa-pencil fa-lg" />
+                }
                 <i onClick={(e) => {
                     e.stopPropagation()
                     setShowMenu(true)
@@ -59,7 +61,7 @@ const SingleDeck = ({ props }) => {
                     <div className={`deck-pop-up-container ${showMenu ? "" : "hidden"}`}>
                         {session?.user?.id === chosenClass?.user?.id ?
                             <div>
-                                <div className="deck-pop-up-section" onClick={(e) => e.stopPropagation()}>
+                                <div className="deck-pop-up-section" onClick={(e) => {e.stopPropagation()}}>
                                     <OpenModalButton
                                         buttonText={
                                             <>
@@ -92,7 +94,7 @@ const SingleDeck = ({ props }) => {
                                 </div>
                             </div>
                             :
-                            <div onClick={(e) => e.stopPropagation()}>
+                            <div className="deck-pop-up-section" onClick={(e) => e.stopPropagation()}>
                                 <OpenModalButton
                                     buttonText={
                                         <>
@@ -106,14 +108,16 @@ const SingleDeck = ({ props }) => {
                         }
                     </div>
                 </div>
-                <div
-                    onClick={(e) => {
-                        e.stopPropagation()
-                        history.push(`/dashboard/classes/${chosenClass.id}/decks/${deck.id}/flashcards/edit`)
-                    }}
-                    className="deck-container-add">
-                    ADD CARDS
-                </div>
+                {session?.user?.id === chosenClass?.user?.id &&
+                    <div
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            history.push(`/dashboard/classes/${chosenClass.id}/decks/${deck.id}/flashcards/edit`)
+                        }}
+                        className="deck-container-add">
+                        ADD CARDS
+                    </div>
+                }
                 <i className="deck-container-right-icons deck-container-study fa-solid fa-circle-play fa-lg" />
                 <i onClick={(e) => {
                     e.stopPropagation()

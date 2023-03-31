@@ -17,7 +17,6 @@ const Sidebar = ({ props }) => {
                 <div className="user-icon-container">
                     <i onClick={() => history.push("/")} className="dashboard-logo-icon fa-solid fa-robot fa-2xl" />
                     <i onClick={() => history.push(`/profiles/${session?.user?.id}`)} className="fa-regular fa-circle-user fa-2xl" />
-                    <i className="fa-solid fa-gear fa-2xl" />
                 </div>
                 <div id="user-classes-list">
                     {userRelatedClasses && userRelatedClasses.map((c, idx) => (
