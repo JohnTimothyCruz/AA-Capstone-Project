@@ -18,7 +18,6 @@ const UserProfile = () => {
         let num = 0
         if (a_class?.decks?.length) {
             for (const deck of a_class?.decks) {
-                console.log(deck)
                 num += deck?.flashcards?.length
             }
         }
@@ -37,7 +36,8 @@ const UserProfile = () => {
     const getUserEnrolledClasses = () => {
         const arr = []
         for (const a_class of session?.user?.learning) {
-            if (session?.user?.id === a_class?.user_id && session?.user?.id !== a_class?.user?.id) {
+            console.log(a_class)
+            if (session?.user?.id !== allClasses[a_class?.class_id].user_id) {
                 arr.push(allClasses[a_class?.class_id])
             }
         }
