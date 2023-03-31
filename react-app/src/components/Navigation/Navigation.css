@@ -87,6 +87,7 @@
   gap: 40px;
 }
 
+#navbar-options-container button,
 .navbar-option {
   height: 67px;
   font-size: 13px;
@@ -98,6 +99,7 @@
   transition: border-top 1s;
 }
 
+#navbar-options-container button:hover,
 .navbar-option.selected,
 .navbar-option:hover {
   border-top: 5px solid grey;
@@ -138,7 +140,8 @@
   top: 72px;
   right: 165px;
   width: 222px;
-  border-top: 1px solid rgb(240, 240, 240);;
+  border-top: 1px solid rgb(240, 240, 240);
+  ;
 }
 
 #user-menu-section-top {
