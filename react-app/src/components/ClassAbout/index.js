@@ -19,7 +19,7 @@ const ClassAbout = ({ props }) => {
 
     useEffect(() => {
         dispatch(getClasses())
-    }, [preview])
+    }, [dispatch, preview])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -213,8 +213,9 @@ const ClassAbout = ({ props }) => {
                 <p className="about-page-preview-title">Headline</p>
                 {chosenClass?.objective ||
                     <p className="about-page-preview-text">
-                        {"This class was created by Brainscape user" + " "}
-                        <span
+                        <span>
+                            This class was created by Brainscape user
+                        </span> <span
                             id="class-about-creator"
                             onClick={() => history.push(`/profiles/${chosenClass?.user_id}`)}
                         >{chosenClass?.user?.username}</span>

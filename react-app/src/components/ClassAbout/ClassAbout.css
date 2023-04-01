@@ -301,3 +301,7 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
+#class-about-creator:hover {
+    color: rgb(0, 136, 214);
+}

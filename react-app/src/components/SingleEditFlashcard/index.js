@@ -148,7 +148,6 @@ const SingleEditFlashcard = ({ props }) => {
                         {errors.map((error, idx) => (
                             <>
                             <div className="edit-cards-error" key={idx}>{error}</div>
-                            {console.log(error)}
                             </>
                         ))}
                     </div>

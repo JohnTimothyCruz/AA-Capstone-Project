@@ -25,14 +25,14 @@ const EditFlashcards = () => {
     const getChoseDeck = () => {
         if (chosenClass?.decks) {
             for (const deck of chosenClass?.decks) {
-                if (deck.id == params?.deck_id) {
+                if (deck.id === params?.deck_id) {
                     return deck
                 }
             }
         }
     }
     const chosenDeck = getChoseDeck()
-console.log(type)
+
     const [editing, setEditing] = useState(false)
     const [deckTitle, setDeckTitle] = useState(chosenDeck?.name)
 
@@ -95,7 +95,7 @@ console.log(type)
                     <div id="deck-flashcards-header-left">
                         <div id="header-left-class" onClick={() => history.push(`/dashboard/classes/${chosenClass?.id}`)}>
                             <i className="fa-solid fa-angle-left" />
-                            <img id="deck-header-class-image" src={chosenClass?.image} />
+                            <img id="deck-header-class-image" src={chosenClass?.image} alt="class"/>
                             <p>{chosenClass?.name}</p>
                         </div>
                         {editing ?
