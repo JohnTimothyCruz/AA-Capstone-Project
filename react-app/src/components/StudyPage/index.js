@@ -19,6 +19,7 @@ const StudyPage = () => {
     const [revealed, setRevealed] = useState(false);
 
     useEffect(async () => {
+        // Warning with await in use Effect
         const chosenDeck = await dispatch(getDeck(params.id))
         setCurrentCard(chosenDeck?.flashcards[0])
         setChosenDeck(chosenDeck)

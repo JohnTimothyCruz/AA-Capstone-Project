@@ -11,7 +11,6 @@ function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
-  const [findingFlashcards, setFindingFlasshcards] = useState(false)
   const ulRef = useRef();
 
   const openMenu = () => {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SingleEditFlashcard from "../SingleEditFlashcard"
 import OpenModalButton from "../OpenModalButton";
 import DeleteFlashcardModal from "../DeleteFlashcardModal"

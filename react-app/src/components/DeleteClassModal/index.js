@@ -7,17 +7,8 @@ import "./DeleteClassModal.css"
 const DeleteClassModal = ({ props }) => {
     const history = useHistory()
     const dispatch = useDispatch()
-    const [chosenClass, session, getUserRelatedClasses, type] = props
+    const [chosenClass, session, type] = props
     const { closeModal } = useModal();
-
-    const findAnotherClass = () => {
-        for (const c of Object.values(getUserRelatedClasses())) {
-            if (c) {
-                history.push(`/dashboard/classes/${c.id}`)
-            }
-        }
-        history.push("/dashboard/loading")
-    }
 
     const getLearnerId = () => {
         if (chosenClass) {

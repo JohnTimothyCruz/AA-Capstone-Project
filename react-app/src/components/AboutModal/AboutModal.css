@@ -42,6 +42,12 @@
     font-size: 17px;
     color: rgb(107, 107, 107);
     text-align: center;
+    padding: 10px 0px 20px 0px;
+}
+
+#about-me-container a {
+    text-decoration: none;
+    color: black;
 }
 
 #about-me-container i {

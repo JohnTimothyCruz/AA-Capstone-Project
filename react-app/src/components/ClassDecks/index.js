@@ -1,11 +1,9 @@
-import { useHistory } from "react-router-dom";
 import CreateDeckModal from "../CreateDeckModal";
 import OpenModalButton from "../OpenModalButton";
 import SingleDeck from "../SingleDeck";
 import "./ClassDecks.css"
 
 const ClassDecks = ({ props }) => {
-    const history = useHistory();
     const [session, chosenClass] = props;
 
     return (
