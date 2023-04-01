@@ -1,8 +1,9 @@
-// constants
+// -Action Types---------------
 const SET_USER = "session/SET_USER";
 const GET_USER = "session/GET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 
+// -Actions--------------------
 const setUser = (user) => ({
 	type: SET_USER,
 	payload: user,
@@ -17,8 +18,7 @@ const removeUser = () => ({
 	type: REMOVE_USER,
 });
 
-const initialState = { user: null, otherUser: null };
-
+// -Thunks---------------------
 export const getUser = (id) => async dispatch => {
 	const res = await fetch(`/api/users/${id}`)
 
@@ -122,6 +122,9 @@ export const signUp = (username, first_name, last_name, email, password) => asyn
 	}
 };
 
+// -Reducer--------------------
+const initialState = { user: null, otherUser: null };
+
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:
@@ -130,9 +133,9 @@ export default function reducer(state = initialState, action) {
 			const newState = { ...state }
 			newState.otherUser = action.user
 			return newState
-		case REMOVE_USER:
-			return { user: null };
-		default:
-			return state;
-	}
-}
+			case REMOVE_USER:
+				return { user: null };
+				default:
+					return state;
+				}
+			}

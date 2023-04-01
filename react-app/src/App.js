@@ -12,6 +12,7 @@ import EditFlashcards from "./components/EditFlashcards";
 import AllClassesPage from "./components/AllClassesPage";
 import ClassEnrollPage from "./components/ClassEnrollPage";
 import UserProfile from "./components/UserProfile";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,12 +37,16 @@ function App() {
             <EditFlashcards />
           </Route>
 
-          <Route path="/dashboard/classes/:id" >
+          <Route path="/dashboard/classes/:class_id" >
             <SingleClass />
           </Route>
 
           <Route path="/dashboard" >
             <Dashboard />
+          </Route>
+
+          <Route path="/testing/:class_id" >
+            <Sidebar />
           </Route>
 
           <Route path="/classes/:id" >

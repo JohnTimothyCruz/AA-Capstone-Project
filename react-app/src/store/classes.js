@@ -198,7 +198,6 @@ export const deleteLearner = (class_id, learner_id, user_id) => async dispatch =
     });
 
     if (res.ok) {
-        dispatch(getClasses())
         dispatch(getUser(user_id));
     }
 };
