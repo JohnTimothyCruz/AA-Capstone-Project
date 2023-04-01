@@ -1,10 +1,58 @@
 #homepage {
-    height: 93%;
+    height: calc(100% - 72px);
     width: 100%;
-    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.25),rgba(0, 0, 0, 0.25)), url("https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-7.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
-/* #homepage-image {
-    height: 100%;
-    width: 100%;
-} */
+#homepage * {
+    color: white;
+}
+
+#homepage-text-container {
+    display: flex;
+    flex-direction: column;
+    padding: 57px;
+    width: 1300px;
+}
+
+.homepage-h2 {
+    display: flex;
+    align-items: center;
+    height: 140px;
+    margin: 0px;
+    font-size: 140px;
+    font-weight: 900;
+}
+
+#homepage-h3 {
+    font-weight: 200;
+    font-size: 40px;
+}
+
+#homepage-span {
+    font-weight: 500;
+}
+
+#homepage-button-container {
+    display: flex;
+    gap: 20px;
+}
+
+#find-flashcards-button {
+    padding: 30px 75px;
+    background-color: rgb(0, 162, 255);
+    cursor: pointer;
+}
+
+#homepage-button-container button {
+    padding: 30px 75px;
+    background-color: rgb(236, 236, 236);
+    color: black;
+    border: none;
+    cursor: pointer;
+}
