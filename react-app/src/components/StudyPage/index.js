@@ -1,9 +1,11 @@
 import { useHistory, useParams } from "react-router-dom"
 import "./StudyPage.css"
 import { useDispatch, useSelector } from "react-redux"
+import OpenModalButton from "../OpenModalButton";
 import { useEffect } from "react"
 import { getDeck } from "../../store/decks"
 import { useState } from "react"
+import PreviewFlashcardsModal from "../PreviewFlashcardsModal";
 
 const StudyPage = () => {
     const dispatch = useDispatch()
@@ -73,12 +75,15 @@ const StudyPage = () => {
                         </div>
                     </div>
                     <div id="study-page-deck-info-right">
-                        {/* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */}
+                        <OpenModalButton
+                            modalComponent={<PreviewFlashcardsModal props={[chosenDeck]} />}
+                            buttonText="SEE ALL CARDS IN THIS DECK"
+                        />
                     </div>
                 </div>
                 <div id="study-page-flashcard-container">
                     <div id="study-flashcard-top"></div>
-                    <div id="study-flashcard-question-container">
+                    <div id="study-flashcard-question-container" className={!revealed && "solo"}>
                         <p className="study-flashcard-letter">Q</p>
                         <div className="study-flashcard-prompt">
                             <div className="study-flashcard-text">{currentCard?.question}</div>

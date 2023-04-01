@@ -144,8 +144,11 @@
 #study-page-deck-info-container {
     align-self: flex-start;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-weight: 400;
     font-size: 12px;
+    width: 100%;
     color: grey;
 }
 
@@ -159,8 +162,24 @@
     color: black;
 }
 
+#study-page-deck-info-right button {
+    background: none;
+    border: none;
+    font-size: 12px;
+    color: rgb(26, 143, 211);
+    cursor: pointer;
+    padding: 2px 15px;
+    border-radius: 10px;
+    transition: background-color 0.2s;
+}
+
+#study-page-deck-info-right button:hover {
+    background-color: rgb(230, 230, 230);
+}
+
 /* Flashcard stuff */
 #study-page-flashcard-container {
+    flex-grow: 1;
     align-self: center;
     justify-self: center;
     display: flex;
@@ -185,8 +204,13 @@
 #study-flashcard-answer-container {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     width: 100%;
     justify-content: center;
+}
+
+#study-flashcard-question-container.solo {
+    padding-bottom: 90px;
 }
 
 #study-flashcard-answer-container .study-flashcard-letter {
@@ -210,7 +234,6 @@
     align-items: center;
     flex-grow: 1;
     font-weight: 400;
-    padding-bottom: 50px;
 }
 
 .study-flashcard-text {
