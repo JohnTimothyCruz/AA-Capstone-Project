@@ -28,3 +28,10 @@ Check it out: [Brainbash](https://brainbash.onrender.com/)
 </ul>
 
 ## Splash Page
+![image](https://user-images.githubusercontent.com/112726832/229265146-e5d858ce-59a0-42ee-a133-4ae06bede983.png)
+
+## Dashboard Page
+![image](https://user-images.githubusercontent.com/112726832/229265185-83aea112-951c-4782-8ac3-47ba7d8dc34f.png)
+
+## Study Page
+![image](https://user-images.githubusercontent.com/112726832/229265749-7c28bde7-a809-4ddb-b33c-904fa5f6d589.png)
