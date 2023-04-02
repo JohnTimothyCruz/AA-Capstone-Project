@@ -65,6 +65,7 @@ const StudyPage = () => {
                     </div>
                 </div>
             </div>
+            <div id="study-sidebar-space"></div>
             <div id="study-page">
                 <div id="study-page-deck-info-container">
                     <div id="study-page-deck-info-left">
