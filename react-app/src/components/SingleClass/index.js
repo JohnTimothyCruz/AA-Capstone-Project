@@ -44,8 +44,6 @@ const SingleClass = () => {
         return res
     }
 
-    const userRelatedClasses = getUserRelatedClasses()
-
     if (!classes.allClasses[params.classId]?.id) history.push("/dashboard/loading")
 
     return (

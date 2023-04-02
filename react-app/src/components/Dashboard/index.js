@@ -62,7 +62,7 @@ const Dashboard = () => {
                     <h3 id="no-classes-page-explaination">Your library is empty.</h3>
                     <p>You can create your own class, or browse Brain Bash's catalog of flashcard classes covering thousands of subjects.</p>
                     <div id="dashboard-find-create-button-container">
-                        <div id="dashboard-find-flashcards-button">FIND FLASHCARDS</div>
+                        <div id="dashboard-find-flashcards-button" onClick={() => history.push("/classes")}>FIND FLASHCARDS</div>
                         <OpenModalButton
                             buttonText="CREATE A NEW CLASS"
                             modalComponent={<CreateClassModal props={[session?.user?.id]} />}

@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import "./BrowseDeck.css"
+import { useHistory } from "react-router-dom";
 
 const BrowseDeck = ({ props }) => {
+    const history = useHistory()
     const [session, chosenClass, chosenDeck, setType] = props;
     const [cardNumber, setCardNumber] = useState(0)
-    const [currentCard, setCurrentCard] = useState(chosenDeck?.flashcards[cardNumber]);
+    const [currentCard, setCurrentCard] = useState(chosenDeck?.flashcards?.cardNumber);
     const [revealed, setRevealed] = useState(false);
 
     useEffect(() => {
-        setCurrentCard(chosenDeck?.flashcards[cardNumber])
+        setCurrentCard(chosenDeck?.flashcards && chosenDeck?.flashcards[cardNumber])
     }, [chosenDeck, cardNumber])
 
     const handleChangeCard = (n) => {
@@ -80,7 +82,7 @@ const BrowseDeck = ({ props }) => {
                     {session?.user?.id === chosenClass?.user_id ?
                         <>
                             <p id="browse-empty-explaination">This Deck has no cards yet. Click Add Cards below to get started.</p>
-                            <div id="browse-add-cards-button" onClick={() => setType("edit")}>ADD CARDS</div>
+                            <div id="browse-add-cards-button" onClick={() => history.push(`/dashboard/classes/${chosenDeck?.class_id}/decks/${chosenDeck?.id}/flashcards/edit`)}>ADD CARDS</div>
                         </>
                         :
                         <p id="browse-empty-explaination">This Deck has no cards yet. If you know the class owner, please ask them to create cards to study.</p>

@@ -6,6 +6,13 @@
     min-width: 102px;
     gap: 40px;
     justify-content: space-between;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+}
+
+#sidebar-space {
+    width: 102px;
 }
 
 .dashboard-side-bar-top {
