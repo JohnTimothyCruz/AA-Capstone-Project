@@ -191,8 +191,9 @@ const EditFlashcards = () => {
                                 </div> */}
                                 <div id="edit-cards-right">
                                     <div id="edit-cards-flashcards-container">
-                                        {chosenDeck?.flashcards?.length && chosenDeck?.flashcards.map((flashcard, idx) => (
+                                        {chosenDeck?.flashcards?.length ? chosenDeck?.flashcards.map((flashcard, idx) => (
                                             <div className="single-flashcard-container" key={idx}>
+                                                {console.log(flashcard, idx + 1)}
                                                 <h2>{idx + 1}</h2>
                                                 <SingleEditFlashcard props={[flashcard, "edit", chosenDeck, idx]} />
                                                 <OpenModalButton
@@ -200,7 +201,10 @@ const EditFlashcards = () => {
                                                     buttonText={<i className="single-flashcard-delete-flashcard fa-solid fa-xmark" />}
                                                 />
                                             </div>
-                                        ))}
+                                        ))
+                                            :
+                                            <div></div>
+                                        }
                                         <div className="single-flashcard-container new">
                                             <h3>New Card</h3>
                                             <SingleEditFlashcard props={[null, "create", chosenDeck, "new"]} />
