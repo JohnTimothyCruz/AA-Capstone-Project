@@ -16,7 +16,7 @@ const ClassEnrollPage = () => {
     const chosenClass = useSelector(state => state.classes.singleClass)
 
     useEffect(() => {
-        dispatch(getClass(params?.id))
+        dispatch(getClass(params.classId))
     }, [dispatch])
 
     const checkUser = () => {

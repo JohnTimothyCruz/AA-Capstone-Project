@@ -17,7 +17,7 @@ const SingleClass = () => {
 
     const session = useSelector(state => state.session)
     const classes = useSelector(state => state.classes)
-    const chosenClass = classes.allClasses[params.class_id]
+    const chosenClass = classes.allClasses[params.classId]
 
     useEffect(() => {
         dispatch(getClasses())
@@ -46,7 +46,7 @@ const SingleClass = () => {
 
     const userRelatedClasses = getUserRelatedClasses()
 
-    if (!classes.allClasses[params.class_id]?.id) history.push("/dashboard/loading")
+    if (!classes.allClasses[params.classId]?.id) history.push("/dashboard/loading")
 
     return (
         <div className="dashboard-container">

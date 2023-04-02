@@ -20,7 +20,7 @@ const StudyPage = () => {
 
     useEffect(async () => {
         // Warning with await in use Effect
-        const chosenDeck = await dispatch(getDeck(params.id))
+        const chosenDeck = await dispatch(getDeck(params.deckId))
         setCurrentCard(chosenDeck?.flashcards[0])
         setChosenDeck(chosenDeck)
     }, [dispatch])

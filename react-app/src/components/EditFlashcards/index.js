@@ -21,11 +21,11 @@ const EditFlashcards = () => {
 
     const session = useSelector(state => state.session)
     const classes = useSelector(state => state.classes)
-    const chosenClass = classes?.allClasses[params?.class_id]
+    const chosenClass = classes?.allClasses[params?.classId]
     const getChoseDeck = () => {
         if (chosenClass?.decks) {
             for (const deck of chosenClass?.decks) {
-                if (deck.id === params?.deck_id) {
+                if (deck.id === params?.deckId) {
                     return deck
                 }
             }
@@ -67,8 +67,8 @@ const EditFlashcards = () => {
         const joinedClasses = session?.user?.learning
         if (joinedClasses) {
             for (const c of Object.values(joinedClasses)) {
-                if (classes?.allClasses[c.class_id]?.user_id !== session?.user?.id) {
-                    res.push(classes?.allClasses[c.class_id])
+                if (classes?.allClasses[c.classId]?.user_id !== session?.user?.id) {
+                    res.push(classes?.allClasses[c.classId])
                 }
             }
         }

@@ -32,7 +32,7 @@ const Sidebar = () => {
                 </div>
                 <div id="user-classes-list">
                     {userRelatedClasses && userRelatedClasses.map((c, idx) => (
-                        <div className={`class-image-container ${parseInt(params?.class_id) === c?.class_id && "selected"}`} onClick={() => swapClass(c)} key={`made ${idx}`}>
+                        <div className={`class-image-container ${parseInt(params?.classId) === c?.class_id && "selected"}`} onClick={() => swapClass(c)} key={`made ${idx}`}>
                             <img className="dashboard-class" src={classes?.allClasses[c?.class_id]?.image} alt="class" ></img>
                         </div>
                     ))}
