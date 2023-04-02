@@ -40,8 +40,8 @@ class Learner(db.Model):
             "cards_studied": self.cards_studied,
             "permission": self.permission,
             "createdAt": self.createdAt,
-            "user": self.user,
-            "class_info": self.class_info
+            "user": self.user.to_dict(),
+            "class_info": self.class_info.to_dict()
         }
 
     def to_dict_no_loop(self):

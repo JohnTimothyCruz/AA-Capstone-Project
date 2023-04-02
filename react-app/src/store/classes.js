@@ -1,4 +1,4 @@
-import { getUser } from "./session"
+import { deleteLearning, getUser, postLearning } from "./session"
 
 // -Action Types---------------
 const GET_CLASSES = "classes/GET_CLASSES"
@@ -8,6 +8,7 @@ const PUT_CLASS = "classes/PUT_CLASS"
 const DELETE_CLASS = "classes/DELETE_CLASS"
 
 const POST_LEARNER = "classes/POST_LEARNER"
+const DELETE_LEARNER = "classes/DELETE_LEARNER"
 
 // -Actions--------------------
 export const readClasses = (classes) => {
@@ -49,6 +50,14 @@ export const createLearner = (learner, class_id) => {
     return {
         type: POST_LEARNER,
         learner,
+        class_id
+    }
+}
+
+export const removeLearner = (learner_id, class_id) => {
+    return {
+        type: DELETE_LEARNER,
+        learner_id,
         class_id
     }
 }
@@ -174,9 +183,8 @@ export const deleteClass = (chosenClass, user_id) => async dispatch => {
     if (res.ok) {
         dispatch(removeClass(chosenClass.id));
         dispatch(getClasses())
-        dispatch(getUser(user_id))
     }
-};
+}
 
 export const postLearner = (class_id, user_id) => async dispatch => {
     const res = await fetch(`/api/classes/${class_id}/learners`, {
@@ -188,8 +196,9 @@ export const postLearner = (class_id, user_id) => async dispatch => {
     if (res.ok) {
         const newLearner = await res.json();
         dispatch(createLearner(newLearner, class_id))
+        dispatch(postLearning(newLearner))
         return newLearner
-    };
+    }
 }
 
 export const deleteLearner = (class_id, learner_id, user_id) => async dispatch => {
@@ -198,6 +207,8 @@ export const deleteLearner = (class_id, learner_id, user_id) => async dispatch =
     });
 
     if (res.ok) {
+        dispatch(removeLearner(learner_id))
+        dispatch(deleteLearning(learner_id))
         dispatch(getUser(user_id));
     }
 };
@@ -227,7 +238,10 @@ const ClassReducer = (state = initialState, action) => {
             delete newState.allClasses[action.id]
             return newState
         case POST_LEARNER:
-            newState.allClasses[action.learner.id] = action.learner
+            newState.allClasses[action.class_id].learners.push(action.learner)
+            return newState
+        case DELETE_LEARNER:
+            delete newState.allClasses[action.learner_id]
             return newState
         default:
             return state

@@ -13,12 +13,11 @@ const Sidebar = () => {
 
     const session = useSelector(state => state?.session)
     const classes = useSelector(state => state?.classes)
+    const userRelatedClasses = session?.user?.learning
 
     useEffect(() => {
         dispatch(getClasses())
     }, [dispatch])
-    const userRelatedClasses = session?.user?.learning
-    console.log(userRelatedClasses)
 
     const swapClass = (c) => {
         history.push(`/dashboard/classes/${c?.class_id}`)
