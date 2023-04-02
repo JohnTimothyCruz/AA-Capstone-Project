@@ -21,11 +21,11 @@ const EditFlashcards = () => {
 
     const session = useSelector(state => state.session)
     const classes = useSelector(state => state.classes)
-    const chosenClass = classes?.allClasses[params?.class_id]
+    const chosenClass = classes?.allClasses[params?.classId]
     const getChoseDeck = () => {
         if (chosenClass?.decks) {
             for (const deck of chosenClass?.decks) {
-                if (deck.id === params?.deck_id) {
+                if (deck.id === parseInt(params?.deckId)) {
                     return deck
                 }
             }
@@ -67,8 +67,8 @@ const EditFlashcards = () => {
         const joinedClasses = session?.user?.learning
         if (joinedClasses) {
             for (const c of Object.values(joinedClasses)) {
-                if (classes?.allClasses[c.class_id]?.user_id !== session?.user?.id) {
-                    res.push(classes?.allClasses[c.class_id])
+                if (classes?.allClasses[c.classId]?.user_id !== session?.user?.id) {
+                    res.push(classes?.allClasses[c.classId])
                 }
             }
         }
@@ -95,7 +95,7 @@ const EditFlashcards = () => {
                     <div id="deck-flashcards-header-left">
                         <div id="header-left-class" onClick={() => history.push(`/dashboard/classes/${chosenClass?.id}`)}>
                             <i className="fa-solid fa-angle-left" />
-                            <img id="deck-header-class-image" src={chosenClass?.image} alt="class"/>
+                            <img id="deck-header-class-image" src={chosenClass?.image} alt="class" />
                             <p>{chosenClass?.name}</p>
                         </div>
                         {editing ?
@@ -182,8 +182,14 @@ const EditFlashcards = () => {
                             :
                             <div id="preview-empty-message-container">
                                 <p id="preview-empty-prompt">Preview Deck not Available</p>
-                                <p id="preview-empty-explaination">This Deck has no cards yet. Click Add Cards below to get started.</p>
-                                <div id="preview-add-cards-button" onClick={() => setType("edit")}>ADD CARDS</div>
+                                {session?.user?.id === chosenClass?.user_id ?
+                                    <>
+                                        <p id="preview-empty-explaination">This Deck has no cards yet. Click Add Cards below to get started.</p>
+                                        <div id="preview-add-cards-button" onClick={() => setType("edit")}>ADD CARDS</div>
+                                    </>
+                                    :
+                                    <p id="preview-empty-explaination">This Deck has no cards yet. If you know the class owner, please ask them to create cards to study.</p>
+                                }
                             </div>
                         }
                     </div>
@@ -193,7 +199,7 @@ const EditFlashcards = () => {
                         </div>
                     }
                     <div className={`deck-option-display ${type === "browse" ? "" : "hidden"}`}>
-                        <BrowseDeck props={[chosenDeck, setType]} />
+                        <BrowseDeck props={[session, chosenClass, chosenDeck, setType]} />
                     </div>
                 </div>
             </div>

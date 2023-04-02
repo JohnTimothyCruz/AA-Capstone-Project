@@ -24,7 +24,7 @@ function App() {
     <>
       {isLoaded && (
         <Switch>
-          <Route path="/study/decks/:id">
+          <Route path="/study/decks/:deckId">
             <StudyPage />
           </Route>
 
@@ -32,11 +32,11 @@ function App() {
             <LoadingClasses />
           </Route>
 
-          <Route path="/dashboard/classes/:class_id/decks/:deck_id/flashcards/:type" >
+          <Route path="/dashboard/classes/:classId/decks/:deckId/flashcards/:type" >
             <EditFlashcards />
           </Route>
 
-          <Route path="/dashboard/classes/:id" >
+          <Route path="/dashboard/classes/:classId" >
             <SingleClass />
           </Route>
 
@@ -44,7 +44,7 @@ function App() {
             <Dashboard />
           </Route>
 
-          <Route path="/classes/:id" >
+          <Route path="/classes/:classId" >
             <Navigation isLoaded={isLoaded} />
             <ClassEnrollPage />
           </Route>
@@ -54,7 +54,7 @@ function App() {
             <AllClassesPage />
           </Route>
 
-          <Route path="/profiles/:id" >
+          <Route path="/profiles/:profileId" >
             <Navigation isLoaded={isLoaded} />
             <UserProfile />
           </Route>

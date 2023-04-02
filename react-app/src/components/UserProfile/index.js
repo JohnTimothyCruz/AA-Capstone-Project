@@ -14,7 +14,7 @@ const UserProfile = () => {
 
     useEffect(() => {
         dispatch(getClasses())
-        dispatch(getOtherUser(params?.id))
+        dispatch(getOtherUser(params.profileId))
     }, [dispatch])
 
     const getCardNumber = (a_class) => {

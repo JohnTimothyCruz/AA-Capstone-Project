@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from flask_login import login_required
 from app.models import db, Class, Learner
 from app.forms import ClassForm, LearnerForm
+from datetime import datetime
 
 class_routes = Blueprint('classes', __name__)
 
@@ -85,7 +86,7 @@ def delete_class(id):
 
     db.session.delete(a_class)
     db.session.commit()
-    
+
     return {"Message": "Delete successful!"}
 
 #Post a learner to a class
@@ -98,12 +99,15 @@ def create_learner(class_id):
     if form.validate_on_submit():
         new_learner = Learner(
             user_id = form.user_id.data,
-            class_id = class_id
+            class_id = class_id,
         )
         db.session.add(new_learner)
         db.session.commit()
 
+        print("this is a test.")
+
         res = Learner.query.get(new_learner.id)
+
         return res.to_dict()
 
     if form.errors:

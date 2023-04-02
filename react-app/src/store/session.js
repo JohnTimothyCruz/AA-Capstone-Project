@@ -1,8 +1,12 @@
-// constants
+// -Action Types---------------
 const SET_USER = "session/SET_USER";
 const GET_USER = "session/GET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 
+const POST_LEARNING = "classes/POST_LEARNING"
+const DELETE_LEARNING = "classes/DELETE_LEARNING"
+
+// -Actions--------------------
 const setUser = (user) => ({
 	type: SET_USER,
 	payload: user,
@@ -17,8 +21,17 @@ const removeUser = () => ({
 	type: REMOVE_USER,
 });
 
-const initialState = { user: null, otherUser: null };
+const createLearning = (learning) => ({
+	type: DELETE_LEARNING,
+	learning
+})
 
+const removeLearning = (learner_id) => ({
+	type: DELETE_LEARNING,
+	learner_id
+})
+
+// -Thunks---------------------
 export const getUser = (id) => async dispatch => {
 	const res = await fetch(`/api/users/${id}`)
 
@@ -122,16 +135,34 @@ export const signUp = (username, first_name, last_name, email, password) => asyn
 	}
 };
 
+export const postLearning = (learner) => async dispatch => {
+	dispatch(createLearning(learner))
+}
+
+export const deleteLearning = (learning_id) => async dispatch => {
+	dispatch(removeLearning(learning_id))
+}
+
+// -Reducer--------------------
+const initialState = { user: null, otherUser: null };
+
 export default function reducer(state = initialState, action) {
+	const newState = { ...state }
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
 		case GET_USER:
-			const newState = { ...state }
 			newState.otherUser = action.user
 			return newState
 		case REMOVE_USER:
 			return { user: null };
+		case POST_LEARNING:
+			newState.user.learning.push(action.learner)
+			return newState
+		case DELETE_LEARNING:
+			const updatedLearning = newState.user.learning.filter(learner => learner.id !== action.learner_id)
+			newState.user.learning = updatedLearning
+			return newState
 		default:
 			return state;
 	}
