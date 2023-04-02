@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./BrowseDeck.css"
 
 const BrowseDeck = ({ props }) => {
-    const [chosenDeck, setType] = props;
+    const [session, chosenClass, chosenDeck, setType] = props;
     const [cardNumber, setCardNumber] = useState(0)
     const [currentCard, setCurrentCard] = useState(chosenDeck?.flashcards[cardNumber]);
     const [revealed, setRevealed] = useState(false);
@@ -30,11 +30,11 @@ const BrowseDeck = ({ props }) => {
                             <div id="browse-deck-flashcard-top">
                                 {`Card ${cardNumber + 1} of ${chosenDeck?.flashcards?.length}`}
                             </div>
-                                {revealed ?
-                                    <p className="letter-at-top-left">A</p>
-                                    :
-                                    <p className="letter-at-top-left">Q</p>
-                                }
+                            {revealed ?
+                                <p className="letter-at-top-left">A</p>
+                                :
+                                <p className="letter-at-top-left">Q</p>
+                            }
                             <div id="browse-deck-flashcard-bottom">
                                 {revealed ?
                                     <>
@@ -77,8 +77,14 @@ const BrowseDeck = ({ props }) => {
                 :
                 <div id="browse-empty-message-container">
                     <p id="browse-empty-prompt">Browse Deck not Available</p>
-                    <p id="browse-empty-explaination">This Deck has no cards yet. Click Add Cards below to get started.</p>
-                    <div id="browse-add-cards-button" onClick={() => setType("edit")}>ADD CARDS</div>
+                    {session?.user?.id === chosenClass?.user_id ?
+                        <>
+                            <p id="browse-empty-explaination">This Deck has no cards yet. Click Add Cards below to get started.</p>
+                            <div id="browse-add-cards-button" onClick={() => setType("edit")}>ADD CARDS</div>
+                        </>
+                        :
+                        <p id="browse-empty-explaination">This Deck has no cards yet. If you know the class owner, please ask them to create cards to study.</p>
+                    }
                 </div>
             }
         </div>

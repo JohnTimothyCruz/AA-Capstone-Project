@@ -5,6 +5,7 @@ import "./Sidebar.css"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getClasses } from "../../store/classes";
+import { authenticate } from "../../store/session";
 
 const Sidebar = () => {
     const dispatch = useDispatch()
@@ -17,6 +18,7 @@ const Sidebar = () => {
 
     useEffect(() => {
         dispatch(getClasses())
+        dispatch(authenticate())
     }, [dispatch])
 
     const swapClass = (c) => {

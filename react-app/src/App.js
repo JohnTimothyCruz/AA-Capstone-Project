@@ -12,7 +12,6 @@ import EditFlashcards from "./components/EditFlashcards";
 import AllClassesPage from "./components/AllClassesPage";
 import ClassEnrollPage from "./components/ClassEnrollPage";
 import UserProfile from "./components/UserProfile";
-import Sidebar from "./components/Sidebar";
 
 function App() {
   const dispatch = useDispatch();
