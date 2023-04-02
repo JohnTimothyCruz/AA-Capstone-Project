@@ -25,7 +25,7 @@ const EditFlashcards = () => {
     const getChoseDeck = () => {
         if (chosenClass?.decks) {
             for (const deck of chosenClass?.decks) {
-                if (deck.id === params?.deckId) {
+                if (deck.id === parseInt(params?.deckId)) {
                     return deck
                 }
             }
