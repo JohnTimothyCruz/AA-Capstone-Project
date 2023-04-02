@@ -9,7 +9,9 @@ import PreviewCards from "../PreviewCards";
 import BrowseDeck from "../BrowseDeck";
 import OpenModalButton from "../OpenModalButton";
 import { putDeck } from "../../store/decks"
-import EditCards from "../EditCards";
+import { getDeck } from "../../store/decks";
+import SingleEditFlashcard from "../SingleEditFlashcard";
+import DeleteFlashcardModal from "../DeleteFlashcardModal";
 
 const EditFlashcards = () => {
     const dispatch = useDispatch()
@@ -22,22 +24,14 @@ const EditFlashcards = () => {
     const session = useSelector(state => state.session)
     const classes = useSelector(state => state.classes)
     const chosenClass = classes?.allClasses[params?.classId]
-    const getChoseDeck = () => {
-        if (chosenClass?.decks) {
-            for (const deck of chosenClass?.decks) {
-                if (deck.id === parseInt(params?.deckId)) {
-                    return deck
-                }
-            }
-        }
-    }
-    const chosenDeck = getChoseDeck()
+    const chosenDeck = useSelector(state => state.decks.singleDeck)
 
     const [editing, setEditing] = useState(false)
     const [deckTitle, setDeckTitle] = useState(chosenDeck?.name)
 
     useEffect(() => {
         dispatch(getClasses())
+        dispatch(getDeck(params.deckId))
     }, [dispatch])
 
     useEffect(() => {
@@ -54,30 +48,6 @@ const EditFlashcards = () => {
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
 
-
-    const getUserRelatedClasses = () => {
-        const userClasses = session?.user?.classes
-        const res = []
-        if (userClasses) {
-            for (const c of userClasses) {
-                res.push(classes.allClasses[c.id])
-            }
-        }
-
-        const joinedClasses = session?.user?.learning
-        if (joinedClasses) {
-            for (const c of Object.values(joinedClasses)) {
-                if (classes?.allClasses[c.classId]?.user_id !== session?.user?.id) {
-                    res.push(classes?.allClasses[c.classId])
-                }
-            }
-        }
-
-        return res
-    }
-
-    const userRelatedClasses = getUserRelatedClasses()
-
     const handleRename = (e) => {
         e.preventDefault()
 
@@ -89,7 +59,7 @@ const EditFlashcards = () => {
 
     return (
         <div id="edit-flashcards-container">
-            <Sidebar props={[session, userRelatedClasses, chosenClass]} />
+            <Sidebar />
             <div id="edit-flashcards-right">
                 <div id="deck-flashcards-header">
                     <div id="deck-flashcards-header-left">
@@ -154,26 +124,26 @@ const EditFlashcards = () => {
                     </div>
                 </div>
                 <div id="deck-flashcards-options-menu">
-                    <div className={`deck-flashcards-option ${type === "preview" ? "chosen" : ""}`} onClick={() => setType("preview")}>
+                    <div className={`deck-flashcards-option ${params?.type === "preview" ? "chosen" : ""}`} onClick={() => history.push(`/dashboard/classes/${chosenDeck?.class_id}/decks/${chosenDeck?.id}/flashcards/preview`)}>
                         <p>
                             Preview Cards
                         </p>
                     </div>
                     {session?.user?.id === chosenClass?.user_id &&
-                        <div className={`deck-flashcards-option ${type === "edit" ? "chosen" : ""}`} onClick={() => setType("edit")}>
+                        <div className={`deck-flashcards-option ${params?.type === "edit" ? "chosen" : ""}`} onClick={() => history.push(`/dashboard/classes/${chosenDeck?.class_id}/decks/${chosenDeck?.id}/flashcards/edit`)}>
                             <p>
                                 Edit Cards
                             </p>
                         </div>
                     }
-                    <div className={`deck-flashcards-option ${type === "browse" ? "chosen" : ""}`} onClick={() => setType("browse")}>
+                    <div className={`deck-flashcards-option ${params?.type === "browse" ? "chosen" : ""}`} onClick={() => history.push(`/dashboard/classes/${chosenDeck?.class_id}/decks/${chosenDeck?.id}/flashcards/browse`)}>
                         <p>
                             Browse Deck
                         </p>
                     </div>
                 </div>
                 <div id="deck-flashcards-option-container">
-                    <div className={`deck-option-display preview ${type === "preview" ? "" : "hidden"}`}>
+                    <div className={`deck-option-display preview ${params?.type === "preview" ? "" : "hidden"}`}>
                         {chosenDeck?.flashcards?.length ? chosenDeck?.flashcards.map((flashcard, idx) => (
                             <div key={idx}>
                                 <PreviewCards props={[flashcard, idx]} />
@@ -194,11 +164,54 @@ const EditFlashcards = () => {
                         }
                     </div>
                     {session?.user?.id === chosenClass?.user_id &&
-                        <div className={`deck-option-display ${type === "edit" ? "" : "hidden"}`}>
-                            <EditCards props={[chosenDeck?.flashcards, chosenDeck]} />
+                        <div className={`deck-option-display ${params?.type === "edit" ? "" : "hidden"}`}>
+                            <div id="edit-cards-page">
+                                {/* <div id="edit-cards-left">
+                                    <div id="edit-cards-number-container">
+                                        {chosenDeck?.flashcards?.length && chosenDeck?.flashcards.map((flashcard, idx) => (
+                                            <div
+                                                onClick={() => setSelected(idx)}
+                                                className={`single-flashcard-number-container ${selected === idx ? "selected" : ""}`}
+                                                key={idx}
+                                            >
+                                                <div className="single-flashcard-number">
+                                                    {idx + 1}
+                                                </div>
+                                            </div>
+                                        ))}
+                                        <div
+                                            onClick={() => setSelected("new")}
+                                            className={`single-flashcard-number-container ${selected === "new" ? "selected" : ""}`}
+                                        >
+                                            <div className="single-flashcard-number new">
+                                                New
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> */}
+                                <div id="edit-cards-right">
+                                    <div id="edit-cards-flashcards-container">
+                                        {chosenDeck?.flashcards?.length && chosenDeck?.flashcards.map((flashcard, idx) => (
+                                            <div className="single-flashcard-container" key={idx}>
+                                                <h2>{idx + 1}</h2>
+                                                <SingleEditFlashcard props={[flashcard, "edit", chosenDeck, idx]} />
+                                                <OpenModalButton
+                                                    modalComponent={<DeleteFlashcardModal props={[chosenDeck, flashcard, idx]} />}
+                                                    buttonText={<i className="single-flashcard-delete-flashcard fa-solid fa-xmark" />}
+                                                />
+                                            </div>
+                                        ))}
+                                        <div className="single-flashcard-container new">
+                                            <h3>New Card</h3>
+                                            <SingleEditFlashcard props={[null, "create", chosenDeck, "new"]} />
+                                            <div id="single-flashcard-new-take-space"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     }
-                    <div className={`deck-option-display ${type === "browse" ? "" : "hidden"}`}>
+                    <div className={`deck-option-display ${params?.type === "browse" ? "" : "hidden"}`}>
                         <BrowseDeck props={[session, chosenClass, chosenDeck, setType]} />
                     </div>
                 </div>

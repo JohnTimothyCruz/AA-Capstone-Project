@@ -6,10 +6,10 @@ import { deleteFlashcard } from "../../store/decks";
 const DeleteFlashcardModal = ({ props }) => {
     const dispatch = useDispatch()
     const { closeModal } = useModal();
-    const [flashcard, idx] = props
+    const [chosenDeck, flashcard, idx] = props
 
     const handleDelete = () => {
-        dispatch(deleteFlashcard(flashcard?.id))
+        dispatch(deleteFlashcard(chosenDeck.id, flashcard?.id))
             .then(closeModal)
     }
 

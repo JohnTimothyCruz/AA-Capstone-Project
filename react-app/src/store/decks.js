@@ -48,27 +48,27 @@ export const removeDeck = (id) => {
     }
 }
 
-export const createFlashcard = (flashcard, class_id) => {
+export const createFlashcard = (flashcard, deck_id) => {
     return {
         type: POST_FLASHCARD,
         flashcard,
-        class_id
+        deck_id
     }
 }
 
-export const editFlashcard = (flashcard, class_id) => {
+export const editFlashcard = (flashcard, deck_id) => {
     return {
         type: PUT_FLASHCARD,
         flashcard,
-        class_id
+        deck_id
     }
 }
 
-export const removeFlashcard = (flashcard, class_id) => {
+export const removeFlashcard = (flashcard, deck_id) => {
     return {
         type: DELETE_FLASHCARD,
         flashcard,
-        class_id
+        deck_id
     }
 }
 
@@ -144,6 +144,7 @@ export const postFlashcard = (question, answer, question_image, answer_image, de
 
     if (res.ok) {
         dispatch(getClasses())
+        dispatch(getDeck(deck_id))
     }
 }
 
@@ -156,21 +157,23 @@ export const putFlashcard = (question, answer, question_image, answer_image, dec
 
     if (res.ok) {
         dispatch(getClasses())
+        dispatch(getDeck(deck_id))
     }
 }
 
-export const deleteFlashcard = (id) => async dispatch => {
+export const deleteFlashcard = (deck_id, id) => async dispatch => {
     const res = await fetch(`/api/flashcards/${id}`, {
         method: "DELETE"
     })
 
     if (res.ok) {
         dispatch(getClasses())
+        dispatch(getDeck(deck_id))
     }
 }
 
 // -Reducer--------------------
-const initialState = { allDecks: {}, singleDeck: {} }
+const initialState = { allDecks: {}, singleDeck: {}, flashcards: {} }
 
 const DeckReducer = (state = initialState, action) => {
     const newState = { ...state }
@@ -182,6 +185,7 @@ const DeckReducer = (state = initialState, action) => {
             return newState;
         case GET_DECK:
             newState.singleDeck = action.deck
+            newState.flashcards = action.deck?.flashcards
             return newState;
         case POST_DECK:
             newState.allDecks[action.deck.id] = action.deck
@@ -191,6 +195,21 @@ const DeckReducer = (state = initialState, action) => {
             return newState
         case DELETE_DECK:
             delete newState.allDecks[action.id]
+            return newState
+        case POST_FLASHCARD:
+            newState.allDecks[action.deck_id].flashcards.push(action.flashcard)
+            newState.singleDeck.flashcards.push(action.flashcard)
+            return newState
+        case PUT_FLASHCARD:
+            const putUpdated = newState.allDecks[action.deck_id].flashcards.filter(card => card.id !== action.flashcard.id)
+            putUpdated.push(action.flashcard)
+            newState.allDecks[action.deck_id].flashcards = putUpdated
+            newState.singleDeck.flashcards = putUpdated
+            return newState
+        case DELETE_FLASHCARD:
+            const deleteUpdated = newState.allDecks[action.deck_id].flashcards.filter(card => card.id !== action.flashcard.id)
+            newState.allDecks[action.deck_id].flashcards = deleteUpdated
+            newState.singleDeck[action.deck_id].flashcards = deleteUpdated
             return newState
         default:
             return state

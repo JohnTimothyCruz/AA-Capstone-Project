@@ -2,7 +2,7 @@ import "./PreviewCards.css"
 
 const PreviewCards = ({ props }) => {
     const [flashcard, idx] = props
-    console.log(flashcard)
+
     return (
         <div className="preview-cards-container">
             <div className="preview-single-card-number">

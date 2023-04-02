@@ -26,28 +26,31 @@ const Sidebar = () => {
     }
 
     return (
-        <div className="dashboard-side-bar">
-            <div className="dashboard-side-bar-top">
-                <div className="user-icon-container">
-                    <i onClick={() => history.push("/")} className="dashboard-logo-icon fa-solid fa-robot fa-2xl" />
-                    <i onClick={() => history.push(`/profiles/${session?.user?.id}`)} className="fa-regular fa-circle-user fa-2xl" />
+        <>
+            <div className="dashboard-side-bar">
+                <div className="dashboard-side-bar-top">
+                    <div className="user-icon-container">
+                        <i onClick={() => history.push("/")} className="dashboard-logo-icon fa-solid fa-robot fa-2xl" />
+                        <i onClick={() => history.push(`/profiles/${session?.user?.id}`)} className="fa-regular fa-circle-user fa-2xl" />
+                    </div>
+                    <div id="user-classes-list">
+                        {userRelatedClasses && userRelatedClasses.map((c, idx) => (
+                            <div className={`class-image-container ${parseInt(params?.classId) === c?.class_id && "selected"}`} onClick={() => swapClass(c)} key={`made ${idx}`}>
+                                <img className="dashboard-class" src={classes?.allClasses[c?.class_id]?.image} alt="class" ></img>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-                <div id="user-classes-list">
-                    {userRelatedClasses && userRelatedClasses.map((c, idx) => (
-                        <div className={`class-image-container ${parseInt(params?.classId) === c?.class_id && "selected"}`} onClick={() => swapClass(c)} key={`made ${idx}`}>
-                            <img className="dashboard-class" src={classes?.allClasses[c?.class_id]?.image} alt="class" ></img>
-                        </div>
-                    ))}
+                <div className="dashboard-side-bar-bottom">
+                    <i className="fa-solid fa-magnifying-glass fa-lg" onClick={() => history.push("/classes")} />
+                    <OpenModalButton
+                        modalComponent={<CreateClassModal props={[session?.user?.id]} />}
+                        buttonText={<i className="fa-solid fa-circle-plus fa-xl" />}
+                    />
                 </div>
             </div>
-            <div className="dashboard-side-bar-bottom">
-                <i className="fa-solid fa-magnifying-glass fa-lg" onClick={() => history.push("/classes")} />
-                <OpenModalButton
-                    modalComponent={<CreateClassModal props={[session?.user?.id]} />}
-                    buttonText={<i className="fa-solid fa-circle-plus fa-xl" />}
-                />
-            </div>
-        </div>
+            <div id="sidebar-space"></div>
+        </>
     )
 }
 
