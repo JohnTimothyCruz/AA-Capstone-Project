@@ -12,6 +12,7 @@ import EditFlashcards from "./components/EditFlashcards";
 import AllClassesPage from "./components/AllClassesPage";
 import ClassEnrollPage from "./components/ClassEnrollPage";
 import UserProfile from "./components/UserProfile";
+import NotFoundPage from "./components/NotFoundPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -59,9 +60,14 @@ function App() {
             <UserProfile />
           </Route>
 
-          <Route path="/" >
+          <Route exact path="/" >
             <Navigation isLoaded={isLoaded} />
             <HomePage />
+          </Route>
+
+          <Route path='' >
+            <Navigation isLoaded={isLoaded} />
+            <NotFoundPage />
           </Route>
         </Switch>
       )}
