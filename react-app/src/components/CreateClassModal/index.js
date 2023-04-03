@@ -34,9 +34,12 @@ const CreateClassModal = ({ props }) => {
                     onChange={(e) => setClassName(e.target.value)}
                 />
                 <p id="create-class-input-text">Enter the title of your new class above</p>
+                {className?.length > 250 &&
+                <div id="create-class-input-error">Sorry, but your class title must be less than 250 characters.</div>
+                }
                 <button
                     id="create-class-form-button"
-                    disabled={!className}
+                    disabled={!className || className?.length > 250}
                 >C O N T I N U E</button>
             </form>
         </div>
