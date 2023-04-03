@@ -55,7 +55,7 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard-container">
-            <Sidebar props={[session, userRelatedClasses, null]}/>
+            <Sidebar />
             <div id="dashboard-no-classes-container">
                 <div id="no-classes-page">
                     <h2 id="no-classes-page-prompt">Add Classes to your Library</h2>

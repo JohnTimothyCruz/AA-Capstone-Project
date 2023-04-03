@@ -85,3 +85,10 @@
 #create-class-form-button:disabled {
     background-color: rgb(207, 207, 207);
 }
+
+#create-class-input-error {
+    padding: 0px 0px 20px 0px;
+    font-size: 12px;
+    font-style: italic;
+    color: rgb(214, 0, 0);
+}

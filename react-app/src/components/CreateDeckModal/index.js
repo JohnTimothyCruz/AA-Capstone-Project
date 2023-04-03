@@ -30,9 +30,12 @@ const CreateDeckModal = ({ props }) => {
                     onChange={(e) => setName(e.target.value)}
                 />
                 <p id="create-deck-input-text">Enter the title of your new deck above</p>
+                {name?.length > 250 &&
+                    <div id="create-deck-error">Sorry, but your deck title must be less than 250 characters.</div>
+                }
                 <button
                     id="create-deck-form-button"
-                    disabled={!name}
+                    disabled={!name || name?.length > 250}
                 >C O N T I N U E</button>
             </form>
         </div>

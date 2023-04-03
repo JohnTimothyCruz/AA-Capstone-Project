@@ -84,6 +84,7 @@
 
 #header-left-class {
     display: flex;
+    max-width: 100%;
     align-items: center;
     gap: 5px;
     font-size: 12px;
@@ -102,6 +103,14 @@
     border-radius: 3px;
 }
 
+#header-left-class-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    max-width: 94%;
+}
+
 #decks-drop-down {
     display: flex;
     align-items: center;
@@ -116,8 +125,8 @@
 #decks-drop-down p {
     white-space: nowrap;
     overflow: hidden;
-    width: 100px;
     text-overflow: ellipsis;
+    max-width: 300px;
 }
 
 #decks-drop-down i {
@@ -177,7 +186,7 @@
 
 /* Edit deck name form */
 #edit-deck-title-form {
-    width: 90%;
+    width: 100%;
 }
 
 #edit-deck-title-input {
@@ -187,7 +196,7 @@
     border-radius: 6px;
     padding-left: 6px;
     height: 43px;
-    width: 100%;
+    width: 95%;
     font-size: 30px;
     font-weight: 700;
     color: rgb(68, 68, 68);

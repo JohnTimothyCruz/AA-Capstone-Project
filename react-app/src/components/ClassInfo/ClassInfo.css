@@ -62,6 +62,11 @@
 #class-title {
     margin: 0px;
     color: rgb(39, 63, 97);
+    max-width: 60%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
 }
 
 #edit-class-button {
