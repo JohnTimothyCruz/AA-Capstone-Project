@@ -27,6 +27,16 @@ const ClassEnrollPage = () => {
         return enrolled
     }
 
+    const getCardNumber = (a_class) => {
+        let num = 0
+        if (a_class.decks) {
+            for (const deck of a_class.decks) {
+                num += deck?.flashcards?.length
+            }
+        }
+        return num
+    }
+
     const handleEnroll = () => {
         if (checkUser()) {
             dispatch(postLearner(chosenClass?.id, session?.user?.id))
@@ -59,6 +69,42 @@ const ClassEnrollPage = () => {
                                 modalComponent={<SignupFormModal />}
                                 buttonText="Start Studying"
                             />
+                        </div>
+                    }
+                </div>
+            </div>
+            <div id="enroll-class-stats">
+                <div className="enroll-class-stat">
+                    <i className="fa-solid fa-layer-group fa-2xl" />
+                    {chosenClass?.decks?.length || 0} decks
+                </div>
+                <div className="enroll-class-stat">
+                    <i className="fa-regular fa-rectangle-list fa-2xl" />
+                    {chosenClass && getCardNumber(chosenClass)} flashcards
+                </div>
+                <div className="enroll-class-stat">
+                    <i className="fa-solid fa-users fa-2xl" />
+                    {chosenClass?.learners?.length || 0} learners
+                </div>
+            </div>
+            <div id="enroll-class-decks">
+                <h2>Decks in this class ({chosenClass?.decks?.length || 0})</h2>
+                <div id="enroll-class-decks-container">
+                    {chosenClass?.decks?.length ? chosenClass?.decks?.map((deck, idx) => (
+                        <div className="enroll-class-deck" key={idx} onClick={() => window.alert("Sorry, I didn't add this feature yet.")}>
+                            <img className="enroll-class-deck-left" src={chosenClass?.image} />
+                            <div className="enroll-class-deck-middle-left">
+                                <h3>{deck?.name}</h3>
+                                <p>{deck?.description || "No deck description has yet been added by the author."}</p>
+                            </div>
+                            <p className="enroll-class-deck-middle-right">{deck?.flashcards?.length || 0} cards</p>
+                            <i className="fa-solid fa-chevron-right fa-xl enroll-class-deck-right" />
+                        </div>
+                    ))
+                        :
+                        <div id="enroll-class-no-decks">
+                            <i className="fa-regular fa-face-grin-beam-sweat" />
+                            Oopsie, looks like this class is a bit empty at the moment...
                         </div>
                     }
                 </div>

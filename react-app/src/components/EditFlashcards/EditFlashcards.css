@@ -186,7 +186,7 @@
 
 /* Edit deck name form */
 #edit-deck-title-form {
-    width: 90%;
+    width: 100%;
 }
 
 #edit-deck-title-input {
@@ -196,7 +196,7 @@
     border-radius: 6px;
     padding-left: 6px;
     height: 43px;
-    width: 100%;
+    width: 95%;
     font-size: 30px;
     font-weight: 700;
     color: rgb(68, 68, 68);

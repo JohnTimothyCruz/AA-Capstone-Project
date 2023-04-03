@@ -116,7 +116,6 @@ const EditFlashcards = () => {
                                 <i onClick={() => setEditing(true)} className="fa-solid fa-pencil" />
                             </>
                         }
-                        <i className="fa-solid fa-ellipsis" />
                     </div>
                     <div id="deck-flashcards-header-right">
                         <p>STUDY DECK</p>
