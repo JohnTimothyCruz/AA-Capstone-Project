@@ -66,7 +66,7 @@ const EditFlashcards = () => {
                         <div id="header-left-class" onClick={() => history.push(`/dashboard/classes/${chosenClass?.id}`)}>
                             <i className="fa-solid fa-angle-left" />
                             <img id="deck-header-class-image" src={chosenClass?.image} alt="class" />
-                            <p>{chosenClass?.name}</p>
+                            <p id="header-left-class-name">{chosenClass?.name}</p>
                         </div>
                         {editing ?
                             <form id="edit-deck-title-form" onSubmit={(e) => handleRename(e)}>
