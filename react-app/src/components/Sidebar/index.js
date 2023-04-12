@@ -13,13 +13,7 @@ const Sidebar = () => {
     const params = useParams()
 
     const session = useSelector(state => state?.session)
-    const classes = useSelector(state => state?.classes)
     const userRelatedClasses = session?.user?.learning
-
-    useEffect(() => {
-        dispatch(getClasses())
-        dispatch(authenticate())
-    }, [dispatch])
 
     const swapClass = (c) => {
         history.push(`/dashboard/classes/${c?.class_id}`)
@@ -36,7 +30,7 @@ const Sidebar = () => {
                     <div id="user-classes-list">
                         {userRelatedClasses && userRelatedClasses.map((c, idx) => (
                             <div className={`class-image-container ${parseInt(params?.classId) === c?.class_id && "selected"}`} onClick={() => swapClass(c)} key={`made ${idx}`}>
-                                <img className="dashboard-class" src={classes?.allClasses[c?.class_id]?.image} alt="class" ></img>
+                                <img className="dashboard-class" src={c?.class_info?.image} alt="class" ></img>
                             </div>
                         ))}
                     </div>
