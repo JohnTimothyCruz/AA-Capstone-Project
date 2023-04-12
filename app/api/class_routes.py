@@ -84,6 +84,8 @@ def delete_class(id):
     if not a_class:
         return {"errors": "Class does not exist."}
 
+    Learner.query.filter_by(class_id=id).delete()
+
     db.session.delete(a_class)
     db.session.commit()
 
@@ -103,8 +105,6 @@ def create_learner(class_id):
         )
         db.session.add(new_learner)
         db.session.commit()
-
-        print("this is a test.")
 
         res = Learner.query.get(new_learner.id)
 
