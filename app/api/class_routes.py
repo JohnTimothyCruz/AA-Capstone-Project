@@ -30,7 +30,16 @@ def post_class():
             user_id = form.user_id.data,
             name = form.name.data,
         )
+
         db.session.add(new_class)
+        db.session.commit()
+
+        new_learner = Learner(
+            user_id = form.user_id.data,
+            class_id = new_class.id,
+        )
+
+        db.session.add(new_learner)
         db.session.commit()
 
         res = Class.query.get(new_class.id)
