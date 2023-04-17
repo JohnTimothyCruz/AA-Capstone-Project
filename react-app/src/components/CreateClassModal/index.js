@@ -10,11 +10,14 @@ const CreateClassModal = ({ props }) => {
     const dispatch = useDispatch();
     const history = useHistory()
     const [className, setClassName] = useState("")
+    const [processing, setProcessing] = useState(false)
     const { closeModal } = useModal();
     const [user_id] = props;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setProcessing(true)
 
         dispatch(postClass(className, user_id))
         .then(res => history.push(`/dashboard/classes/${res.id}`))
@@ -39,7 +42,7 @@ const CreateClassModal = ({ props }) => {
                 }
                 <button
                     id="create-class-form-button"
-                    disabled={!className || className?.length > 250}
+                    disabled={!className || className?.length > 250 || processing}
                 >C O N T I N U E</button>
             </form>
         </div>
