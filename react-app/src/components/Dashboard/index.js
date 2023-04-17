@@ -51,7 +51,9 @@ const Dashboard = () => {
         findAnotherClass()
     }, [dispatch])
 
-    findAnotherClass()
+    useEffect(() => {
+        findAnotherClass()
+    }, [userRelatedClasses])
 
     return (
         <div className="dashboard-container">

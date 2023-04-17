@@ -7,7 +7,6 @@ import HomePage from "./components/HomePage";
 import Dashboard from "./components/Dashboard";
 import StudyPage from "./components/StudyPage";
 import SingleClass from "./components/SingleClass";
-import LoadingClasses from "./components/LoadingClasses";
 import EditFlashcards from "./components/EditFlashcards";
 import AllClassesPage from "./components/AllClassesPage";
 import ClassEnrollPage from "./components/ClassEnrollPage";
@@ -27,10 +26,6 @@ function App() {
         <Switch>
           <Route path="/study/decks/:deckId">
             <StudyPage />
-          </Route>
-
-          <Route path="/dashboard/loading" >
-            <LoadingClasses />
           </Route>
 
           <Route path="/dashboard/classes/:classId/decks/:deckId/flashcards/:type" >
