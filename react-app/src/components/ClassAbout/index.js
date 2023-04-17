@@ -220,7 +220,7 @@ const ClassAbout = ({ props }) => {
                     />
                 }
                 <p className="about-page-preview-title">Headline</p>
-                {chosenClass?.objective ||
+                {chosenClass?.headline ||
                     <p className="about-page-preview-text">
                         <span>
                             This class was created by Brainscape user
