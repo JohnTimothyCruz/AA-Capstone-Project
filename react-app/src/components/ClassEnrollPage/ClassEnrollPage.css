@@ -1,4 +1,5 @@
-#class-enroll-page {
+#class-enroll-page,
+#empty-class-enroll-page {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -175,4 +176,24 @@
     display: flex;
     gap: 10px;
     align-items: center;
+}
+
+/* Enroll calss does not exist styles */
+#empty-class-enroll-page {
+    justify-content: center;
+}
+
+#empty-enroll-page-home-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 125, 65);
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    height: 22px;
+    width: 90px;
+    padding: 25px 70px;
+    cursor: pointer;
+    border: none;
 }
