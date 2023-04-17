@@ -2,13 +2,9 @@ import { useHistory, useParams } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import CreateClassModal from "../CreateClassModal";
 import "./Sidebar.css"
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getClasses } from "../../store/classes";
-import { authenticate } from "../../store/session";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
-    const dispatch = useDispatch()
     const history = useHistory()
     const params = useParams()
 

@@ -43,17 +43,13 @@ const Dashboard = () => {
         }
     }
 
-    const userRelatedClasses = getUserRelatedClasses()
-
     useEffect(() => {
         dispatch(getClasses())
         dispatch(getUser(session?.user?.id))
         findAnotherClass()
     }, [dispatch])
 
-    // useEffect(() => {
-    //     findAnotherClass()
-    // }, [userRelatedClasses])
+    findAnotherClass()
 
     return (
         <div className="dashboard-container">
