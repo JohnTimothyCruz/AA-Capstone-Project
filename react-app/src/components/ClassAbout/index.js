@@ -9,6 +9,7 @@ const ClassAbout = ({ props }) => {
     const history = useHistory()
 
     const [session, chosenClass] = props;
+    const [processing, setProcessing] = useState(false)
     const [preview, setPreview] = useState(false)
     const [headline, setHeadline] = useState(chosenClass?.headline);
     const [description, setDescription] = useState(chosenClass?.description);
@@ -42,16 +43,20 @@ const ClassAbout = ({ props }) => {
     }
 
     const handleMixRadios = (type) => {
+        setProcessing(true)
         if (type !== mixType) {
             dispatch(mixPutClass(type, chosenClass?.id, session?.user?.id))
                 .then(setMixType(type))
+                .then(setProcessing(false))
         }
     }
 
     const handleVisibilityRadios = (type) => {
+        setProcessing(true)
         if (type !== visibility) {
             dispatch(visibilityPutClass(type, chosenClass?.id, session?.user?.id))
                 .then(setVisibility(type))
+                .then(setProcessing(false))
         }
     }
 
@@ -149,9 +154,10 @@ const ClassAbout = ({ props }) => {
                         <div id="about-settings-options">
                             <div className="about-settings-options-section">
                                 <p className="radio-section-prompt">Default Study Mix Type</p>
-                                <div className="radio-section-radios">
+                                <form className="radio-section-radios">
                                     <div className="radio-label-container">
                                         <input
+                                            disabled={processing}
                                             type="radio"
                                             id="progressive"
                                             name="mix-type"
@@ -162,6 +168,7 @@ const ClassAbout = ({ props }) => {
                                     </div>
                                     <div className="radio-label-container">
                                         <input
+                                            disabled={processing}
                                             type="radio"
                                             id="random"
                                             name="mix-type"
@@ -170,13 +177,14 @@ const ClassAbout = ({ props }) => {
                                         />
                                         <label htmlFor="random">Random</label>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                             <div className="about-settings-options-section">
                                 <p className="radio-section-prompt">Class Visibility</p>
-                                <div className="radio-section-radios">
+                                <form className="radio-section-radios">
                                     <div className="radio-label-container">
                                         <input
+                                            disabled={processing}
                                             type="radio"
                                             id="public"
                                             name="visibility"
@@ -187,6 +195,7 @@ const ClassAbout = ({ props }) => {
                                     </div>
                                     <div className="radio-label-container">
                                         <input
+                                            disabled={processing}
                                             type="radio"
                                             id="private"
                                             name="visibility"
@@ -195,7 +204,7 @@ const ClassAbout = ({ props }) => {
                                         />
                                         <label htmlFor="private">Private</label>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
