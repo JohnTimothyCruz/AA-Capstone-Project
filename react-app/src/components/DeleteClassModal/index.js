@@ -26,7 +26,6 @@ const DeleteClassModal = ({ props }) => {
                 .then(history.push("/dashboard"))
                 .then(closeModal)
         } else {
-            dispatch(deleteLearner(chosenClass?.id, getLearnerId(), session?.user?.id))
             dispatch(deleteClass(chosenClass, session?.user?.id))
                 .then(history.push("/dashboard"))
                 .then(closeModal)

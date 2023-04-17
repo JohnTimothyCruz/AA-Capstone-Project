@@ -36,7 +36,7 @@ const Dashboard = () => {
     }
 
     const findAnotherClass = () => {
-        for (const c of Object.values(userRelatedClasses)) {
+        for (const c of Object.values(getUserRelatedClasses())) {
             if (c) {
                 history.push(`/dashboard/classes/${c.id}`)
             }
@@ -51,9 +51,9 @@ const Dashboard = () => {
         findAnotherClass()
     }, [dispatch])
 
-    useEffect(() => {
-        findAnotherClass()
-    }, [userRelatedClasses])
+    // useEffect(() => {
+    //     findAnotherClass()
+    // }, [userRelatedClasses])
 
     return (
         <div className="dashboard-container">
