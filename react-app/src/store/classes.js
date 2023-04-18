@@ -8,6 +8,7 @@ const PUT_CLASS = "classes/PUT_CLASS"
 const DELETE_CLASS = "classes/DELETE_CLASS"
 
 const POST_LEARNER = "classes/POST_LEARNER"
+const PUT_LEARNER = "classes/PUT_LEARNER"
 const DELETE_LEARNER = "classes/DELETE_LEARNER"
 
 // -Actions--------------------
@@ -49,6 +50,14 @@ export const removeClass = (id) => {
 export const createLearner = (learner, class_id) => {
     return {
         type: POST_LEARNER,
+        learner,
+        class_id
+    }
+}
+
+export const editLearner = (learner, class_id) => {
+    return {
+        type: PUT_LEARNER,
         learner,
         class_id
     }
@@ -200,6 +209,19 @@ export const postLearner = (class_id, user_id) => async dispatch => {
     }
 }
 
+export const putLearnerTime = (class_id, user_id) => async dispatch => {
+    const res = await fetch(`/api/classes/${class_id}/users/${user_id}/minutes`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id, class_id })
+    });
+
+    if (res.ok) {
+        const updatedLearner = await res.json();
+        dispatch(editLearner(updatedLearner, class_id))
+    }
+}
+
 export const deleteLearner = (class_id, learner_id, user_id) => async dispatch => {
     const res = await fetch(`/api/classes/${class_id}/learners/${learner_id}`, {
         method: "DELETE"
@@ -237,6 +259,10 @@ const ClassReducer = (state = initialState, action) => {
             return newState
         case POST_LEARNER:
             newState.allClasses[action.class_id].learners.push(action.learner)
+            return newState
+        case PUT_LEARNER:
+            const updatedState = newState.allClasses[action.class_id].learners.filter(learner => learner.id !== action.learner.id)
+            newState.allClasses[action.class_id].learners = [...updatedState, action.learner]
             return newState
         case DELETE_LEARNER:
             const updated_learners = newState.allClasses[action.class_id].learners.filter(learner => learner.id !== action.learner_id)
