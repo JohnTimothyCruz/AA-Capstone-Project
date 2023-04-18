@@ -144,7 +144,7 @@ def seed_learners():
         class_id = 7,
         days_studied = 1,
         time_studied = 8,
-        cards_studied = 2,
+        cards_studied = 0,
         permission = "Full Study",
         createdAt = datetime.now()
     )
@@ -153,7 +153,7 @@ def seed_learners():
         class_id = 8,
         days_studied = 1,
         time_studied = 8,
-        cards_studied = 2,
+        cards_studied = 0,
         permission = "Full Study",
         createdAt = datetime.now()
     )
@@ -162,7 +162,7 @@ def seed_learners():
         class_id = 9,
         days_studied = 1,
         time_studied = 8,
-        cards_studied = 2,
+        cards_studied = 0,
         permission = "Full Study",
         createdAt = datetime.now()
     )
@@ -171,7 +171,7 @@ def seed_learners():
         class_id = 10,
         days_studied = 1,
         time_studied = 8,
-        cards_studied = 2,
+        cards_studied = 0,
         permission = "Full Study",
         createdAt = datetime.now()
     )
@@ -180,7 +180,7 @@ def seed_learners():
         class_id = 12,
         days_studied = 1,
         time_studied = 8,
-        cards_studied = 2,
+        cards_studied = 5,
         permission = "Full Study",
         createdAt = datetime.now()
     )
@@ -188,17 +188,17 @@ def seed_learners():
         user_id = 12,
         class_id = 13,
         days_studied = 1,
-        time_studied = 8,
-        cards_studied = 2,
+        time_studied = 1,
+        cards_studied = 0,
         permission = "Full Study",
         createdAt = datetime.now()
     )
     learner22 = Learner(
         user_id = 14,
         class_id = 14,
-        days_studied = 1,
-        time_studied = 8,
-        cards_studied = 2,
+        days_studied = 0,
+        time_studied = 0,
+        cards_studied = 0,
         permission = "Full Study",
         createdAt = datetime.now()
     )
@@ -207,7 +207,7 @@ def seed_learners():
         class_id = 15,
         days_studied = 1,
         time_studied = 8,
-        cards_studied = 2,
+        cards_studied = 1,
         permission = "Full Study",
         createdAt = datetime.now()
     )
