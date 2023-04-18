@@ -5,6 +5,9 @@
     flex-direction: column;
     justify-content: center;
     background-color: rgb(37, 142, 168);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.25),rgba(0, 0, 0, 0.25)), url("https://www.brainscape.com/pks/static/assets/images/cms/public-views/pages/landing/band-1/image-1-e10d192395aee617c5e9.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 #homepage * {

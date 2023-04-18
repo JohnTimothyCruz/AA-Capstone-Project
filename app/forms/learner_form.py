@@ -7,5 +7,4 @@ class LearnerForm(FlaskForm):
     class_id = IntegerField("Class id", validators=[DataRequired()])
     days_studied = IntegerField("Days studied")
     time_studied = IntegerField("Time studied")
-    mastery = IntegerField("Mastery")
     permission = StringField("Permission")

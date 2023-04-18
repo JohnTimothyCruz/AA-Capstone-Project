@@ -13,7 +13,7 @@ class Learner(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     class_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('classes.id')))
-    mastery = db.Column(db.Integer, default=0)
+    last_studied = db.Column(db.DateTime, default=datetime.now())
     days_studied = db.Column(db.Integer, default=0)
     time_studied = db.Column(db.Integer, default=0)
     cards_studied = db.Column(db.Integer, default=0)
@@ -34,7 +34,7 @@ class Learner(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "class_id": self.class_id,
-            "mastery": self.mastery,
+            "last_studied": self.last_studied,
             "days_studied": self.days_studied,
             "time_studied": self.time_studied,
             "cards_studied": self.cards_studied,
@@ -49,7 +49,7 @@ class Learner(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "class_id": self.class_id,
-            "mastery": self.mastery,
+            "last_studied": self.last_studied,
             "days_studied": self.days_studied,
             "time_studied": self.time_studied,
             "cards_studied": self.cards_studied,
