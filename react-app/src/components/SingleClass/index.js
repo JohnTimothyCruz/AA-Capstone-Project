@@ -44,7 +44,7 @@ const SingleClass = () => {
         return res
     }
 
-    if (!classes.allClasses[params.classId]?.id) history.push("/dashboard/loading")
+    if (!classes.allClasses[params.classId]?.id) history.push("/dashboard")
 
     return (
         <div className="dashboard-container">

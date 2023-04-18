@@ -2,24 +2,14 @@ import { useHistory, useParams } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import CreateClassModal from "../CreateClassModal";
 import "./Sidebar.css"
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getClasses } from "../../store/classes";
-import { authenticate } from "../../store/session";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
-    const dispatch = useDispatch()
     const history = useHistory()
     const params = useParams()
 
     const session = useSelector(state => state?.session)
-    const classes = useSelector(state => state?.classes)
     const userRelatedClasses = session?.user?.learning
-
-    useEffect(() => {
-        dispatch(getClasses())
-        dispatch(authenticate())
-    }, [dispatch])
 
     const swapClass = (c) => {
         history.push(`/dashboard/classes/${c?.class_id}`)
@@ -36,7 +26,7 @@ const Sidebar = () => {
                     <div id="user-classes-list">
                         {userRelatedClasses && userRelatedClasses.map((c, idx) => (
                             <div className={`class-image-container ${parseInt(params?.classId) === c?.class_id && "selected"}`} onClick={() => swapClass(c)} key={`made ${idx}`}>
-                                <img className="dashboard-class" src={classes?.allClasses[c?.class_id]?.image} alt="class" ></img>
+                                <img className="dashboard-class" src={c?.class_info?.image} alt="class" ></img>
                             </div>
                         ))}
                     </div>

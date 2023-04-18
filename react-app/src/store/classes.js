@@ -91,7 +91,6 @@ export const postClass = (name, user_id) => async dispatch => {
     if (res.ok) {
         const newClass = await res.json();
         dispatch(createClass(newClass));
-        dispatch(postLearner(newClass.id, user_id));
         dispatch(getUser(user_id));
         return newClass
     };

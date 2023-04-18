@@ -36,14 +36,12 @@ const Dashboard = () => {
     }
 
     const findAnotherClass = () => {
-        for (const c of Object.values(userRelatedClasses)) {
+        for (const c of Object.values(getUserRelatedClasses())) {
             if (c) {
                 history.push(`/dashboard/classes/${c.id}`)
             }
         }
     }
-
-    const userRelatedClasses = getUserRelatedClasses()
 
     useEffect(() => {
         dispatch(getClasses())

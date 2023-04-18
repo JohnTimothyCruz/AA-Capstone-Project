@@ -7,11 +7,14 @@ import "./CreateDeckModal.css"
 const CreateDeckModal = ({ props }) => {
     const dispatch = useDispatch();
     const [name, setName] = useState("")
+    const [processing, setProcessing] = useState(false)
     const { closeModal } = useModal();
     const [chosenClass, user_id] = props;
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        setProcessing(true)
 
         dispatch(postDeck(name, chosenClass?.id, user_id))
             .then(closeModal)
@@ -35,7 +38,7 @@ const CreateDeckModal = ({ props }) => {
                 }
                 <button
                     id="create-deck-form-button"
-                    disabled={!name || name?.length > 250}
+                    disabled={!name || name?.length > 250 || processing}
                 >C O N T I N U E</button>
             </form>
         </div>

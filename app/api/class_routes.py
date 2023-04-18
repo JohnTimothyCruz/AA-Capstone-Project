@@ -30,7 +30,16 @@ def post_class():
             user_id = form.user_id.data,
             name = form.name.data,
         )
+
         db.session.add(new_class)
+        db.session.commit()
+
+        new_learner = Learner(
+            user_id = form.user_id.data,
+            class_id = new_class.id,
+        )
+
+        db.session.add(new_learner)
         db.session.commit()
 
         res = Class.query.get(new_class.id)
@@ -84,6 +93,8 @@ def delete_class(id):
     if not a_class:
         return {"errors": "Class does not exist."}
 
+    Learner.query.filter_by(class_id=id).delete()
+
     db.session.delete(a_class)
     db.session.commit()
 
@@ -103,8 +114,6 @@ def create_learner(class_id):
         )
         db.session.add(new_learner)
         db.session.commit()
-
-        print("this is a test.")
 
         res = Learner.query.get(new_learner.id)
 

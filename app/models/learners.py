@@ -56,4 +56,5 @@ class Learner(db.Model):
             "permission": self.permission,
             "createdAt": self.createdAt,
             "user": self.user.to_dict_no_loop(),
+            "class_info": self.class_info.to_dict_no_loop(),
         }
