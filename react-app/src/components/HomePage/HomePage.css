@@ -4,16 +4,50 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.25),rgba(0, 0, 0, 0.25)), url("https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-7.jpg");
-    background-size: cover;
-    background-position: center;
+    background-color: rgb(37, 142, 168);
 }
 
 #homepage * {
     color: white;
 }
 
+#image-carousel {
+    overflow-x: hidden;
+    max-width: 100vw;
+    display: flex;
+}
+
+#images-container {
+    max-width: 100vw;
+    display: flex;
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100vw);
+    }
+}
+
+#images-container.transitioning {
+    animation: slide 2.5s;
+}
+
+#images-container img {
+    margin: 0px;
+    padding: 0px;
+    object-fit: cover;
+    height: auto;
+    min-width: 100vw;
+}
+
 #homepage-text-container {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1px;
     display: flex;
     flex-direction: column;
     padding: 57px;
