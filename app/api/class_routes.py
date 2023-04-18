@@ -1,8 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import db, Class, Learner
+from app.models import db, Class, Learner, Studied_Card
 from app.forms import ClassForm, LearnerForm
-from datetime import datetime
 
 class_routes = Blueprint('classes', __name__)
 
@@ -94,6 +93,7 @@ def delete_class(id):
         return {"errors": "Class does not exist."}
 
     Learner.query.filter_by(class_id=id).delete()
+    Studied_Card.query.filter_by(class_id=id).delete()
 
     db.session.delete(a_class)
     db.session.commit()

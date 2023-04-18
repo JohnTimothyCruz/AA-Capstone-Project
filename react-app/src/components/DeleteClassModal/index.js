@@ -3,6 +3,7 @@ import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./DeleteClassModal.css"
+import { deleteLearning } from "../../store/session";
 
 const DeleteClassModal = ({ props }) => {
     const history = useHistory()
@@ -23,6 +24,7 @@ const DeleteClassModal = ({ props }) => {
     const handleRemove = () => {
         if (type === "remove") {
             dispatch(deleteLearner(chosenClass?.id, getLearnerId(), session?.user?.id))
+            dispatch(deleteLearning(getLearnerId()))
                 .then(history.push("/dashboard"))
                 .then(closeModal)
         } else {

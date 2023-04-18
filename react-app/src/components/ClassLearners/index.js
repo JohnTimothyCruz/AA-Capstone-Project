@@ -47,7 +47,7 @@ const ClassLearners = ({ props }) => {
             </div>
             <div id="learners-container">
                 {chosenClass?.learners && chosenClass.learners.map((learner, idx) => (
-                    <SingleLearner props={[learner, getCardNumber]} key={idx} />
+                    <SingleLearner props={[learner, getCardNumber, chosenClass, session]} key={idx} />
                 ))}
                 <div id="add-learner-container-container">
                     <OpenModalButton

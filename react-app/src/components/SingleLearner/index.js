@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./SingleLearner.css"
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { deleteLearner } from "../../store/classes";
 
 const SingleLearner = ({ props }) => {
-    const [learner, getCardNumber] = props;
+    const [learner, getCardNumber, chosenClass, session] = props;
     const [showMenu, setShowMenu] = useState(false);
     const history = useHistory();
     const ulRef = useRef();
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (!showMenu) return;
@@ -21,6 +24,10 @@ const SingleLearner = ({ props }) => {
 
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
+
+    const handleRemoval = () => {
+        dispatch(deleteLearner(chosenClass?.id, learner?.id, session?.user?.id))
+    }
 
     return (
         <div className="learner-container">
@@ -48,10 +55,12 @@ const SingleLearner = ({ props }) => {
                             <i className="fa-solid fa-user" />
                             <p>Show Learner's Profile</p>
                         </div>
-                        <div className="learner-option">
-                            <i className="fa-solid fa-xmark" />
-                            <p>Remove From Class</p>
-                        </div>
+                        {chosenClass?.user_id === session?.user?.id &&
+                            <div className="learner-option" onClick={() => handleRemoval()}>
+                                <i className="fa-solid fa-xmark" />
+                                <p>Remove From Class</p>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
