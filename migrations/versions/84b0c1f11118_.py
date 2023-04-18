@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 0638339b5ba7
+Revision ID: 84b0c1f11118
 Revises:
-Create Date: 2023-03-27 08:43:10.585538
+Create Date: 2023-04-18 08:33:07.342908
 
 """
 from alembic import op
@@ -67,7 +67,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('class_id', sa.Integer(), nullable=True),
-    sa.Column('mastery', sa.Integer(), nullable=True),
+    sa.Column('last_studied', sa.DateTime(), nullable=True),
     sa.Column('days_studied', sa.Integer(), nullable=True),
     sa.Column('time_studied', sa.Integer(), nullable=True),
     sa.Column('cards_studied', sa.Integer(), nullable=True),
@@ -94,7 +94,7 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE flashcards SET SCHEMA {SCHEMA};")
-
+        
     # ### end Alembic commands ###
 
 
