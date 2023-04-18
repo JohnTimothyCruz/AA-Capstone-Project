@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import db, Flashcard
-from app.forms import FlashcardForm
+from app.models import db, Flashcard, User, Studied_Card
+from app.forms import FlashcardForm, StudiedForm
 
 flashcard_routes = Blueprint('flashcards', __name__)
 
@@ -22,9 +22,6 @@ def post_flashcard():
         )
         db.session.add(new_flashcard)
         db.session.commit()
-
-        # res = Flashcard.query.get(new_flashcard.id)
-        # return res.to_dict()
 
         return {"Message": "Creation successful!"}
 
@@ -57,9 +54,6 @@ def put_class(id):
 
         db.session.commit()
 
-        # res = Flashcard.query.get(id)
-        # return res.to_dict()
-
         return {"Message": "Edit successful!"}
 
     if form.errors:
@@ -77,3 +71,39 @@ def delete_flashcard(id):
     db.session.commit()
 
     return {"Message": "Delete successful!"}
+
+@flashcard_routes.route('/<int:flashcard_id>/users/<int:user_id>', methods=['POST'])
+@login_required
+def create_studied_record(flashcard_id, user_id):
+    form = StudiedForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    flashcard = Flashcard.query.get(flashcard_id)
+
+    if not flashcard:
+        return {"errors": "Flashcard does not exist"}
+
+    user = User.query.get(user_id)
+
+    if not user:
+        return {"errors": "User does not exist"}
+
+    if form.validate_on_submit():
+        new_studied_card = Studied_Card(
+            user_id = form.user_id.data,
+            flashcard_id = form.flashcard_id.data,
+        )
+        db.session.add(new_studied_card)
+        db.session.commit()
+
+        res = Studied_Card.query.get(new_studied_card.id)
+        return res.to_dict()
+
+    if form.errors:
+        return {"errors": form.errors}
+
+@flashcard_routes.route('/users/<int:user_id>/classes/<int:class_id>', methods=['GET'])
+@login_required
+def get_studied_records(user_id, class_id):
+    studied_cards = Studied_Card.query.filter_by(user_id=user_id, class_id=class_id)
+    return [card.to_dict() for card in studied_cards]
