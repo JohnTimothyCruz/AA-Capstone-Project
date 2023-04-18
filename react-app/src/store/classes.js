@@ -1,4 +1,4 @@
-import { deleteLearning, getUser, postLearning } from "./session"
+import { getUser, postLearning } from "./session"
 
 // -Action Types---------------
 const GET_CLASSES = "classes/GET_CLASSES"
@@ -206,8 +206,7 @@ export const deleteLearner = (class_id, learner_id, user_id) => async dispatch =
     });
 
     if (res.ok) {
-        dispatch(removeLearner(learner_id))
-        dispatch(deleteLearning(learner_id))
+        dispatch(removeLearner(learner_id, class_id))
         dispatch(getUser(user_id));
     }
 };
@@ -240,7 +239,8 @@ const ClassReducer = (state = initialState, action) => {
             newState.allClasses[action.class_id].learners.push(action.learner)
             return newState
         case DELETE_LEARNER:
-            delete newState.allClasses[action.learner_id]
+            const updated_learners = newState.allClasses[action.class_id].learners.filter(learner => learner.id !== action.learner_id)
+            newState.allClasses[action.class_id].learners = updated_learners
             return newState
         default:
             return state

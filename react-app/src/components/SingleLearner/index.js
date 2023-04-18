@@ -1,10 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./SingleLearner.css"
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { deleteLearner } from "../../store/classes";
 
 const SingleLearner = ({ props }) => {
-    const [learner] = props;
-    const [showMenu, setShowMenu] = useState(false)
+    const [learner, getCardNumber, chosenClass, session] = props;
+    const [showMenu, setShowMenu] = useState(false);
+    const history = useHistory();
     const ulRef = useRef();
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (!showMenu) return;
@@ -20,36 +25,44 @@ const SingleLearner = ({ props }) => {
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
 
+    const handleRemoval = () => {
+        dispatch(deleteLearner(chosenClass?.id, learner?.id, session?.user?.id))
+    }
+
     return (
         <div className="learner-container">
             <i className="learner-circle fa-regular fa-circle fa-lg" />
             <i className="learner-icon fa-regular fa-circle-user fa-xl" />
-            <div className="learner-right">
+            <div className="learner-left">
                 <p className="learner-username">{learner?.user?.username}</p>
                 <div className="learner-progress-bar"></div>
             </div>
             <div className="learner-details">
-                <p className="learner-detail">{learner?.last_studied}<span className="learner-percent-symbol">%</span></p>
+                <p className="learner-detail">{(learner?.studied_cards?.length / getCardNumber()).toFixed(1)}<span className="learner-percent-symbol">%</span></p>
                 <p className="learner-detail">{learner?.days_studied}</p>
                 <p className="learner-detail">{learner?.time_studied} <span className="learner-time-min">min</span></p>
-                <p className="learner-detail">{learner?.cards_studied}</p>
+                <div className="cards-studied-num-container">
+                    <p className="learner-detail">{learner?.cards_studied}</p>
+                    <p className="learner-detail">{learner?.studied_cards?.length}</p>
+                </div>
                 <p className="learner-detail">{learner?.permission}</p>
             </div>
             <div className="learner-options">
                 <i className="fa-solid fa-ellipsis fa-xl" onClick={() => setShowMenu(true)} />
                 <div className="learner-options-wrapper">
                     <div className={`learner-options-container ${showMenu ? "" : "hidden"}`}>
-                        <div className="learner-option">
+                        <div className="learner-option" onClick={() => history.push(`/profiles/${learner?.id}`)}>
                             <i className="fa-solid fa-user" />
                             <p>Show Learner's Profile</p>
                         </div>
-                        <div className="learner-option">
-                            <i className="fa-solid fa-xmark" />
-                            <p>Remove From Class</p>
-                        </div>
+                        {chosenClass?.user_id === session?.user?.id &&
+                            <div className="learner-option" onClick={() => handleRemoval()}>
+                                <i className="fa-solid fa-xmark" />
+                                <p>Remove From Class</p>
+                            </div>
+                        }
                     </div>
                 </div>
-                <i className="fa-solid fa-angle-right fa-xl" />
             </div>
         </div>
     )

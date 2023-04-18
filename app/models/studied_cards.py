@@ -8,14 +8,17 @@ class Studied_Card(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    learner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('learners.id')))
     flashcard_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('flashcards.id')))
-    class_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('classes.id')))
+
+    learner = db.relationship(
+        "Learner",
+        back_populates="studied_cards"
+    )
 
     def to_dict(self):
         return {
             "id": self.id,
-            "user_id": self.user_id,
-            "flashcard_id": self.flashcard_id,
-            "class_id": self.class_id,
+            "learner_id": self.learner_id,
+            "flashcard_id": self.flashcard_id
         }
