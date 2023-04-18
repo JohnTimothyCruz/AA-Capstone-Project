@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import SignupFormModal from "../SignupFormModal";
 import "./HomePage.css";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const HomePage = () => {
     const history = useHistory();
@@ -31,17 +31,6 @@ const HomePage = () => {
 
         return () => clearInterval(interval)
     }, [])
-
-    const images = [
-        "https://www.brainscape.com/pks/static/assets/images/cms/public-views/pages/landing/band-1/image-1-e10d192395aee617c5e9.jpg",
-        "https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-2.jpg",
-        "https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-3.jpg",
-        "https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-4.jpg",
-        "https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-5.jpg",
-        "https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-6.jpg",
-        "https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-7.jpg",
-        "https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-8.jpg"
-    ]
 
     return (
         <div id="homepage">
