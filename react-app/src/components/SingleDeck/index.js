@@ -34,7 +34,7 @@ const SingleDeck = ({ props }) => {
         <>
             <div className="deck-container-left">
                 <div className="deck-container-circle"></div>
-                <div className="deck-progress-percent">%</div>
+                <div className="deck-progress-percent">10%</div>
                 <div className=" deck-info-container">
                     <div className="deck-name">{deck.name}</div>
                     <div className="deck-progress-bar"></div>

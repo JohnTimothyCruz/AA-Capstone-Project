@@ -18,6 +18,16 @@ const ClassLearners = ({ props }) => {
         setCopied(true)
     }
 
+    const getCardNumber = () => {
+        let num = 0
+        if (chosenClass.decks) {
+            for (const deck of chosenClass.decks) {
+                num += deck?.flashcards?.length
+            }
+        }
+        return num
+    }
+
     const handleVisibilityRadios = (type) => {
         if (type !== visibility) {
             dispatch(visibilityPutClass(type, chosenClass?.id, session?.user?.id))
@@ -37,7 +47,7 @@ const ClassLearners = ({ props }) => {
             </div>
             <div id="learners-container">
                 {chosenClass?.learners && chosenClass.learners.map((learner, idx) => (
-                    <SingleLearner props={[learner]} key={idx} />
+                    <SingleLearner props={[learner, getCardNumber]} key={idx} />
                 ))}
                 <div id="add-learner-container-container">
                     <OpenModalButton
