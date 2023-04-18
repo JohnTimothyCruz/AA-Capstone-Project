@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./SingleLearner.css"
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteLearner } from "../../store/classes";
 
 const SingleLearner = ({ props }) => {
-    const [learner, getCardNumber, chosenClass, session] = props;
-    const [showMenu, setShowMenu] = useState(false);
     const history = useHistory();
     const ulRef = useRef();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const [learner, getCardNumber, chosenClass, session] = props;
+    const [showMenu, setShowMenu] = useState(false);
 
     useEffect(() => {
         if (!showMenu) return;

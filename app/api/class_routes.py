@@ -122,6 +122,25 @@ def create_learner(class_id):
     if form.errors:
         return {"errors": form.errors}
 
+#Edit a class' learner
+@class_routes.route('/<int:class_id>/users/<int:user_id>/minutes', methods=['PUT'])
+@login_required
+def increment_learner_time(class_id, user_id):
+    form = LearnerForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    learner = Learner.query.filter_by(class_id=class_id, user_id=user_id)[0]
+
+    if not learner:
+        return {"errors": ["Learner does not exist"]}
+
+    time_studied = learner.time_studied + 1
+    learner.time_studied = time_studied
+
+    db.session.commit()
+
+    return learner.to_dict()
+
 # Delete a learner from a class
 @class_routes.route('/<int:class_id>/learners/<int:learner_id>', methods=['DELETE'])
 @login_required

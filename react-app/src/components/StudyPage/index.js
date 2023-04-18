@@ -6,20 +6,24 @@ import { useEffect } from "react"
 import { getDeck } from "../../store/decks"
 import { useState } from "react"
 import PreviewFlashcardsModal from "../PreviewFlashcardsModal";
+import { getClasses, putLearnerTime } from "../../store/classes";
 
 const StudyPage = () => {
     const dispatch = useDispatch()
     const params = useParams()
     const history = useHistory()
-    const deck = useSelector(state => state.decks.singleDeck)
+    const deck = useSelector(state => state.decks)
+    const classes = useSelector(state => state.classes)
+    const session = useSelector(state => state.session)
 
-    const [chosenDeck, setChosenDeck] = useState(deck)
+    const [chosenDeck, setChosenDeck] = useState(deck.singleDeck)
     const [cardNumber, setCardNumber] = useState(0)
     const [currentCard, setCurrentCard] = useState(chosenDeck?.flashcards?.length ? chosenDeck?.flashcards[cardNumber] : null);
     const [revealed, setRevealed] = useState(false);
 
     useEffect(async () => {
         // Warning with await in use Effect
+        dispatch(getClasses())
         const chosenDeck = await dispatch(getDeck(params.deckId))
         setCurrentCard(chosenDeck?.flashcards[0])
         setChosenDeck(chosenDeck)
@@ -30,6 +34,16 @@ const StudyPage = () => {
             setCurrentCard(chosenDeck?.flashcards[cardNumber])
         }
     }, [cardNumber])
+
+    useEffect(async () => {
+        const minutesInterval = setInterval(() => {
+            if (Object.values(chosenDeck).length) {
+                dispatch(putLearnerTime(deck.singleDeck?.class_id, session?.user?.id))
+            }
+        }, 60000)
+
+        return () => clearInterval(minutesInterval)
+    }, [])
 
     return (
         <div id="study-page-container">
