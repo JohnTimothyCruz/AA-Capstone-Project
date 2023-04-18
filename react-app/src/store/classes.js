@@ -1,4 +1,4 @@
-import { deleteLearning, getUser, postLearning } from "./session"
+import { getUser, postLearning } from "./session"
 
 // -Action Types---------------
 const GET_CLASSES = "classes/GET_CLASSES"

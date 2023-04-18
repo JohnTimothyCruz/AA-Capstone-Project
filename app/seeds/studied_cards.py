@@ -3,114 +3,92 @@ from sqlalchemy.sql import text
 
 def seed_studied_cards():
     studied1 = Studied_Card(
-        user_id = 4,
+        learner_id = 3,
         flashcard_id = 12,
-        class_id = 5
     )
     studied2 = Studied_Card(
-        user_id = 4,
+        learner_id = 3,
         flashcard_id = 13,
-        class_id = 5
     )
     studied3 = Studied_Card(
-        user_id = 5,
+        learner_id = 4,
         flashcard_id = 14,
-        class_id = 6
     )
     studied4 = Studied_Card(
-        user_id = 7,
+        learner_id = 5,
         flashcard_id = 18,
-        class_id = 8
     )
     studied5 = Studied_Card(
-        user_id = 8,
+        learner_id = 6,
         flashcard_id = 20,
-        class_id = 9
     )
     studied6 = Studied_Card(
-        user_id = 8,
+        learner_id = 6,
         flashcard_id = 21,
-        class_id = 9
     )
     studied7 = Studied_Card(
-        user_id = 9,
+        learner_id = 7,
         flashcard_id = 24,
-        class_id = 10
     )
     studied8 = Studied_Card(
-        user_id = 9,
+        learner_id = 7,
         flashcard_id = 25,
-        class_id = 10
     )
     studied9 = Studied_Card(
-        user_id = 11,
+        learner_id = 9,
         flashcard_id = 30,
-        class_id = 13
     )
     studied10 = Studied_Card(
-        user_id = 12,
+        learner_id = 10,
         flashcard_id = 28,
-        class_id = 12
     )
     studied11 = Studied_Card(
-        user_id = 12,
+        learner_id = 10,
         flashcard_id = 29,
-        class_id = 12
     )
     studied12 = Studied_Card(
-        user_id = 2,
+        learner_id = 11,
         flashcard_id = 1,
-        class_id = 1
     )
     studied13 = Studied_Card(
-        user_id = 2,
+        learner_id = 11,
         flashcard_id = 2,
-        class_id = 1
     )
     studied14 = Studied_Card(
-        user_id = 2,
+        learner_id = 12,
         flashcard_id = 2,
-        class_id = 2
     )
     studied15 = Studied_Card(
-        user_id = 2,
+        learner_id = 12,
         flashcard_id = 3,
-        class_id = 2
     )
     studied16 = Studied_Card(
-        user_id = 4,
+        learner_id = 13,
         flashcard_id = 8,
-        class_id = 3
     )
     studied17 = Studied_Card(
-        user_id = 4,
+        learner_id = 13,
         flashcard_id = 9,
-        class_id = 3
     )
     studied18 = Studied_Card(
-        user_id = 7,
+        learner_id = 15,
         flashcard_id = 14,
-        class_id = 6
     )
     studied19 = Studied_Card(
-        user_id = 7,
+        learner_id = 15,
         flashcard_id = 15,
-        class_id = 6
     )
     studied20 = Studied_Card(
-        user_id = 11,
+        learner_id = 20,
         flashcard_id = 28,
-        class_id = 12
     )
     studied21 = Studied_Card(
-        user_id = 11,
+        learner_id = 20,
         flashcard_id = 29,
-        class_id = 12
     )
     studied22 = Studied_Card(
-        user_id = 14,
+        learner_id = 23,
         flashcard_id = 34,
-        class_id = 15
     )
 
     studied_cards = [

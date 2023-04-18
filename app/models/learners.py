@@ -26,6 +26,10 @@ class Learner(db.Model):
         "Class",
         back_populates="learners"
     )
+    studied_cards = db.relationship(
+        "Studied_Card",
+        back_populates="learner"
+    )
 
     def to_dict(self):
         return {
@@ -39,7 +43,8 @@ class Learner(db.Model):
             "permission": self.permission,
             "createdAt": self.createdAt,
             "user": self.user.to_dict(),
-            "class_info": self.class_info.to_dict()
+            "class_info": self.class_info.to_dict(),
+            "studied_cards": [card.to_dict() for card in self.studied_cards]
         }
 
     def to_dict_no_loop(self):
@@ -55,4 +60,5 @@ class Learner(db.Model):
             "createdAt": self.createdAt,
             "user": self.user.to_dict_no_loop(),
             "class_info": self.class_info.to_dict_no_loop(),
+            "studied_cards": [card.to_dict() for card in self.studied_cards]
         }

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 97f674762965
+Revision ID: b60f4ddf3946
 Revises:
-Create Date: 2023-04-18 09:35:01.216790
+Create Date: 2023-04-18 13:17:13.436037
 
 """
 from alembic import op
@@ -97,12 +97,10 @@ def upgrade():
 
     op.create_table('studied_cards',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('learner_id', sa.Integer(), nullable=True),
     sa.Column('flashcard_id', sa.Integer(), nullable=True),
-    sa.Column('class_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['class_id'], ['classes.id'], ),
     sa.ForeignKeyConstraint(['flashcard_id'], ['flashcards.id'], ),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['learner_id'], ['learners.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
 
