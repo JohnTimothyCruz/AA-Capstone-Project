@@ -83,9 +83,23 @@
 
 .deck-progress-bar {
     background-color: rgb(226, 231, 233);
+    position: relative;
     height: 8px;
     width: 30vw;
     border-radius: 15px;
+}
+
+.deck-progress-bar-progress {
+    position: absolute;
+    top: -8;
+    left: 0;
+    border-radius: 15px;
+    height: 8px;
+    background-color: rgb(196, 200, 202);
+}
+
+.deck-container:hover .deck-progress-bar-progress {
+    background-color: purple;
 }
 
 .deck-container-right {

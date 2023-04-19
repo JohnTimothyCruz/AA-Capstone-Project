@@ -11,6 +11,8 @@ const POST_LEARNER = "classes/POST_LEARNER"
 const PUT_LEARNER = "classes/PUT_LEARNER"
 const DELETE_LEARNER = "classes/DELETE_LEARNER"
 
+const POST_STUDIED = "classes/POST_STUDIED"
+
 // -Actions--------------------
 export const readClasses = (classes) => {
     return {
@@ -66,6 +68,15 @@ export const editLearner = (learner, class_id) => {
 export const removeLearner = (learner_id, class_id) => {
     return {
         type: DELETE_LEARNER,
+        learner_id,
+        class_id
+    }
+}
+
+export const createStudied = (card, learner_id, class_id) => {
+    return {
+        type: POST_STUDIED,
+        card,
         learner_id,
         class_id
     }
@@ -224,6 +235,19 @@ export const putLearnerTime = (class_id, user_id) => async dispatch => {
     }
 }
 
+export const putLearnerCardsStudied = (class_id, user_id) => async dispatch => {
+    const res = await fetch(`/api/classes/${class_id}/users/${user_id}/studied`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id, class_id })
+    });
+
+    if (res.ok) {
+        const updatedLearner = await res.json();
+        dispatch(editLearner(updatedLearner, class_id))
+    }
+}
+
 export const deleteLearner = (class_id, learner_id, user_id) => async dispatch => {
     const res = await fetch(`/api/classes/${class_id}/learners/${learner_id}`, {
         method: "DELETE"
@@ -234,6 +258,19 @@ export const deleteLearner = (class_id, learner_id, user_id) => async dispatch =
         dispatch(getUser(user_id));
     }
 };
+
+export const postStudied = (flashcard_id, learner_id, class_id, deck_id) => async dispatch => {
+    const res = await fetch(`/api/flashcards/${flashcard_id}/learners/${learner_id}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ learner_id, flashcard_id, class_id, deck_id })
+    })
+
+    if (res.ok) {
+        const card = await res.json()
+        dispatch(createStudied(card, learner_id, class_id))
+    }
+}
 
 // -Reducer--------------------
 const initialState = { allClasses: {}, singleClass: {} }
@@ -269,6 +306,13 @@ const ClassReducer = (state = initialState, action) => {
         case DELETE_LEARNER:
             const updated_learners = newState.allClasses[action.class_id].learners.filter(learner => learner.id !== action.learner_id)
             newState.allClasses[action.class_id].learners = updated_learners
+            return newState
+        case POST_STUDIED:
+            for (const learner of newState.allClasses[action.class_id].learners) {
+                if (learner?.id === action.learner_id) {
+                    learner?.studied_cards.push(action.card)
+                }
+            }
             return newState
         default:
             return state

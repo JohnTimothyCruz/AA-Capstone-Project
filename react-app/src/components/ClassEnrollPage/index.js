@@ -29,7 +29,7 @@ const ClassEnrollPage = () => {
 
     const getCardNumber = (a_class) => {
         let num = 0
-        if (a_class.decks) {
+        if (a_class?.decks) {
             for (const deck of a_class.decks) {
                 num += deck?.flashcards?.length
             }

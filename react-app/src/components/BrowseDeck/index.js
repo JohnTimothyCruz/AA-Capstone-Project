@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 const BrowseDeck = ({ props }) => {
     const history = useHistory()
-    const [session, chosenClass, chosenDeck, setType] = props;
+    const [session, chosenClass, chosenDeck] = props;
     const [cardNumber, setCardNumber] = useState(0)
     const [currentCard, setCurrentCard] = useState(chosenDeck?.flashcards?.cardNumber);
     const [revealed, setRevealed] = useState(false);

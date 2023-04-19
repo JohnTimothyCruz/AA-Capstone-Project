@@ -20,7 +20,7 @@ const ClassLearners = ({ props }) => {
 
     const getCardNumber = () => {
         let num = 0
-        if (chosenClass.decks) {
+        if (chosenClass?.decks) {
             for (const deck of chosenClass.decks) {
                 num += deck?.flashcards?.length
             }
@@ -42,7 +42,7 @@ const ClassLearners = ({ props }) => {
                 <p id="learner-mastery" className="learner-info-bar-header">Mastery</p>
                 <p id="learner-days" className="learner-info-bar-header">Days Studied</p>
                 <p id="learner-time" className="learner-info-bar-header">Time Studied</p>
-                <p id="learner-cards" className="learner-info-bar-header">Cards Studied</p>
+                <p id="learner-cards" className="learner-info-bar-header">Cards Studied (total, unique)</p>
             </div>
             <div id="learners-container">
                 {chosenClass?.learners && chosenClass.learners.map((learner, idx) => (
