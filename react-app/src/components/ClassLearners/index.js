@@ -20,7 +20,7 @@ const ClassLearners = ({ props }) => {
 
     const getCardNumber = () => {
         let num = 0
-        if (chosenClass.decks) {
+        if (chosenClass?.decks) {
             for (const deck of chosenClass.decks) {
                 num += deck?.flashcards?.length
             }

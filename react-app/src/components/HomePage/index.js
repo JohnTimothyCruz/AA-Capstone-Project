@@ -36,14 +36,14 @@ const HomePage = () => {
         <div id="homepage">
             <div id="image-carousel">
                 <div id="images-container">
-                    <img className="carousel-image" src="https://www.brainscape.com/pks/static/assets/images/cms/public-views/pages/landing/band-1/image-1-e10d192395aee617c5e9.jpg"></img>
-                    <img className="carousel-image" src="https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-2.jpg"></img>
-                    <img className="carousel-image" src="https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-3.jpg"></img>
-                    <img className="carousel-image" src="https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-4.jpg"></img>
-                    <img className="carousel-image" src="https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-5.jpg"></img>
-                    <img className="carousel-image" src="https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-6.jpg"></img>
-                    <img className="carousel-image" src="https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-7.jpg"></img>
-                    <img className="carousel-image" src="https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-8.jpg"></img>
+                    <img className="carousel-image" src="https://www.brainscape.com/pks/static/assets/images/cms/public-views/pages/landing/band-1/image-1-e10d192395aee617c5e9.jpg" alt="carousel"></img>
+                    <img className="carousel-image" src="https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-2.jpg" alt="carousel"></img>
+                    <img className="carousel-image" src="https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-3.jpg" alt="carousel"></img>
+                    <img className="carousel-image" src="https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-4.jpg" alt="carousel"></img>
+                    <img className="carousel-image" src="https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-5.jpg" alt="carousel"></img>
+                    <img className="carousel-image" src="https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-6.jpg" alt="carousel"></img>
+                    <img className="carousel-image" src="https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-7.jpg" alt="carousel"></img>
+                    <img className="carousel-image" src="https://www.brainscape.com/assets/cms/public-views/pages/landing/band-1/image-8.jpg" alt="carousel"></img>
                 </div>
             </div>
             <div id="homepage-text-container">

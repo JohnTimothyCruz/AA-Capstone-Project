@@ -9,8 +9,10 @@ import { useRef } from "react";
 import EditDeckModal from "../EditDeckModal";
 import NoCardsModal from "../NoCardsModal"
 import "./SingleDeck.css"
+import { useDispatch } from "react-redux";
 
 const SingleDeck = ({ props }) => {
+    const dispatch = useDispatch()
     const history = useHistory();
     const [deck, chosenClass, session] = props;
     const [showMenu, setShowMenu] = useState(false);
@@ -28,16 +30,28 @@ const SingleDeck = ({ props }) => {
         document.addEventListener("click", closeMenu);
 
         return () => document.removeEventListener("click", closeMenu);
-    }, [showMenu]);
+    }, [dispatch, showMenu]);
+
+    const getLearner = () => {
+        if (chosenClass) {
+            for (const l of Object.values(chosenClass?.learners)) {
+                if (l.user_id === session.user.id) {
+                    return l
+                }
+            }
+        }
+    }
 
     const body = (
         <>
             <div className="deck-container-left">
                 <div className="deck-container-circle"></div>
-                <div className="deck-progress-percent">10%</div>
+                <div className="deck-progress-percent">{(getLearner()?.studied_cards?.length / deck?.flashcards?.length) * 100}%</div>
                 <div className=" deck-info-container">
                     <div className="deck-name">{deck.name}</div>
-                    <div className="deck-progress-bar"></div>
+                    <div className="deck-progress-bar">
+                        <div style={{width:`${(getLearner()?.studied_cards?.length / deck?.flashcards?.length) * 100}%`}} className="deck-progress-bar-progress"></div>
+                    </div>
                 </div>
             </div>
             <div className={`deck-container-right ${deck?.flashcards?.length ? "" : "empty"}`}>

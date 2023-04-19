@@ -24,7 +24,7 @@ const AllClassesPage = () => {
 
     const getCardNumber = (a_class) => {
         let num = 0
-        for (const deck of a_class.decks) {
+        for (const deck of a_class?.decks) {
             num += deck?.flashcards?.length
         }
         return num
