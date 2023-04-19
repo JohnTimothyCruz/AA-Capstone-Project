@@ -122,7 +122,7 @@ def create_learner(class_id):
     if form.errors:
         return {"errors": form.errors}
 
-#Edit a class' learner
+#Edit a class' learner time
 @class_routes.route('/<int:class_id>/users/<int:user_id>/minutes', methods=['PUT'])
 @login_required
 def increment_learner_time(class_id, user_id):
@@ -136,6 +136,25 @@ def increment_learner_time(class_id, user_id):
 
     time_studied = learner.time_studied + 1
     learner.time_studied = time_studied
+
+    db.session.commit()
+
+    return learner.to_dict()
+
+#Edit a class' learner cards studied
+@class_routes.route('/<int:class_id>/users/<int:user_id>/studied', methods=['PUT'])
+@login_required
+def increment_learner_cards_studied(class_id, user_id):
+    form = LearnerForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    learner = Learner.query.filter_by(class_id=class_id, user_id=user_id)[0]
+
+    if not learner:
+        return {"errors": ["Learner does not exist"]}
+
+    cards_studied = learner.cards_studied + 1
+    learner.cards_studied = cards_studied
 
     db.session.commit()
 

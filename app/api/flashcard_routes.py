@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import db, Flashcard, User, Studied_Card
+from app.models import db, Flashcard, Learner, Studied_Card
 from app.forms import FlashcardForm, StudiedForm
 
 flashcard_routes = Blueprint('flashcards', __name__)
@@ -72,26 +72,18 @@ def delete_flashcard(id):
 
     return {"Message": "Delete successful!"}
 
-@flashcard_routes.route('/<int:flashcard_id>/users/<int:user_id>', methods=['POST'])
+@flashcard_routes.route('/<int:flashcard_id>/learners/<int:learner_id>', methods=['POST'])
 @login_required
-def create_studied_record(flashcard_id, user_id):
+def create_studied_record(flashcard_id, learner_id):
     form = StudiedForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    flashcard = Flashcard.query.get(flashcard_id)
-
-    if not flashcard:
-        return {"errors": "Flashcard does not exist"}
-
-    user = User.query.get(user_id)
-
-    if not user:
-        return {"errors": "User does not exist"}
-
     if form.validate_on_submit():
         new_studied_card = Studied_Card(
-            user_id = form.user_id.data,
+            learner_id = form.learner_id.data,
             flashcard_id = form.flashcard_id.data,
+            class_id = form.class_id.data,
+            deck_id = form.deck_id.data,
         )
         db.session.add(new_studied_card)
         db.session.commit()

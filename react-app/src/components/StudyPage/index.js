@@ -6,7 +6,7 @@ import { useEffect } from "react"
 import { getDeck } from "../../store/decks"
 import { useState } from "react"
 import PreviewFlashcardsModal from "../PreviewFlashcardsModal";
-import { getClasses, putLearnerTime } from "../../store/classes";
+import { getClasses, postStudied, putLearnerCardsStudied, putLearnerTime } from "../../store/classes";
 
 const StudyPage = () => {
     const dispatch = useDispatch()
@@ -36,6 +36,7 @@ const StudyPage = () => {
     }, [cardNumber])
 
     useEffect(async () => {
+        // Warning with await in use Effect
         const minutesInterval = setInterval(() => {
             if (Object.values(chosenDeck).length) {
                 dispatch(putLearnerTime(deck.singleDeck?.class_id, session?.user?.id))
@@ -44,6 +45,25 @@ const StudyPage = () => {
 
         return () => clearInterval(minutesInterval)
     }, [])
+
+    const getLearner = () => {
+        if (classes?.allClasses[chosenDeck?.class_id]) {
+            for (const l of Object.values(classes?.allClasses[chosenDeck?.class_id].learners)) {
+                if (l.user_id === session.user.id) {
+                    return l
+                }
+            }
+        }
+    }
+
+    const handleReveal = () => {
+        const cards = getLearner().studied_cards.filter(card => card.flashcard_id === currentCard?.id && card.learner_id === getLearner()?.id && card?.deck_id === chosenDeck?.id)
+        if (!cards.length) {
+            dispatch(postStudied(currentCard?.id, getLearner()?.id, chosenDeck?.class_id, chosenDeck?.id))
+        }
+        dispatch(putLearnerCardsStudied(chosenDeck?.class_id, session?.user?.id))
+        setRevealed(true)
+    }
 
     return (
         <div id="study-page-container">
@@ -99,7 +119,7 @@ const StudyPage = () => {
                 </div>
                 <div id="study-page-flashcard-container">
                     <div id="study-flashcard-top"></div>
-                    <div id="study-flashcard-question-container" className={!revealed && "solo"}>
+                    <div id="study-flashcard-question-container" className={!revealed ? "solo" : ""}>
                         <p className="study-flashcard-letter">Q</p>
                         <div className="study-flashcard-prompt">
                             <div className="study-flashcard-text">{currentCard?.question}</div>
@@ -141,7 +161,7 @@ const StudyPage = () => {
                             </div>
                         </div>
                     :
-                    <div id="study-reveal-button" onClick={() => setRevealed(true)}>
+                    <div id="study-reveal-button" onClick={() => handleReveal()}>
                         REVEAL ANSWER
                     </div>
                 }
