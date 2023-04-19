@@ -59,8 +59,8 @@ def seed_studied_cards():
     studied10 = Studied_Card(
         learner_id = 10,
         flashcard_id = 28,
-        deck_id = 000,
-        class_id = 000,
+        deck_id = 15,
+        class_id = 12,
     )
     studied11 = Studied_Card(
         learner_id = 10,
@@ -71,8 +71,8 @@ def seed_studied_cards():
     studied12 = Studied_Card(
         learner_id = 11,
         flashcard_id = 1,
-        deck_id = 000,
-        class_id = 000,
+        deck_id = 1,
+        class_id = 1,
     )
     studied13 = Studied_Card(
         learner_id = 11,
@@ -95,8 +95,8 @@ def seed_studied_cards():
     studied16 = Studied_Card(
         learner_id = 13,
         flashcard_id = 8,
-        deck_id = 000,
-        class_id = 000,
+        deck_id = 5,
+        class_id = 3,
     )
     studied17 = Studied_Card(
         learner_id = 13,
