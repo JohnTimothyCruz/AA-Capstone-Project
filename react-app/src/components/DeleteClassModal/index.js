@@ -10,7 +10,7 @@ const DeleteClassModal = ({ props }) => {
     const dispatch = useDispatch()
     const [chosenClass, session, type] = props
     const { closeModal } = useModal();
-
+console.log(chosenClass)
     const getLearnerId = () => {
         if (chosenClass) {
             for (const l of Object.values(chosenClass?.learners)) {
@@ -28,7 +28,7 @@ const DeleteClassModal = ({ props }) => {
                 .then(history.push("/dashboard"))
                 .then(closeModal)
         } else {
-            dispatch(deleteClass(chosenClass, session?.user?.id))
+            dispatch(deleteClass(chosenClass))
                 .then(history.push("/dashboard"))
                 .then(closeModal)
         }
