@@ -49,6 +49,10 @@ const Dashboard = () => {
         findAnotherClass()
     }, [dispatch])
 
+    useEffect(() => {
+        findAnotherClass()
+    }, [classes])
+
     findAnotherClass()
 
     return (

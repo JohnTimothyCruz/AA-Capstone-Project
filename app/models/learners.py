@@ -15,7 +15,6 @@ class Learner(db.Model):
     days_studied = db.Column(db.Integer, default=0)
     time_studied = db.Column(db.Integer, default=0)
     cards_studied = db.Column(db.Integer, default=0)
-    permission = db.Column(db.String(11))
     createdAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
     user = db.relationship(
@@ -40,7 +39,6 @@ class Learner(db.Model):
             "days_studied": self.days_studied,
             "time_studied": self.time_studied,
             "cards_studied": self.cards_studied,
-            "permission": self.permission,
             "createdAt": self.createdAt,
             "user": self.user.to_dict(),
             "class_info": self.class_info.to_dict(),
@@ -56,7 +54,6 @@ class Learner(db.Model):
             "days_studied": self.days_studied,
             "time_studied": self.time_studied,
             "cards_studied": self.cards_studied,
-            "permission": self.permission,
             "createdAt": self.createdAt,
             "user": self.user.to_dict_no_loop(),
             "class_info": self.class_info.to_dict_no_loop(),

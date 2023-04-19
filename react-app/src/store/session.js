@@ -33,13 +33,16 @@ const removeLearning = (learner_id) => ({
 
 // -Thunks---------------------
 export const getUser = (id) => async dispatch => {
-	const res = await fetch(`/api/users/${id}`)
+	try {
 
-	if (res.ok) {
-		const user = await res.json();
+		const res = await fetch(`/api/users/${id}`)
 
-		dispatch(setUser(user))
-	}
+		if (res.ok) {
+			const user = await res.json();
+
+			dispatch(setUser(user))
+		}
+	} catch (e) {}
 }
 
 export const getOtherUser = (id) => async dispatch => {

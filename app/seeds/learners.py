@@ -10,7 +10,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 4,
         cards_studied = 0,
-        permission = "Full Study",
         createdAt = datetime.now()
     )
     learner2 = Learner(
@@ -19,7 +18,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 0,
         cards_studied = 0,
-        permission = "Full Study",
         createdAt = datetime.now()
     )
     learner3 = Learner(
@@ -28,7 +26,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 1,
         cards_studied = 2,
-        permission = "Preview",
         createdAt = datetime.now()
     )
     learner4 = Learner(
@@ -37,7 +34,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 5,
         cards_studied = 1,
-        permission = "Edit",
         createdAt = datetime.now()
     )
     learner5 = Learner(
@@ -46,7 +42,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 3,
         cards_studied = 1,
-        permission = "Admin",
         createdAt = datetime.now()
     )
     learner6 = Learner(
@@ -55,7 +50,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 4,
         cards_studied = 2,
-        permission = "Preview",
         createdAt = datetime.now()
     )
     learner7 = Learner(
@@ -64,7 +58,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 1,
         cards_studied = 2,
-        permission = "Full Study",
         createdAt = datetime.now()
     )
     learner8 = Learner(
@@ -73,7 +66,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 2,
         cards_studied = 0,
-        permission = "Edit",
         createdAt = datetime.now()
     )
     learner9 = Learner(
@@ -82,7 +74,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 5,
         cards_studied = 1,
-        permission = "Full Study",
         createdAt = datetime.now()
     )
     learner10 = Learner(
@@ -91,7 +82,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 8,
         cards_studied = 2,
-        permission = "Full Study",
         createdAt = datetime.now()
     )
     learner11 = Learner(
@@ -100,7 +90,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 8,
         cards_studied = 2,
-        permission = "Full Study",
         createdAt = datetime.now()
     )
     learner12 = Learner(
@@ -109,7 +98,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 8,
         cards_studied = 2,
-        permission = "Full Study",
         createdAt = datetime.now()
     )
     learner13 = Learner(
@@ -118,7 +106,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 8,
         cards_studied = 2,
-        permission = "Full Study",
         createdAt = datetime.now()
     )
     learner14 = Learner(
@@ -127,7 +114,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 8,
         cards_studied = 2,
-        permission = "Full Study",
         createdAt = datetime.now()
     )
     learner15 = Learner(
@@ -136,7 +122,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 8,
         cards_studied = 2,
-        permission = "Full Study",
         createdAt = datetime.now()
     )
     learner16 = Learner(
@@ -145,7 +130,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 8,
         cards_studied = 0,
-        permission = "Full Study",
         createdAt = datetime.now()
     )
     learner17 = Learner(
@@ -154,7 +138,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 8,
         cards_studied = 0,
-        permission = "Full Study",
         createdAt = datetime.now()
     )
     learner18 = Learner(
@@ -163,7 +146,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 8,
         cards_studied = 0,
-        permission = "Full Study",
         createdAt = datetime.now()
     )
     learner19 = Learner(
@@ -172,7 +154,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 8,
         cards_studied = 0,
-        permission = "Full Study",
         createdAt = datetime.now()
     )
     learner20 = Learner(
@@ -181,7 +162,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 8,
         cards_studied = 5,
-        permission = "Full Study",
         createdAt = datetime.now()
     )
     learner21 = Learner(
@@ -190,7 +170,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 1,
         cards_studied = 0,
-        permission = "Full Study",
         createdAt = datetime.now()
     )
     learner22 = Learner(
@@ -199,7 +178,6 @@ def seed_learners():
         days_studied = 0,
         time_studied = 0,
         cards_studied = 0,
-        permission = "Full Study",
         createdAt = datetime.now()
     )
     learner23 = Learner(
@@ -208,7 +186,6 @@ def seed_learners():
         days_studied = 1,
         time_studied = 8,
         cards_studied = 1,
-        permission = "Full Study",
         createdAt = datetime.now()
     )
 
