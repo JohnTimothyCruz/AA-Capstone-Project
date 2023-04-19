@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 47035b7a0369
+Revision ID: a7d0c8628b61
 Revises:
-Create Date: 2023-04-19 08:32:47.931823
+Create Date: 2023-04-19 09:20:56.842923
 
 """
 from alembic import op
@@ -71,7 +71,6 @@ def upgrade():
     sa.Column('days_studied', sa.Integer(), nullable=True),
     sa.Column('time_studied', sa.Integer(), nullable=True),
     sa.Column('cards_studied', sa.Integer(), nullable=True),
-    sa.Column('permission', sa.String(length=11), nullable=True),
     sa.Column('createdAt', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['class_id'], ['classes.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
@@ -110,7 +109,7 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE studied_cards SET SCHEMA {SCHEMA};")
-
+        
     # ### end Alembic commands ###
 
 
