@@ -45,7 +45,6 @@ const SingleLearner = ({ props }) => {
                     <p className="learner-detail">{learner?.cards_studied}</p>
                     <p className="learner-detail">{learner?.studied_cards?.length}</p>
                 </div>
-                <p className="learner-detail">{learner?.permission}</p>
             </div>
             <div className="learner-options">
                 <i className="fa-solid fa-ellipsis fa-xl" onClick={() => setShowMenu(true)} />
