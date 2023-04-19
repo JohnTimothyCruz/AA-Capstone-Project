@@ -73,12 +73,14 @@ export const removeLearner = (learner_id, class_id) => {
 
 // -Thunks---------------------
 export const getClasses = () => async dispatch => {
-    const res = await fetch("/api/classes");
+    try {
+        const res = await fetch("/api/classes");
 
-    if (res.ok) {
-        const classes = await res.json();
-        dispatch(readClasses(classes));
-    };
+        if (res.ok) {
+            const classes = await res.json();
+            dispatch(readClasses(classes));
+        };
+    } catch (e) {}
 };
 
 export const getClass = (id) => async dispatch => {
