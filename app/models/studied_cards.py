@@ -10,6 +10,8 @@ class Studied_Card(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     learner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('learners.id')))
     flashcard_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('flashcards.id')))
+    class_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('classes.id')))
+    deck_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('decks.id')))
 
     learner = db.relationship(
         "Learner",
@@ -20,5 +22,7 @@ class Studied_Card(db.Model):
         return {
             "id": self.id,
             "learner_id": self.learner_id,
-            "flashcard_id": self.flashcard_id
+            "flashcard_id": self.flashcard_id,
+            "class_id": self.class_id,
+            "deck_id": self.deck_id
         }

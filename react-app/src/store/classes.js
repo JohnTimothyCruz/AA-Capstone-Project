@@ -183,7 +183,7 @@ export const visibilityPutClass = (visibility, id, user_id) => async dispatch =>
     };
 }
 
-export const deleteClass = (chosenClass, user_id) => async dispatch => {
+export const deleteClass = (chosenClass) => async dispatch => {
     const res = await fetch(`/api/classes/${chosenClass.id}`, {
         method: "DELETE"
     });
