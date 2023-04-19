@@ -6,7 +6,7 @@ import { useEffect } from "react"
 import { getDeck } from "../../store/decks"
 import { useState } from "react"
 import PreviewFlashcardsModal from "../PreviewFlashcardsModal";
-import { getClasses, postStudied, putLearnerCardsStudied, putLearnerTime } from "../../store/classes";
+import { getClasses, postStudied, putLearnerCardsStudied, putLearnerDaysStudied, putLearnerTime } from "../../store/classes";
 
 const StudyPage = () => {
     const dispatch = useDispatch()
@@ -55,12 +55,16 @@ const StudyPage = () => {
             }
         }
     }
-
     const handleReveal = () => {
+        if (new Date(getLearner().last_studied).getTime() < Date.now() && new Date(getLearner().last_studied).getDate() !== new Date().getDate()) {
+            dispatch(putLearnerDaysStudied(chosenDeck?.class_id, session?.user?.id))
+        }
+
         const cards = getLearner().studied_cards.filter(card => card.flashcard_id === currentCard?.id && card.learner_id === getLearner()?.id && card?.deck_id === chosenDeck?.id)
         if (!cards.length) {
             dispatch(postStudied(currentCard?.id, getLearner()?.id, chosenDeck?.class_id, chosenDeck?.id))
         }
+
         dispatch(putLearnerCardsStudied(chosenDeck?.class_id, session?.user?.id))
         setRevealed(true)
     }

@@ -248,6 +248,19 @@ export const putLearnerCardsStudied = (class_id, user_id) => async dispatch => {
     }
 }
 
+export const putLearnerDaysStudied = (class_id, user_id) => async dispatch => {
+    const res = await fetch(`/api/classes/${class_id}/users/${user_id}/days`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id, class_id })
+    });
+
+    if (res.ok) {
+        const updatedLearner = await res.json();
+        dispatch(editLearner(updatedLearner, class_id))
+    }
+}
+
 export const deleteLearner = (class_id, learner_id, user_id) => async dispatch => {
     const res = await fetch(`/api/classes/${class_id}/learners/${learner_id}`, {
         method: "DELETE"

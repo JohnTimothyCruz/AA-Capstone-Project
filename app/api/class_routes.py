@@ -160,6 +160,25 @@ def increment_learner_cards_studied(class_id, user_id):
 
     return learner.to_dict()
 
+#Edit a class' learner days studied
+@class_routes.route('/<int:class_id>/users/<int:user_id>/days', methods=['PUT'])
+@login_required
+def increment_learner_days_studied(class_id, user_id):
+    form = LearnerForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    learner = Learner.query.filter_by(class_id=class_id, user_id=user_id)[0]
+
+    if not learner:
+        return {"errors": ["Learner does not exist"]}
+
+    days_studied = learner.days_studied + 1
+    learner.days_studied = days_studied
+
+    db.session.commit()
+
+    return learner.to_dict()
+
 # Delete a learner from a class
 @class_routes.route('/<int:class_id>/learners/<int:learner_id>', methods=['DELETE'])
 @login_required
