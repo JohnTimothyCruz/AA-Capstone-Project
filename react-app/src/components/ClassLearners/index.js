@@ -43,7 +43,6 @@ const ClassLearners = ({ props }) => {
                 <p id="learner-days" className="learner-info-bar-header">Days Studied</p>
                 <p id="learner-time" className="learner-info-bar-header">Time Studied</p>
                 <p id="learner-cards" className="learner-info-bar-header">Cards Studied</p>
-                <p id="learner-permission" className="learner-info-bar-header">Cards Permission</p>
             </div>
             <div id="learners-container">
                 {chosenClass?.learners && chosenClass.learners.map((learner, idx) => (
