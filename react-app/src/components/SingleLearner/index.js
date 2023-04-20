@@ -38,7 +38,7 @@ const SingleLearner = ({ props }) => {
                 <div className="learner-progress-bar"></div>
             </div>
             <div className="learner-details">
-                <p className="learner-detail">{(learner?.studied_cards?.length / getCardNumber()).toFixed(1)}<span className="learner-percent-symbol">%</span></p>
+                <p className="learner-detail">{(learner?.studied_cards?.length / getCardNumber()).toFixed(1) * 100}<span className="learner-percent-symbol">%</span></p>
                 <p className="learner-detail">{learner?.days_studied}</p>
                 <p className="learner-detail">{learner?.time_studied} <span className="learner-time-min">min</span></p>
                 <div className="cards-studied-num-container">

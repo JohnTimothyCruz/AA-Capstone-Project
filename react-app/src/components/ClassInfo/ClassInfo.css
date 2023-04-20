@@ -93,17 +93,6 @@ p.class-info-details {
     gap: 20px;
 }
 
-#class-study-button {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 15px 10px 50px;
-    border-radius: 30px;
-    color: white;
-    background-color: rgb(168, 168, 168);
-}
-
 #class-options-button {
     display: flex;
     align-items: center;
@@ -121,6 +110,7 @@ p.class-info-details {
 
 #class-options-pop-up {
     position: absolute;
+    transform: translateY(-17px);
     width: 240px;
 }
 

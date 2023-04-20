@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from flask_login import login_required
 from app.models import db, Class, Learner, Studied_Card
 from app.forms import ClassForm, LearnerForm
+from datetime import datetime
 
 class_routes = Blueprint('classes', __name__)
 
@@ -174,6 +175,7 @@ def increment_learner_days_studied(class_id, user_id):
 
     days_studied = learner.days_studied + 1
     learner.days_studied = days_studied
+    learner.last_studied = datetime.now()
 
     db.session.commit()
 
