@@ -83,10 +83,6 @@ const ClassInfo = ({ props }) => {
                     <p className="class-info-details">Creator: <span id="class-creator-name">{chosenClass?.user?.username}</span></p>
                     <p className="class-info-details">0 of 2</p>
                     <div id="class-extra-options-menu">
-                        <div id="class-study-button">
-                            <div>STUDY</div>
-                            <i className="fa-solid fa-circle-play fa-xl" />
-                        </div>
                         <i id="class-options-button" className="fa-solid fa-ellipsis fa-2xl" onClick={() => setOpenDeleteMenu(true)}>
                             <div id="class-options-pop-up" className={openDeleteMenu ? "" : "hidden"}>
                                 {session?.user?.id === chosenClass?.user?.id ?
