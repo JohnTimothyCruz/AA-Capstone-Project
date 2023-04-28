@@ -26,13 +26,19 @@ Check it out: [Brainbash](https://brainbash.onrender.com/)
 * Render
 
 ## Splash Page
-![image](https://user-images.githubusercontent.com/112726832/229265146-e5d858ce-59a0-42ee-a133-4ae06bede983.png)
+![image](https://user-images.githubusercontent.com/112726832/235207197-bbd01c4e-1d88-49bd-93c5-272ee4ccccaa.png)
 
 ## Dashboard Page
-![image](https://user-images.githubusercontent.com/112726832/229265185-83aea112-951c-4782-8ac3-47ba7d8dc34f.png)
+![image](https://user-images.githubusercontent.com/112726832/235207461-68aef15b-436a-46f4-86ca-a0a3d613ce38.png)
 
 ## Study Page
-![image](https://user-images.githubusercontent.com/112726832/229265749-7c28bde7-a809-4ddb-b33c-904fa5f6d589.png)
+![image](https://user-images.githubusercontent.com/112726832/235207533-5534aaf5-d626-4ff8-be2d-f1d229305796.png)
+
+## Find Flashcards Page
+![image](https://user-images.githubusercontent.com/112726832/235207306-4f402ad6-ead2-4be1-8d00-c202518f7f9d.png)
+
+## Enroll in Class Page
+![image](https://user-images.githubusercontent.com/112726832/235207615-bfbad9c4-f1bf-479c-9b1a-2cb39872517e.png)
 
 ## Getting started
 1. Clone this repository:
