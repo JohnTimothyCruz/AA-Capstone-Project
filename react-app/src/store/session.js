@@ -22,7 +22,7 @@ const removeUser = () => ({
 });
 
 const createLearning = (learning) => ({
-	type: DELETE_LEARNING,
+	type: POST_LEARNING,
 	learning
 })
 
@@ -160,7 +160,7 @@ export default function reducer(state = initialState, action) {
 		case REMOVE_USER:
 			return { user: null };
 		case POST_LEARNING:
-			newState.user.learning.push(action.learner)
+			newState.user.learning.push(action.learning)
 			return newState
 		case DELETE_LEARNING:
 			const updatedLearning = newState.user.learning.filter(learner => learner.id !== action.learner_id)
