@@ -4,25 +4,9 @@
     width: 100%;
 }
 
-#learner-prompt {
+#learner-header {
     margin-left: 48px;
-    margin-right: 393px;
-}
-
-#learner-mastery {
-    margin-right: 50px;
-}
-
-#learner-days {
-    margin-right: 20px;
-}
-
-#learner-time {
-    margin-right: 22px;
-}
-
-#learner-cards {
-    margin-right: 15px;
+    margin-right: 22%;
 }
 
 .learner-info-bar-header {
@@ -33,7 +17,6 @@
 #learner-info-bar {
     display: flex;
     width: 100%;
-    gap: 100px;
     margin-top: 42px;
 }
 
@@ -84,6 +67,11 @@
     margin-right: 5px;
 }
 
+.learner-icon {
+    min-height: 42px;
+    min-width: 42px;
+}
+
 #add-learner-icon {
     height: 42px;
     width: 42px;
@@ -119,8 +107,7 @@
 
 #learners-page-extras {
     display: flex;
-    margin-left: 48px;
-    margin-top: 15px;
+    margin: 15px 48px 15px 48px;
     gap: 100px;
 }
 
@@ -133,7 +120,7 @@
     margin: 0px;
 }
 
-#share-link-container > p,
+#share-link-container>p,
 #learner-radio-prompt {
     font-size: 11px;
     margin: 0px;
