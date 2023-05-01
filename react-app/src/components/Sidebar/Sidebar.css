@@ -63,15 +63,11 @@
     border: 10px solid rgba(255, 0, 0, 0);
 }
 
-.dashboard-side-bar-bottom > i:hover {
+.user-icon-container > i:hover {
     color: rgb(0, 162, 255);
-    background-color: rgba(255, 255, 255, 0.096);
 }
 
-.user-icon-container button:hover {
-    border: 10px solid rgba(255, 125, 65, 0.144);
-}
-
+.user-icon-container i.fa-magnifying-glass:hover,
 .user-icon-container button:hover i {
     color: rgb(255, 125, 65);
 }

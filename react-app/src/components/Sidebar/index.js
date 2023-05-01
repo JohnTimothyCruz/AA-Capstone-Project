@@ -26,6 +26,7 @@ const Sidebar = () => {
                             modalComponent={<CreateClassModal props={[session?.user?.id]} />}
                             buttonText={<i className="fa-solid fa-circle-plus fa-xl" />}
                         />
+                        <i className="fa-solid fa-magnifying-glass fa-lg" onClick={() => history.push("/classes")} />
                     </div>
                     <div id="user-classes-list">
                         {userRelatedClasses && userRelatedClasses.map((c, idx) => (
@@ -34,9 +35,6 @@ const Sidebar = () => {
                             </div>
                         ))}
                     </div>
-                </div>
-                <div className="dashboard-side-bar-bottom">
-                    <i className="fa-solid fa-magnifying-glass fa-lg" onClick={() => history.push("/classes")} />
                 </div>
             </div>
             <div id="sidebar-space"></div>
