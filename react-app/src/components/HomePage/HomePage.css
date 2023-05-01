@@ -1,5 +1,5 @@
 #homepage {
-    height: 889px;
+    height: calc(100vh - 72px);
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -55,6 +55,7 @@
     flex-direction: column;
     padding: 57px;
     width: 1300px;
+    margin-top: 73px;
 }
 
 .homepage-h2 {

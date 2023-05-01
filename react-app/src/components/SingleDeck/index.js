@@ -46,7 +46,7 @@ const SingleDeck = ({ props }) => {
         <>
             <div className="deck-container-left">
                 <div className="deck-container-circle"></div>
-                <div className="deck-progress-percent">{(getLearner()?.studied_cards?.length / deck?.flashcards?.length) * 100}%</div>
+                <div className="deck-progress-percent">{isNaN((getLearner()?.studied_cards?.length / deck?.flashcards?.length) * 100) ? 0 : (getLearner()?.studied_cards?.length / deck?.flashcards?.length) * 100}%</div>
                 <div className=" deck-info-container">
                     <div className="deck-name">{deck.name}</div>
                     <div className="deck-progress-bar">

@@ -17,6 +17,7 @@ const ClassEnrollPage = () => {
 
     useEffect(() => {
         dispatch(getClass(params.classId))
+        window.scrollTo(0, 0)
     }, [dispatch])
 
     const checkUser = () => {
@@ -46,7 +47,7 @@ const ClassEnrollPage = () => {
     }
 
     return (
-        chosenClass?.description ?
+        chosenClass?.name ?
             <div id="class-enroll-page">
                 <div id="enroll-class-prompt-container">
                     <img id="enroll-class-image" src={chosenClass?.image} alt="class" />
@@ -92,14 +93,13 @@ const ClassEnrollPage = () => {
                     <h2>Decks in this class ({chosenClass?.decks?.length || 0})</h2>
                     <div id="enroll-class-decks-container">
                         {chosenClass?.decks?.length ? chosenClass?.decks?.map((deck, idx) => (
-                            <div className="enroll-class-deck" key={idx} onClick={() => window.alert("Sorry, I didn't add this feature yet.")}>
+                            <div className="enroll-class-deck" key={idx}>
                                 <img className="enroll-class-deck-left" src={chosenClass?.image} />
                                 <div className="enroll-class-deck-middle-left">
                                     <h3>{deck?.name}</h3>
                                     <p>{deck?.description || "No deck description has yet been added by the author."}</p>
                                 </div>
                                 <p className="enroll-class-deck-middle-right">{deck?.flashcards?.length || 0} cards</p>
-                                <i className="fa-solid fa-chevron-right fa-xl enroll-class-deck-right" />
                             </div>
                         ))
                             :

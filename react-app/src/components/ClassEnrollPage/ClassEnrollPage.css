@@ -110,8 +110,7 @@
 }
 
 .enroll-class-deck {
-    cursor: pointer;
-    width: 73%;
+    width: fit-content;
     height: fit-content;
     display: flex;
     gap: 40px;
@@ -119,14 +118,6 @@
     padding: 32px;
     border-left: 15px solid rgb(226, 232, 235);
     border-bottom: 1px solid rgb(226, 232, 235);
-}
-
-.enroll-class-deck:hover {
-    background-color: rgb(224, 244, 255);
-}
-
-.enroll-class-deck:hover .enroll-class-deck-middle-left {
-    text-decoration: 3px underline rgb(0, 162, 255);
 }
 
 .enroll-class-deck * {
@@ -151,11 +142,14 @@
 
 .enroll-class-deck-middle-left h3 {
     font-size: 25px;
+    width: fit-content;
+    margin: 0px;
 }
 
 .enroll-class-deck-middle-left p {
     font-size: 15px;
     font-weight: 300;
+    max-width: 500px;
 }
 
 .enroll-class-deck-middle-right {
@@ -164,12 +158,8 @@
     align-self: center;
     font-size: 18px;
     color: grey;
-    margin: 0px 150px;
-}
-
-.enroll-class-deck-right {
-    align-self: center;
-    color: rgb(0, 162, 255);
+    margin: 0px;
+    min-width: 70px;
 }
 
 #enroll-class-no-decks {

@@ -35,7 +35,6 @@ const SingleLearner = ({ props }) => {
             <i className="learner-icon fa-regular fa-circle-user fa-xl" />
             <div className="learner-left">
                 <p className="learner-username">{learner?.user?.username}</p>
-                <div className="learner-progress-bar"></div>
             </div>
             <div className="learner-details">
                 <p className="learner-detail">{(learner?.studied_cards?.length / getCardNumber()).toFixed(1) * 100}<span className="learner-percent-symbol">%</span></p>

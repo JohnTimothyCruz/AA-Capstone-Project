@@ -85,9 +85,9 @@ const ClassInfo = ({ props }) => {
                     <div id="class-extra-options-menu">
                         <i id="class-options-button" className="fa-solid fa-ellipsis fa-2xl" onClick={() => setOpenDeleteMenu(true)}>
                             <div id="class-options-pop-up" className={openDeleteMenu ? "" : "hidden"}>
-                                {session?.user?.id === chosenClass?.user?.id ?
+                                {session?.user?.id === chosenClass?.user_id ?
                                     <OpenModalButton
-                                        modalComponent={<DeleteClassModal props={[chosenClass, session, getUserRelatedClasses, "delete"]} />}
+                                        modalComponent={<DeleteClassModal props={[chosenClass, session, "delete"]} />}
                                         buttonText={
                                             <div className="class-button class-options-pop-up-section">
                                                 <i className="class-button-icon fa-regular fa-trash-can" />
@@ -97,7 +97,7 @@ const ClassInfo = ({ props }) => {
                                     />
                                     :
                                     <OpenModalButton
-                                        modalComponent={<DeleteClassModal props={[chosenClass, session, getUserRelatedClasses, "remove"]} />}
+                                        modalComponent={<DeleteClassModal props={[chosenClass, session, "remove"]} />}
                                         buttonText={
                                             <div className="class-button class-options-pop-up-section">
                                                 <i className="class-button-icon fa-solid fa-xmark" />

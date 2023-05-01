@@ -38,11 +38,7 @@ const ClassLearners = ({ props }) => {
     return (
         <div id="learners-page-container">
             <div id="learner-info-bar">
-                <p id="learner-prompt" className="learner-info-bar-header">Learner</p>
-                <p id="learner-mastery" className="learner-info-bar-header">Mastery</p>
-                <p id="learner-days" className="learner-info-bar-header">Days Studied</p>
-                <p id="learner-time" className="learner-info-bar-header">Time Studied</p>
-                <p id="learner-cards" className="learner-info-bar-header">Cards Studied (total, unique)</p>
+                <p id="learner-header" className="learner-info-bar-header">Learner | Mastery | Days Studied | Minutes Studied | Unique Cards Studied | Total Cards Studied</p>
             </div>
             <div id="learners-container">
                 {chosenClass?.learners && chosenClass.learners.map((learner, idx) => (
@@ -57,7 +53,6 @@ const ClassLearners = ({ props }) => {
                                 <i id="add-learner-icon" className="fa-solid fa-user-plus fa-xl" />
                                 <div id="add-learner-right">
                                     <p id="add-learner-prompt">Add New Learner</p>
-                                    <div id="add-learner-progress-bar"></div>
                                 </div>
                             </div>
                         }
