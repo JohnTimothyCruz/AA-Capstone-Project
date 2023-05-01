@@ -15,6 +15,7 @@ const UserProfile = () => {
     useEffect(() => {
         dispatch(getClasses())
         dispatch(getOtherUser(params.profileId))
+        window.scrollTo(0, 0)
     }, [dispatch])
 
     const getCardNumber = (a_class) => {
@@ -45,6 +46,7 @@ const UserProfile = () => {
         }
         return arr
     }
+
     const learning = session?.otherUser && getUserEnrolledClasses()
 
     return (
