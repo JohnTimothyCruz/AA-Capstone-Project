@@ -22,6 +22,10 @@ const Sidebar = () => {
                     <div className="user-icon-container">
                         <i onClick={() => history.push("/")} className="dashboard-logo-icon fa-solid fa-robot fa-2xl" />
                         <i onClick={() => history.push(`/profiles/${session?.user?.id}`)} className="fa-regular fa-circle-user fa-2xl" />
+                        <OpenModalButton
+                            modalComponent={<CreateClassModal props={[session?.user?.id]} />}
+                            buttonText={<i className="fa-solid fa-circle-plus fa-xl" />}
+                        />
                     </div>
                     <div id="user-classes-list">
                         {userRelatedClasses && userRelatedClasses.map((c, idx) => (
@@ -33,10 +37,6 @@ const Sidebar = () => {
                 </div>
                 <div className="dashboard-side-bar-bottom">
                     <i className="fa-solid fa-magnifying-glass fa-lg" onClick={() => history.push("/classes")} />
-                    <OpenModalButton
-                        modalComponent={<CreateClassModal props={[session?.user?.id]} />}
-                        buttonText={<i className="fa-solid fa-circle-plus fa-xl" />}
-                    />
                 </div>
             </div>
             <div id="sidebar-space"></div>
