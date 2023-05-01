@@ -2,6 +2,7 @@
     display: flex;
     height: 100%;
     width: 100%;
+    overflow-x: hidden;
 }
 
 #study-page-side-bar {
@@ -68,12 +69,12 @@
 
 #study-page {
     width: 100%;
-    height: 934px;
+    height: 100vh;
     background-color: rgb(243, 243, 243);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 27px 30px 0px 30px;
+    padding: 27px 30px -100px 30px;
     gap: 40px;
 }
 
@@ -154,6 +155,7 @@
     justify-content: space-between;
     font-weight: 400;
     font-size: 12px;
+    margin-left: 25px;
     width: 100%;
     color: grey;
 }
@@ -175,6 +177,7 @@
     color: rgb(26, 143, 211);
     cursor: pointer;
     padding: 2px 15px;
+    margin-right: 25px;
     border-radius: 10px;
     transition: background-color 0.2s;
 }
@@ -190,7 +193,7 @@
     justify-self: center;
     display: flex;
     flex-direction: column;
-    max-height: 710px;
+    max-height: 75vh;
     width: 50%;
     background-color: white;
     border-radius: 5px;

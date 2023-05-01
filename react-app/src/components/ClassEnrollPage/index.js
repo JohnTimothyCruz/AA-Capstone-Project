@@ -47,7 +47,7 @@ const ClassEnrollPage = () => {
     }
 
     return (
-        chosenClass?.description ?
+        chosenClass?.name ?
             <div id="class-enroll-page">
                 <div id="enroll-class-prompt-container">
                     <img id="enroll-class-image" src={chosenClass?.image} alt="class" />

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import CreateDeckModal from "../CreateDeckModal";
 import OpenModalButton from "../OpenModalButton";
 import SingleDeck from "../SingleDeck";
@@ -5,6 +6,10 @@ import "./ClassDecks.css"
 
 const ClassDecks = ({ props }) => {
     const [session, chosenClass] = props;
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <div id="dashboard-decks-container">
